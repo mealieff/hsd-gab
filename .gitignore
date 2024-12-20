@@ -1,0 +1,30 @@
+# Ignore all .npy files
+*.npy
+
+# Ignore the resampled data directory
+resampled_data/
+
+# Ignore specific large files
+resampled_data/binary_SMOTEENN_embeddings.npy
+resampled_data/multiclass_RandomOverSampler_embeddings.npy
+resampled_data/multiclass_ADASYN_embeddings.npy
+resampled_data/binary_ADASYN_embeddings.npy
+resampled_data/multiclass_SMOTEENN_embeddings.npy
+resampled_data/binary_RandomOverSampler_embeddings.npy
+resampled_data/multiclass_SMOTE_embeddings.npy
+resampled_data/binary_SMOTE_embeddings.npy
+train_embeddings.npy
+new_train_embeddings.npy
+
+
+ghc_test.tsv
+ghc_train.tsv
+new_train_embeddings.npy
+new_train_labels.npy
+resampled_data/
+test_embeddings.npy
+test_labels.npy
+train_embeddings.npy
+train_labels.npy
+*.npy
+
