@@ -4,6 +4,7 @@ from transformers import BertTokenizer, BertModel
 import torch
 
 # Paths for input and output files
+<<<<<<< HEAD
 #INPUT_FILE = "ghc_train.tsv"
 #OUTPUT_EMBEDDINGS = "train_embeddings.npy"
 #OUTPUT_LABELS = "train_labels.npy"
@@ -11,6 +12,11 @@ import torch
 INPUT_FILE = "ghc_test.tsv"
 OUTPUT_EMBEDDINGS = "test_embeddings.npy"
 OUTPUT_LABELS = "test_labels.npy"
+=======
+INPUT_FILE = "ghc_train.tsv"
+OUTPUT_EMBEDDINGS = "train_embeddings.npy"
+OUTPUT_LABELS = "train_labels.npy"
+>>>>>>> e891851236288748f229a4f51caed65a18c2d136
 
 # Load the data
 print("Loading dataset...")
