@@ -1,0 +1,11 @@
+miniconda version 24.1.2 python3.11.7 loaded.
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/utils/deprecation.py:151: FutureWarning: 'force_all_finite' was renamed to 'ensure_all_finite' in 1.6 and will be removed in 1.8.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/base.py:484: FutureWarning: `BaseEstimator._check_n_features` is deprecated in 1.6 and will be removed in 1.7. Use `sklearn.utils.validation._check_n_features` instead.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/base.py:493: FutureWarning: `BaseEstimator._check_feature_names` is deprecated in 1.6 and will be removed in 1.7. Use `sklearn.utils.validation._check_feature_names` instead.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/base.py:474: FutureWarning: `BaseEstimator._validate_data` is deprecated in 1.6 and will be removed in 1.7. Use `sklearn.utils.validation.validate_data` instead. This function becomes public and is part of the scikit-learn developer API.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/utils/_tags.py:354: FutureWarning: The CondensedNearestNeighbour or classes from which it inherits use `_get_tags` and `_more_tags`. Please define the `__sklearn_tags__` method, or inherit from `sklearn.base.BaseEstimator` and/or other appropriate mixins such as `sklearn.base.TransformerMixin`, `sklearn.base.ClassifierMixin`, `sklearn.base.RegressorMixin`, and `sklearn.base.OutlierMixin`. From scikit-learn 1.7, not defining `__sklearn_tags__` will raise an error.
+  warnings.warn(

@@ -27,4 +27,6 @@ cd ~/hsd-gab/
 #python3 get-embeddings.py   
 #python3 svm-postembedding.py
 #python3 svm-binary.py
-python3 svm-multi2.py                       
+#python3 svm-multi2.py
+#python3 merged-resampler21.py
+python3 merged-resampler31.py                        
