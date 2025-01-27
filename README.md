@@ -63,9 +63,6 @@ This repository contains code, data, and results for a NLP project investigating
 1. Use `svm-binary.py`, `svm-multi.py`, or `svm-postembedding.py` to train classifiers.
 2. Evaluate performance and analyze results in `multiresults.txt`.
 
-### HPC Automation
-Run `job-script3.sh` to automate training jobs on HPC systems.
-
 ---
 ### Appendix: Nested Directory of /resampled_data:
 
