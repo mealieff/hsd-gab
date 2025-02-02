@@ -66,29 +66,29 @@ This repository contains code, data, and results for a NLP project investigating
 ---
 ### Appendix: Nested Directory of /resampled_data:
 
-/resampled_data
-├── binary
-│   ├── RandomUnderSampler
-│   │   ├── embeddings.npy
-│   │   └── labels.npy
-│   ├── CondensedNearestNeighbour
-│   │   ├── embeddings.npy
-│   │   └── labels.npy
-│   ├── TomekLinks
-│   │   ├── embeddings.npy
-│   │   └── labels.npy
-│   ├── SMOTE
-│   │   ├── embeddings.npy
-│   │   └── labels.npy
-│   └── ...
-└── multiclass
-    ├── RandomUnderSampler
-    │   ├── embeddings.npy
-    │   └── labels.npy
-    ├── CondensedNearestNeighbour
-    │   ├── embeddings.npy
-    │   └── labels.npy
-    ├── TomekLinks
-    │   ├── embeddings.npy
-    │   └── labels.npy
-    └── ...
+/resampled_data</br>
+├── binary</br>
+│   ├── RandomUnderSampler</br>
+│   │   ├── embeddings.npy</br>
+│   │   └── labels.npy</br>
+│   ├── CondensedNearestNeighbour</br>
+│   │   ├── embeddings.npy</br>
+│   │   └── labels.npy</br>
+│   ├── TomekLinks</br>
+│   │   ├── embeddings.npy</br>
+│   │   └── labels.npy</br>
+│   ├── SMOTE</br>
+│   │   ├── embeddings.npy</br>
+│   │   └── labels.npy</br>
+│   └── ...</br>
+└── multiclass</br>
+    ├── RandomUnderSampler</br>
+    │   ├── embeddings.npy</br>
+    │   └── labels.npy</br>
+    ├── CondensedNearestNeighbour</br>
+    │   ├── embeddings.npy</br>
+    │   └── labels.npy</br>
+    ├── TomekLinks</br>
+    │   ├── embeddings.npy</br>
+    │   └── labels.npy</br>
+    └── ...</br>
