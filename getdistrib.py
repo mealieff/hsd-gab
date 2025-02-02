@@ -5,8 +5,8 @@ TRAIN =  "ghc_train.tsv"
 TEST = "ghc_test.tsv"
 
 print("Loading dataset...")
-test_data = pd.read_csv(TRAIN, sep='\t')
-train_data = pd.read_csv(TEST, sep='\t')
+test_data = pd.read_csv(TEST, sep='\t')
+train_data = pd.read_csv(TRAIN, sep='\t')
 
 # Separate text and labels
 train_texts = train_data['text']
