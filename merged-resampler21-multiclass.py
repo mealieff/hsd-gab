@@ -39,6 +39,23 @@ resampling_techniques = {
     "SMOTEENN": SMOTEENN(random_state=42, sampling_strategy={'000': 19366, '001': 1730, '010': 1057, '011': 1029, '100': 2212, '101': 1600, '110': 1025, '111': 1024}),
 }
 
+
+
+
+""" 
+distribution scheme 
+majority {} = 19366 , minority total count  (remaining 7 lables) = 2670
+
+For undersampling : 
+Calculate the average of all 7 minority types which is 381, 
+reduce all counts greater than 2 times of it meaning reduce all counts above 762 and keep the remaining as they are. 
+For Oversampling :
+19366 is total {} count , divide it by 2 , gives us 9683 which is expected count for minority 9683-2670 = 7013/7 = 1001 
+1001 gets distributed over each one of all 7 minority types 
+
+we can also distribute it over each minority types as per their ratio with each other in the data to make it perfrom better possibly.
+
+"""
 # Resampling function
 def resample_data(X, y, technique_name, technique):
     print(f"\nApplying {technique_name}...")
