@@ -30,8 +30,8 @@ y_multiclass = convert_to_multiclass(y_train)
 # Define resampling techniques
 resampling_techniques = {
     "RandomUnderSampler": RandomUnderSampler(random_state=42, sampling_strategy={'000': 1143, '001': 729, '010': 56, '011': 28, '100': 1143, '101': 599, '110': 24, '111': 23}),
-    #"CondensedNearestNeighbour": CondensedNearestNeighbour(random_state=42), # can't 2:1
-    #"TomekLinks": TomekLinks(), # can't 2:1
+    #"CondensedNearestNeighbour": CondensedNearestNeighbour(random_state=42), # can't 3:1
+    #"TomekLinks": TomekLinks(), # can't 3:1
     ## both of above weren't taking dict or float as sampling_strategy
     ## --> conclusion, can't do other than 1:1 for both
     "SMOTE": SMOTE(random_state=42, sampling_strategy={'000': 19366, '001': 1269, '010': 596, '011': 568, '100': 1751, '101': 1139, '110': 564, '111': 563}),
@@ -39,6 +39,22 @@ resampling_techniques = {
     "RandomOverSampler": RandomOverSampler(random_state=42, sampling_strategy={'000': 19366, '001': 1269, '010': 596, '011': 568, '100': 1751, '101': 1139, '110': 564, '111': 563}),
     "SMOTEENN": SMOTEENN(random_state=42, sampling_strategy={'000': 19366, '001': 1269, '010': 596, '011': 568, '100': 1751, '101': 1139, '110': 564, '111': 563}),
 }
+
+
+""" 
+distribution scheme 
+majority {} = 19366 , minority total count  (remaining 7 lables) = 2670
+
+For undersampling : 
+Calculate the average of all 7 minority types which is 381, 
+reduce all counts greater than 3 times of it meaning reduce all counts above 1143 and keep the remaining as they are. 
+For Oversampling :
+19366 is total {} count , divide it by 3 , gives us 6455 which is expected count for minority 6455-2670 = 3785/7 = 540 
+540 gets distributed over each one of all 7 minority types 
+
+"""
+
+
 
 # Resampling function
 def resample_data(X, y, technique_name, technique):
