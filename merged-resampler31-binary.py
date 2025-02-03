@@ -47,6 +47,19 @@ resampling_techniques = {
 
 }
 
+
+
+
+"""
+
+Non hate {} + VO = 20095 , hate (total) = 1941
+
+undersampling N minority /N majority  (expected)    # 1/3 should be something like (non hate) 5823 : (hate) 1941 = 3 : 1
+oversampling N minority /N majority  (expected)    # 1/3 should be something like (non hate) 20095 : (hate) 6698 = 3 : 1
+
+
+"""
+
 # Resampling function
 def resample_data(X, y, technique_name, technique):
     print(f"\nApplying {technique_name}...")
