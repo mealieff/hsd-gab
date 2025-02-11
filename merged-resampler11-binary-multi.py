@@ -17,8 +17,18 @@ y_train = np.load(INPUT_LABELS)
 
 # Define label structure for binary classification
 # Binary: Non-hate ({},{VO}) vs Hate ({HD},{CV},{HD,CV},{HD,VO},{CV,VO},{HD,CV,VO})
+# Define binary and multiclass label structures
 def convert_to_binary(y):
-    return np.any(y > 0, axis=1).astype(int)
+    y_binary = np.ones(len(y)) # initialize as 1 (hate)
+    for i in range(len(y)):
+        if y[i][0] == 0 and y[i][1] == 0 and y[i][2] == 0: # {}
+            y_binary[i] = 0 # non_hate
+        if y[i][0] == 0 and y[i][1] == 0 and y[i][2] == 1: # {VO}
+            y_binary[i] = 0
+    return y_binary
+
+# def convert_to_binary(y): # wrong
+#     return np.any(y > 0, axis=1).astype(int)
 
 # Define label structure for multiclass classification
 def convert_to_multiclass(y):
