@@ -25,17 +25,17 @@ def encode_multilabels(labels,encoder=None):
 
 if __name__ == "__main__":
     # Define the path to the resampled data directory
-    resampled_data_dir = 'resampled_data/'
+    resampled_data_dir = 'resampled_data2_1/'
 
     # List of methods and corresponding file paths
     multiclass_files = [
-    ("ADASYN", "resampled_data2_1/multiclass_ADASYN_embeddings.npy", "resampled_data2_1/multiclass_ADASYN_labels.npy"),
-    ("CondensedNearestNeighbour", "resampled_data2_1/multiclass_CondensedNearestNeighbour_embeddings.npy", "resampled_data2_1/multiclass_CondensedNearestNeighbour_labels.npy"),
-    ("RandomOverSampler", "resampled_data2_1/multiclass_RandomOverSampler_embeddings.npy", "resampled_data2_1/multiclass_RandomOverSampler_labels.npy"),
-    ("RandomUnderSampler", "resampled_data2_1/multiclass_RandomUnderSampler_embeddings.npy", "resampled_data2_1/multiclass_RandomUnderSampler_labels.npy"),
-    ("SMOTE", "resampled_data2_1/multiclass_SMOTE_embeddings.npy", "resampled_data2_1/multiclass_SMOTE_labels.npy"),
-    ("SMOTEENN", "resampled_data2_1/multiclass_SMOTEENN_embeddings.npy", "resampled_data2_1/multiclass_SMOTEENN_labels.npy"),
-    ("TomekLinks", "resampled_data2_1/multiclass_TomekLinks_embeddings.npy", "resampled_data2_1/multiclass_TomekLinks_labels.npy")
+    ("ADASYN", "multiclass_ADASYN_embeddings.npy", "resampled_data2_1/multiclass_ADASYN_labels.npy"),
+    ("CondensedNearestNeighbour", "multiclass_CondensedNearestNeighbour_embeddings.npy", "resampled_data2_1/multiclass_CondensedNearestNeighbour_labels.npy"),
+    ("RandomOverSampler", "multiclass_RandomOverSampler_embeddings.npy", "resampled_data2_1/multiclass_RandomOverSampler_labels.npy"),
+    ("RandomUnderSampler", "multiclass_RandomUnderSampler_embeddings.npy", "resampled_data2_1/multiclass_RandomUnderSampler_labels.npy"),
+    ("SMOTE", "multiclass_SMOTE_embeddings.npy", "resampled_data2_1/multiclass_SMOTE_labels.npy"),
+    ("SMOTEENN", "multiclass_SMOTEENN_embeddings.npy", "resampled_data2_1/multiclass_SMOTEENN_labels.npy"),
+    ("TomekLinks", "multiclass_TomekLinks_embeddings.npy", "resampled_data2_1/multiclass_TomekLinks_labels.npy")
 ]
 
     # Load test data
