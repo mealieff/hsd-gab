@@ -5,13 +5,13 @@ import os
 
 # List of binary data files
 binary_files = [
-    ("binary_ADASYN", "resampled_data2_1/binary_ADASYN_embeddings.npy", "resampled_data/binary_ADASYN_labels.npy"),
-    ("binary_CondensedNearestNeighbour", "resampled_data2_1/binary_CondensedNearestNeighbour_embeddings.npy", "resampled_data/binary_CondensedNearestNeighbour_labels.npy"),
-    ("binary_RandomOverSampler", "resampled_data2_1/binary_RandomOverSampler_embeddings.npy", "resampled_data/binary_RandomOverSampler_labels.npy"),
-    ("binary_RandomUnderSampler", "resampled_data2_1/binary_RandomUnderSampler_embeddings.npy", "resampled_data/binary_RandomUnderSampler_labels.npy"),
-    ("binary_SMOTE", "resampled_data2_1/binary_SMOTE_embeddings.npy", "resampled_data/binary_SMOTE_labels.npy"),
-    ("binary_SMOTEENN", "resampled_data2_1/binary_SMOTEENN_embeddings.npy", "resampled_data/binary_SMOTEENN_labels.npy"),
-    ("binary_TomekLinks", "resampled_data2_1/binary_TomekLinks_embeddings.npy", "resampled_data/binary_TomekLinks_labels.npy")
+    ("binary_ADASYN", "resampled_data_binary21/binary_ADASYN_embeddings.npy", "resampled_data_binary21/binary_ADASYN_labels.npy"),
+    ("binary_CondensedNearestNeighbour", "resampled_data_binary21/binary_CondensedNearestNeighbour_embeddings.npy", "resampled_data_binary21/binary_CondensedNearestNeighbour_labels.npy"),
+    ("binary_RandomOverSampler", "resampled_data_binary21/binary_RandomOverSampler_embeddings.npy", "resampled_data_binary21/binary_RandomOverSampler_labels.npy"),
+    ("binary_RandomUnderSampler", "resampled_data_binary21/binary_RandomUnderSampler_embeddings.npy", "resampled_data_binary21/binary_RandomUnderSampler_labels.npy"),
+    ("binary_SMOTE", "resampled_data_binary21/binary_SMOTE_embeddings.npy", "resampled_data_binary21/binary_SMOTE_labels.npy"),
+    ("binary_SMOTEENN", "resampled_data_binary21/binary_SMOTEENN_embeddings.npy", "resampled_data_binary21/binary_SMOTEENN_labels.npy"),
+    ("binary_TomekLinks", "resampled_data_binary21/binary_TomekLinks_embeddings.npy", "resampled_data_binary21/binary_TomekLinks_labels.npy")
 ]
 
 # Test data files
@@ -70,4 +70,5 @@ if __name__ == "__main__":
         print(f"Precision (Macro-Averaged): {precision:.4f}")
         print(f"Recall (Macro-Averaged): {recall:.4f}")
         print(f"F1 Score (Macro-Averaged): {macro_f1:.4f}")
+
 
