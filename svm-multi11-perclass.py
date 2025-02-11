@@ -5,6 +5,7 @@ from sklearn.svm import LinearSVC
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import classification_report
 from scipy.special import softmax  # For normalizing decision scores
+from sklearn.calibration import CalibratedClassifierCV
 
 # Define the resampled data directory
 resampled_data_dir = 'resampled_data/'
@@ -72,18 +73,16 @@ for method_name, embeddings_file, labels_file in multiclass_files:
 
     # Train LinearSVC
     lin_clf = LinearSVC()
-    lin_clf.fit(train_embeddings, train_labels)
+    calibrated_clf = CalibratedClassifierCV(lin_clf, method='sigmoid')  # Platt scaling
+    calibrated_clf.fit(train_embeddings, train_labels)
 
     # Predict on test data
-    predictions = lin_clf.predict(test_embeddings)
+    predictions = calibrated_clf.predict(test_embeddings)
 
-    # Compute decision function (confidence scores)
-    decision_scores = lin_clf.decision_function(test_embeddings)
+    # Get probability estimates
+    confidence_scores = calibrated_clf.predict_proba(test_embeddings)
 
-    # Normalize decision scores using softmax
-    confidence_scores = softmax(decision_scores, axis=1)  # Converts to probabilities-like values
-
-    # Compute overall confidence score for the method
+    # Compute overall confidence score
     overall_confidence = np.mean(confidence_scores)
 
     # Generate classification report for F1-score and precision
