@@ -1,0 +1,13 @@
+Loading dataset...
+Number of training examples: 22036
+Number of testing examples: 5510
+(0, 0, 0): 19366
+(0, 0, 1): 729
+(0, 1, 0): 56
+(0, 1, 1): 28
+(1, 0, 0): 1211
+(1, 0, 1): 599
+(1, 1, 0): 24
+(1, 1, 1): 23
+Non-hate: 20095
+Hate: 1941
