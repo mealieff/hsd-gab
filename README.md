@@ -4,7 +4,7 @@
 
 ## Overview
 
-This repository contains code, data, and results for a NLP project investigating the impact of various resampling techniques on hate speech detection in multiclass and multilabel datasets. The research focuses on mitigating class imbalance and label sparsity to improve the prediction of minority classes through data preprocessing methods such as resampling and synthetic example generation. The scripts also facilitate evluation utilizing SVM binary and multiclass classification. 
+This repository contains code, data, and results for an NLP project investigating the impact of various resampling techniques on hate speech detection in multiclass and multilabel datasets. The research focuses on mitigating class imbalance and label sparsity to improve the prediction of minority classes through data preprocessing methods such as resampling and synthetic example generation. The scripts also facilitate evaluation utilizing SVM binary and multiclass classification. 
 
 ## Key Files
 
@@ -18,8 +18,8 @@ This repository contains code, data, and results for a NLP project investigating
 - **`svm-binary.py`**  
   Trains a binary classifier using Support Vector Machines (SVMs) on resampled data.
 
-- **`svm-multi2.py`**  
-  An alternative implementation for multiclass classification with parameter variations.
+- **`svm-multi.py`**  
+  Trains a multi-class classifier using Support Vector Machines (SVMs) resampled data.
 
 - **`job-script3.sh`**  
   A shell script for automating training jobs on high-performance computing (HPC) clusters.
