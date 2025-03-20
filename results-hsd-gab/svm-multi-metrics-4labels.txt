@@ -1,0 +1,134 @@
+Loading test data...
+
+=== Processing Resampling Method: ADASYN ===
+Training initial LinearSVC models for ADASYN...
+
+--- Iteration 1 ---
+Updating training data with new labels...
+
+--- Iteration 2 ---
+Updating training data with new labels...
+
+--- Iteration 3 ---
+Updating training data with new labels...
+
+Final evaluation...
+Accuracy: 0.8809
+Precision: 0.2002
+Recall: 0.4434
+F1 Score: 0.2745
+Mean Confidence: 12.5606
+
+=== Processing Resampling Method: CondensedNearestNeighbour ===
+Training initial LinearSVC models for CondensedNearestNeighbour...
+
+--- Iteration 1 ---
+Updating training data with new labels...
+
+--- Iteration 2 ---
+Updating training data with new labels...
+
+--- Iteration 3 ---
+Updating training data with new labels...
+
+Final evaluation...
+Accuracy: 0.9140
+Precision: 0.1749
+Recall: 0.1832
+F1 Score: 0.1772
+Mean Confidence: 12.6206
+
+=== Processing Resampling Method: RandomOverSampler ===
+Training initial LinearSVC models for RandomOverSampler...
+
+--- Iteration 1 ---
+Updating training data with new labels...
+
+--- Iteration 2 ---
+Updating training data with new labels...
+
+--- Iteration 3 ---
+Updating training data with new labels...
+
+Final evaluation...
+Accuracy: 0.8746
+Precision: 0.1998
+Recall: 0.4578
+F1 Score: 0.2754
+Mean Confidence: 11.6369
+
+=== Processing Resampling Method: RandomUnderSampler ===
+Training initial LinearSVC models for RandomUnderSampler...
+
+--- Iteration 1 ---
+Updating training data with new labels...
+
+--- Iteration 2 ---
+Updating training data with new labels...
+
+--- Iteration 3 ---
+Updating training data with new labels...
+
+Final evaluation...
+Accuracy: 0.8629
+Precision: 0.1242
+Recall: 0.3129
+F1 Score: 0.1638
+Mean Confidence: 19.7390
+
+=== Processing Resampling Method: SMOTE ===
+Training initial LinearSVC models for SMOTE...
+
+--- Iteration 1 ---
+Updating training data with new labels...
+
+--- Iteration 2 ---
+Updating training data with new labels...
+
+--- Iteration 3 ---
+Updating training data with new labels...
+
+Final evaluation...
+Accuracy: 0.8835
+Precision: 0.2051
+Recall: 0.4411
+F1 Score: 0.2785
+Mean Confidence: 12.5551
+
+=== Processing Resampling Method: SMOTEENN ===
+Training initial LinearSVC models for SMOTEENN...
+
+--- Iteration 1 ---
+Updating training data with new labels...
+
+--- Iteration 2 ---
+Updating training data with new labels...
+
+--- Iteration 3 ---
+Updating training data with new labels...
+
+Final evaluation...
+Accuracy: 0.8123
+Precision: 0.1322
+Recall: 0.4816
+F1 Score: 0.2071
+Mean Confidence: 17.2540
+
+=== Processing Resampling Method: TomekLinks ===
+Training initial LinearSVC models for TomekLinks...
+
+--- Iteration 1 ---
+Updating training data with new labels...
+
+--- Iteration 2 ---
+Updating training data with new labels...
+
+--- Iteration 3 ---
+Updating training data with new labels...
+
+Final evaluation...
+Accuracy: 0.9475
+Precision: 0.6833
+Recall: 0.0326
+F1 Score: 0.0588
+Mean Confidence: 5.1383
