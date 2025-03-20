@@ -18,19 +18,19 @@ def refine_labels(model, X_unlabeled, confidence_threshold):
         np.ndarray: Indices of data points with confident predictions.
     """
     decision_function = model.decision_function(X_unlabeled)
-    max_confidence = np.abs(decision_function)  # Binary case, confidence is abs distance to hyperplane
-    new_labels = (decision_function >= 0).astype(int)
+    max_confidence = np.abs(decision_function)  # Binary case, confidence is absolute distance from 0
+    new_labels = (decision_function >= 0).astype(int) #assign label 1 if score is positive otherwise 0
 
     confident_indices = np.where(max_confidence >= confidence_threshold)[0]
 
-    if len(confident_indices) == 0:  # Avoid empty array issues
+    if len(confident_indices) == 0:  #if no prediction , return empty aray
         return np.array([]), confident_indices
 
-    return new_labels[confident_indices], confident_indices
+    return new_labels[confident_indices], confident_indices #return new label and indices for those 
 
 
 if __name__ == "__main__":
-    resampled_data_dir = "results-hsd-gab/resampled_data_binary_multi_11"  # Adjust path if needed
+    resampled_data_dir = "results-hsd-gab/resampled_data_binary_multi_11"  
 
     multiclass_files = [
         ("ADASYN", "multiclass_ADASYN_embeddings.npy", "multiclass_ADASYN_labels.npy"),
@@ -55,7 +55,7 @@ if __name__ == "__main__":
 
         print(f"test_labels shape: {test_labels.shape}")
 
-        # Extract binary labels (HD, CV, VO, no_label)
+        # Extract binary labels (HD, CV, VO, no_label {})
         test_labels_HD = test_labels[:, 0]
         test_labels_CV = test_labels[:, 1]
         test_labels_VO = test_labels[:, 2]
@@ -92,14 +92,14 @@ if __name__ == "__main__":
                 print(f"\n--- Iteration {iteration + 1} ---")
                 f.write(f"\n--- Iteration {iteration + 1} ---\n")
 
-                # Step 1: Get confident labels for each category
+                #  Get confident labels for each category
                 new_labels_HD, confident_indices_HD = refine_labels(model_HD, test_embeddings, confidence_threshold)
                 new_labels_CV, confident_indices_CV = refine_labels(model_CV, test_embeddings, confidence_threshold)
                 new_labels_VO, confident_indices_VO = refine_labels(model_VO, test_embeddings, confidence_threshold)
                 new_labels_no_label, confident_indices_no_label = refine_labels(model_no_label, test_embeddings,
                                                                                 confidence_threshold)
 
-                # ✅ Insert Fix: Ensure all confident indices are collected properly
+                #collect all confident samples 
                 all_confident_indices = np.concatenate([
                     confident_indices_HD, confident_indices_CV, confident_indices_VO, confident_indices_no_label
                 ])
@@ -113,29 +113,29 @@ if __name__ == "__main__":
                 print("Updating training data with new labels...")
                 f.write("Updating training data with new labels...\n")
 
-                # Step 2: Expand training embeddings
+                #  Expand training embeddings
                 train_embeddings = np.vstack([train_embeddings, test_embeddings[all_confident_indices]])
 
-                # Step 3: Initialize new training labels with consistent shape
+                # Initialize new training labels with consistent shape
                 new_train_labels_HD = np.zeros(len(all_confident_indices))
                 new_train_labels_CV = np.zeros(len(all_confident_indices))
                 new_train_labels_VO = np.zeros(len(all_confident_indices))
                 new_train_labels_no_label = np.zeros(len(all_confident_indices))
 
-                # Step 4: Assign confident labels correctly
+                #  Assign confident labels correctly
                 new_train_labels_HD[np.isin(all_confident_indices, confident_indices_HD)] = new_labels_HD
                 new_train_labels_CV[np.isin(all_confident_indices, confident_indices_CV)] = new_labels_CV
                 new_train_labels_VO[np.isin(all_confident_indices, confident_indices_VO)] = new_labels_VO
                 new_train_labels_no_label[
                     np.isin(all_confident_indices, confident_indices_no_label)] = new_labels_no_label
 
-                # Step 5: Update labels
+                # Update labels
                 train_labels_HD = np.hstack([train_labels_HD, new_train_labels_HD])
                 train_labels_CV = np.hstack([train_labels_CV, new_train_labels_CV])
                 train_labels_VO = np.hstack([train_labels_VO, new_train_labels_VO])
                 train_labels_no_label = np.hstack([train_labels_no_label, new_train_labels_no_label])
 
-                # Step 6: Retrain models on the updated dataset
+                # Retrain models on the updated dataset
                 model_HD.fit(train_embeddings, train_labels_HD)
                 model_CV.fit(train_embeddings, train_labels_CV)
                 model_VO.fit(train_embeddings, train_labels_VO)
@@ -148,7 +148,7 @@ if __name__ == "__main__":
             predictions_CV = model_CV.predict(test_embeddings)
             predictions_VO = model_VO.predict(test_embeddings)
             predictions_no_label = model_no_label.predict(test_embeddings)
-
+            # calculate eval metrics
             final_predictions = np.vstack([predictions_HD, predictions_CV, predictions_VO]).T
             accuracy = (final_predictions == test_labels[:, :3]).mean()
 
@@ -167,7 +167,7 @@ if __name__ == "__main__":
             f.write(f"Recall: {recall:.4f}\n")
             print(f"F1-score: {macro_f1:.4f}")
             f.write(f"F1 Score: {macro_f1:.4f}\n")
-
+            #compute confidence score 
             mean_confidence = np.mean([
                 np.max(np.abs(model_HD.decision_function(test_embeddings))),
                 np.max(np.abs(model_CV.decision_function(test_embeddings))),
