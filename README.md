@@ -31,27 +31,33 @@ This repository contains code, data, and results for a NLP project investigating
 - **`train_embeddings.npy`** and **`test_embeddings.npy`**  
   Precomputed embeddings for training and test datasets.
 
-- **`new_train_embeddings.npy`**  
-  Augmented embeddings after resampling.
-
 - **`train_labels.npy`** and **`test_labels.npy`**  
   Labels corresponding to training and test data.
-
-- **`new_train_labels.npy`**  
-  Updated labels after resampling.
 
 - **`resampled_data`**  
   Directory containing resampled training datasets.
 
-- **`resampledcounts.txt`**  
-  Example output of class distributions after resampling.
 
 ### Results Files
-- **`multiresults.txt`**  
-  Results of the multiclass classification experiments.
+- **`resampled_data_binary.txt`**  
+  Results of the binary resampling.
 
-- **`resampledcounts.txt`**  
-  Class counts after applying resampling techniques.
+- **`resampled_data_multi.txt`**  
+  Results of the multi resampling. 
+
+- **`svm_binary.txt`**  
+  Results of the classification on binary labels. 
+  
+- **`svm_multi.txt`**  
+  Results of the classification on multi labels.
+
+- **`svm-binary-baseline.txt`**  and - **`svm-multi-baseline.txt`** 
+  Results of the classification on binary and multi labels without any resampling.
+
+- **`svm-multi-metrics-4lables.txt`**  and - **`svm-multi-metrics-8lables.txt`**
+  Results of the classification on binary and multi labels using confidence scores. 
+
+
 
 ### Usage
 
@@ -61,7 +67,7 @@ This repository contains code, data, and results for a NLP project investigating
 
 ### Training and Evaluation
 1. Use `svm-binary.py`, `svm-multi.py`, or `svm-postembedding.py` to train classifiers.
-2. Evaluate performance and analyze results in `multiresults.txt`.
+2. Evaluate performance and analyze results in `results-hsd-gab`.
 
 ---
 ### Appendix: Nested Directory of /resampled_data:
