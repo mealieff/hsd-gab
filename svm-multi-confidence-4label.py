@@ -60,7 +60,9 @@ if __name__ == "__main__":
         test_labels_CV = test_labels[:, 1]
         test_labels_VO = test_labels[:, 2]
         test_labels_no_label = (test_labels.sum(axis=1) == 0).astype(int)
-
+            # We are treating labels as independent binary classifications, meaning each of the four labels (HD, CV, VO, no_label) is predicted separately. 
+            # A sample can have multiple labels if more than one classifier assigns it a 1.
+        
         confidence_threshold = 0.7
 
         for method_name, embeddings_file, labels_file in multiclass_files:
