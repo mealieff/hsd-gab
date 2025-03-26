@@ -21,22 +21,12 @@ This repository contains code, data, and results for an NLP project investigatin
 - **`svm-multi.py`**  
   Trains a multi-class classifier using Support Vector Machines (SVMs) resampled data.
 
-- **`job-script3.sh`**  
-  A shell script for automating training jobs on high-performance computing (HPC) clusters.
-
 ### Data Files
 - **`ghc_train.tsv`** and **`ghc_test.tsv`**  
   Training and testing datasets from the Gab Hate Speech Corpus: https://osf.io/edua3/. 
 
-- **`train_embeddings.npy`** and **`test_embeddings.npy`**  
-  Precomputed embeddings for training and test datasets.
-
-- **`train_labels.npy`** and **`test_labels.npy`**  
-  Labels corresponding to training and test data.
-
 - **`resampled_data`**  
   Directory containing resampled training datasets.
-
 
 ### Results Files
 - **`resampled_data_binary.txt`**  
