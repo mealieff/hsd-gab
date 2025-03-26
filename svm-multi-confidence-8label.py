@@ -2,7 +2,7 @@
 import numpy as np
 from sklearn.svm import LinearSVC
 from sklearn.preprocessing import LabelEncoder
-from sklearn.metrics import classification_report
+from sklearn.metrics import classification_report, jaccard_score
 import os
 
 def encode_multilabels(labels, encoder=None):
@@ -117,6 +117,7 @@ if __name__ == "__main__":
             predictions = initial_model.predict(test_embeddings)
             accuracy = initial_model.score(test_embeddings, test_labels)
             report = classification_report(test_labels, predictions, output_dict=True)
+            jaccardscore = jaccard_score(test_labels, predictions, average=None)
 
             macro_avg = report.get('macro avg', {})
             precision = macro_avg.get('precision', None)
@@ -154,6 +155,8 @@ if __name__ == "__main__":
             f.write(f"Recall (Macro-Averaged): {recall:.4f}\n")
             print(f"F1 Score (Macro-Averaged): {macro_f1:.4f}")
             f.write(f"F1 Score (Macro-Averaged): {macro_f1:.4f}\n")
+            print(f"Jaccard Score: {jaccardscore:.4f}")
+            f.write(f"Jaccard Score: {jaccardscore:.4f}\n")
             print("=" * 50)
             f.write("=" * 50 + "\n")
 
