@@ -63,7 +63,9 @@ if __name__ == "__main__":
 
         test_labels, label_encoder = encode_multilabels(test_labels)
 
-        confidence_threshold = 0.7  # Confidence threshold for iterative labeling, might need to adjust given results
+        thresholds = [0.5, 0.6, 0.7, 0.8, 0.9]
+        for i in thresholds:
+            confidence_threshold = i 
 
         for method_name, embeddings_file, labels_file in multiclass_files:
             print(f"\n=== Processing Resampling Method: {method_name} ===")
