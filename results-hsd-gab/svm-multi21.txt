@@ -1,0 +1,31 @@
+Loading test data...
+
+--- Method: ADASYN ---
+Accuracy: 0.8508
+Precision (Macro-Averaged): 0.2437
+Recall (Macro-Averaged): 0.2389
+F1 Score (Macro-Averaged): 0.2392
+
+--- Method: RandomOverSampler ---
+Accuracy: 0.8523
+Precision (Macro-Averaged): 0.2379
+Recall (Macro-Averaged): 0.2243
+F1 Score (Macro-Averaged): 0.2285
+
+--- Method: RandomUnderSampler ---
+Accuracy: 0.8299
+Precision (Macro-Averaged): 0.2186
+Recall (Macro-Averaged): 0.2310
+F1 Score (Macro-Averaged): 0.2223
+
+--- Method: SMOTE ---
+Accuracy: 0.8456
+Precision (Macro-Averaged): 0.2293
+Recall (Macro-Averaged): 0.2240
+F1 Score (Macro-Averaged): 0.2253
+
+--- Method: SMOTEENN ---
+Accuracy: 0.6181
+Precision (Macro-Averaged): 0.1763
+Recall (Macro-Averaged): 0.2558
+F1 Score (Macro-Averaged): 0.1805

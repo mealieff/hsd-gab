@@ -1,0 +1,43 @@
+Loading test data...
+
+--- Method: ADASYN ---
+Accuracy: 0.6610
+Precision (Macro-Averaged): 0.1798
+Recall (Macro-Averaged): 0.2620
+F1 Score (Macro-Averaged): 0.1907
+
+--- Method: CondensedNearestNeighbour ---
+Accuracy: 0.5966
+Precision (Macro-Averaged): 0.1459
+Recall (Macro-Averaged): 0.1840
+F1 Score (Macro-Averaged): 0.1418
+
+--- Method: RandomOverSampler ---
+Accuracy: 0.6339
+Precision (Macro-Averaged): 0.1752
+Recall (Macro-Averaged): 0.2626
+F1 Score (Macro-Averaged): 0.1829
+
+--- Method: RandomUnderSampler ---
+Accuracy: 0.3621
+Precision (Macro-Averaged): 0.1516
+Recall (Macro-Averaged): 0.2910
+F1 Score (Macro-Averaged): 0.1151
+
+--- Method: SMOTE ---
+Accuracy: 0.6659
+Precision (Macro-Averaged): 0.1751
+Recall (Macro-Averaged): 0.2466
+F1 Score (Macro-Averaged): 0.1839
+
+--- Method: SMOTEENN ---
+Accuracy: 0.4261
+Precision (Macro-Averaged): 0.1604
+Recall (Macro-Averaged): 0.2461
+F1 Score (Macro-Averaged): 0.1371
+
+--- Method: TomekLinks ---
+Accuracy: 0.8750
+Precision (Macro-Averaged): 0.2644
+Recall (Macro-Averaged): 0.1638
+F1 Score (Macro-Averaged): 0.1798

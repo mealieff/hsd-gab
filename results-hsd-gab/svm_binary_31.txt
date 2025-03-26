@@ -1,0 +1,31 @@
+Loading test data...
+
+--- Method: binary_ADASYN ---
+Accuracy: 0.8472
+Precision (Macro-Averaged): 0.3259
+Recall (Macro-Averaged): 0.4047
+F1 Score (Macro-Averaged): 0.3132
+
+--- Method: binary_RandomOverSampler ---
+Accuracy: 0.8514
+Precision (Macro-Averaged): 0.3263
+Recall (Macro-Averaged): 0.4061
+F1 Score (Macro-Averaged): 0.3143
+
+--- Method: binary_RandomUnderSampler ---
+Accuracy: 0.8336
+Precision (Macro-Averaged): 0.3259
+Recall (Macro-Averaged): 0.3999
+F1 Score (Macro-Averaged): 0.3101
+
+--- Method: binary_SMOTE ---
+Accuracy: 0.8514
+Precision (Macro-Averaged): 0.3266
+Recall (Macro-Averaged): 0.4246
+F1 Score (Macro-Averaged): 0.3151
+
+--- Method: binary_SMOTEENN ---
+Accuracy: 0.6094
+Precision (Macro-Averaged): 0.3299
+Recall (Macro-Averaged): 0.4698
+F1 Score (Macro-Averaged): 0.2608
