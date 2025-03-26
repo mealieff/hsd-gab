@@ -1,0 +1,5 @@
+Baseline Model Results:
+Accuracy: 0.8764
+Precision (Macro-Averaged): 0.2839
+Recall (Macro-Averaged): 0.1807
+F1 Score (Macro-Averaged): 0.1980
