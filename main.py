@@ -5,13 +5,22 @@ from sklearn.svm import LinearSVC
 from sklearn.metrics import classification_report, jaccard_score
 
 def refine_labels(model, X_unlabeled, confidence_threshold):
-    decision_function = model.decision_function(X_unlabeled)
-    max_confidence = np.abs(decision_function)
-    new_labels = (decision_function >= 0).astype(int)
+    decision_function = model.decision_function(X_unlabeled)  # shape: (n_samples, n_classes)
+    # Get max confidence per sample
+    if decision_function.ndim == 1:
+        # falls back on binary classification
+        max_confidence = np.abs(decision_function)
+        predicted_labels = (decision_function >= 0).astype(int)
+    else:
+        max_confidence = np.max(decision_function, axis=1)  # max margin per sample
+        predicted_labels = np.argmax(decision_function, axis=1)
+
     confident_indices = np.where(max_confidence >= confidence_threshold)[0]
     if len(confident_indices) == 0:
         return np.array([]), confident_indices
-    return new_labels[confident_indices], confident_indices
+    return predicted_labels[confident_indices], confident_indices
+
+
 
 def main(args):
     current_directory = os.getcwd()
@@ -45,7 +54,7 @@ def main(args):
                     new_labels = model.predict(test_embeddings)
                     confident_indices = np.arange(len(test_embeddings))
                 confident_indices_all.append(confident_indices)
-                new_labels_all.append((i, new_labels, confident_indices))
+                new_labels_all.append((i, predicted_labels, confident_indices))
 
             all_confident = np.unique(np.concatenate(confident_indices_all))
             if len(all_confident) == 0:
