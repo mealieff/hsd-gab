@@ -20,7 +20,30 @@ def refine_labels(model, X_unlabeled, confidence_threshold):
         return np.array([]), confident_indices
     return predicted_labels[confident_indices], confident_indices
 
+def save_confidence_scores_to_files(models, test_embeddings, label_names=None, output_dir="confidence_scores"):
+    """
+    Save confidence scores (distance to decision boundary) to separate files for each label.
 
+    Args:
+        models (list): Trained LinearSVC models.
+        test_embeddings (np.ndarray): Test embeddings.
+        label_names (list): List of label names. Defaults to "Label 0", "Label 1", etc.
+        output_dir (str): Directory to save output files.
+    """
+    if label_names is None:
+        label_names = [f"Label_{i}" for i in range(len(models))]
+
+    os.makedirs(output_dir, exist_ok=True)
+
+    for i, model in enumerate(models):
+        scores = model.decision_function(test_embeddings)
+        filename = os.path.join(output_dir, f"confidence_{label_names[i]}.txt")
+        with open(filename, "w") as f:
+            f.write(f"Confidence scores for label: {label_names[i]}\n")
+            for j, score in enumerate(scores):
+                f.write(f"Sample {j}: {score:.4f}\n")
+
+    print(f"Confidence scores saved in: {os.path.abspath(output_dir)}")
 
 def main(args):
     current_directory = os.getcwd()
@@ -54,7 +77,7 @@ def main(args):
                     new_labels = model.predict(test_embeddings)
                     confident_indices = np.arange(len(test_embeddings))
                 confident_indices_all.append(confident_indices)
-                new_labels_all.append((i, predicted_labels, confident_indices))
+                new_labels_all.append((i, new_labels, confident_indices))
 
             all_confident = np.unique(np.concatenate(confident_indices_all))
             if len(all_confident) == 0:
@@ -120,6 +143,8 @@ if __name__ == "__main__":
     parser.add_argument("--baseline_data_dir", type=str, help="Directory for baseline data.")
     
     args = parser.parse_args()
+    label_names = ["HD", "CV", "VO", "None"] 
+    save_confidence_scores_to_files(models, test_embeddings, label_names)
 
     # Handle 'all' directory option
     if args.data_dir == "all":
