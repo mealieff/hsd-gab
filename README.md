@@ -12,15 +12,9 @@ This repository contains code, data, and results for an NLP project investigatin
 - **`get-embeddings.py`**  
   Reads in TSV file and extracts BERT-based-uncased embeddings for the dataset in data-preprocessing.
 
-- **`merged-resampler.py`**  
-  Implements resampling strategies such as oversampling, undersampling, and synthetic data generation to manage class imbalance.
-
-- **`svm-binary.py`**  
-  Trains a binary classifier using Support Vector Machines (SVMs) on resampled data.
-
-- **`svm-multi.py`**  
-  Trains a multi-class classifier using Support Vector Machines (SVMs) resampled data.
-
+- **`main.py`**
+  Reads in NPY arrays and trains/outputs svm classification results. 
+  
 ### Data Files
 - **`ghc_train.tsv`** and **`ghc_test.tsv`**  
   Training and testing datasets from the Gab Hate Speech Corpus: https://osf.io/edua3/. 
