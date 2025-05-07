@@ -11,5 +11,9 @@ results-hsd-gab/train_labels.npy
 sing_label_data3_1/
 sing_label_data2_1/
 sing_label_data/
+sing_label_data2_1/multiclass_ADASYN_single_label.npy
+sing_label_data2_1/multiclass_SMOTE_single_label.npy
+sing_label_data2_1/*.npy
+sing_label_data3_1/*.npy
 *.npy
 *.npy
