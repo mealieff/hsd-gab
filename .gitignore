@@ -9,3 +9,4 @@ results-hsd-gab/test_embeddings.npy
 results-hsd-gab/test_labels.npy
 results-hsd-gab/train_embeddings.npy
 results-hsd-gab/train_labels.npy
+*.npy
