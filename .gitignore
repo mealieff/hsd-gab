@@ -4,7 +4,7 @@ results-hsd-gab/resampled_data_binary31/
 results-hsd-gab/resampled_data_binary_multi_11/
 results-hsd-gab/resampled_data_multiclass21/
 results-hsd-gab/resampled_data_multiclass31/
-
+*.npy
 results-hsd-gab/test_embeddings.npy
 results-hsd-gab/test_labels.npy
 results-hsd-gab/train_embeddings.npy
