@@ -16,4 +16,3 @@ sing_label_data2_1/multiclass_SMOTE_single_label.npy
 sing_label_data2_1/*.npy
 sing_label_data3_1/*.npy
 *.npy
-*.npy
