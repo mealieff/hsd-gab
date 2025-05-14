@@ -38,6 +38,5 @@ cd ~/hsd-gab/
 #python3 main.py --data_dir all --setting binary --confidence --threshold 0.7 --labels 4
 #python3 main.py --data_dir all --setting binary --confidence --threshold 0.8 --labels 4
 #python3 main.py --data_dir all --setting binary --confidence --threshold 0.9 --labels 4
-python3 sing_train.py --train 
-
+bash run_all_evaluations.sh 
 

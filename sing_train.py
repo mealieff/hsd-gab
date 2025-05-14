@@ -2,6 +2,7 @@ import numpy as np
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import LabelEncoder
 import argparse
+from collections import defaultdict
 
 label_list = ["HD", "CV", "VO", "NONE"]
 
@@ -13,7 +14,7 @@ def load_training_data(path):
 
 def load_test_data(embedding_path, label_path):
     X = np.load(embedding_path)
-    y_raw = np.load(label_path)
+    y_raw = np.load(label_path, allow_pickle=True)
 
     y = []
     for row in y_raw:
@@ -50,6 +51,11 @@ def evaluate_partial(clf, le, X_test, y_test, threshold=0.2, verbose=True):
     precision_sum = recall_sum = f1_sum = 0
     total = len(y_test)
 
+    # Added: Micro-average per label
+    tp = defaultdict(int)
+    fp = defaultdict(int)
+    fn = defaultdict(int)
+
     for pred_labels, true_labels in zip(predictions, y_test):
         pred_set = set(pred_labels)
         true_set = set(true_labels)
@@ -62,6 +68,14 @@ def evaluate_partial(clf, le, X_test, y_test, threshold=0.2, verbose=True):
         recall_sum += overlap / denom_r
         f1_sum += (2 * overlap) / (denom_p + denom_r) if (denom_p + denom_r) > 0 else 0
 
+        for label in label_list:
+            if label in pred_set and label in true_set:
+                tp[label] += 1
+            elif label in pred_set and label not in true_set:
+                fp[label] += 1
+            elif label not in pred_set and label in true_set:
+                fn[label] += 1
+
     precision = precision_sum / total
     recall = recall_sum / total
     f1 = f1_sum / total
@@ -71,6 +85,12 @@ def evaluate_partial(clf, le, X_test, y_test, threshold=0.2, verbose=True):
         print(f"Precision: {precision:.3f}")
         print(f"Recall:    {recall:.3f}")
         print(f"F1 Score:  {f1:.3f}")
+        print("\nMicroaveraged Scores per Label:")
+        for label in label_list:
+            p = tp[label] / (tp[label] + fp[label]) if (tp[label] + fp[label]) > 0 else 0.0
+            r = tp[label] / (tp[label] + fn[label]) if (tp[label] + fn[label]) > 0 else 0.0
+            f1_l = (2 * p * r) / (p + r) if (p + r) > 0 else 0.0
+            print(f"{label}: Precision={p:.3f} Recall={r:.3f} F1={f1_l:.3f}")
 
         print("\nExample Confidence Scores:")
         for i in range(min(14, len(confidences))):
