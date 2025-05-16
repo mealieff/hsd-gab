@@ -17,7 +17,7 @@ for DIR in sing_label_data sing_label_data2_1 sing_label_data3_1; do
       exit 1
     fi
 
-    for THRESHOLD in 0.3 0.4 0.5 0.6 0.7 0.8; do
+    for THRESHOLD in 0.8 0.85 0.9 0.95 1.0; do
       echo -e "\n== Training with: $FILE | Threshold: $THRESHOLD =="
       python3 sing_train.py \
         --train "$FILE" \
