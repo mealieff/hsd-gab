@@ -7,6 +7,22 @@
 This repository contains code, data, and results for an NLP project investigating the impact of various resampling techniques on hate speech detection in multiclass and multilabel datasets. The research focuses on mitigating class imbalance and label sparsity to improve the prediction of minority classes through data preprocessing methods such as resampling and synthetic example generation. The scripts also facilitate evaluation utilizing SVM binary and multiclass classification. 
 
 ## Key Files
+### Resampling Scripts
+- **`merged-resampler.py`**  
+  Applies various resampling techniques (e.g., RandomUnderSampler, SMOTE, TomekLinks, CondensedNearestNeighbour) to address class imbalance in both binary and multiclass settings. Outputs resampled datasets as NPY files.
+
+- **`svm-binary.py`**  
+  Trains and evaluates an SVM classifier on binary-labeled data, supporting results analysis for resampled and baseline datasets.
+
+- **`svm-multi.py`**  
+  Trains and evaluates an SVM classifier on multiclass/multilabel data, with support for multiple resampling strategies.
+
+- **`svm-postembedding.py`**  
+  Performs SVM classification using post-embedding features, allowing for additional evaluation scenarios.
+
+### Results and Analysis
+- **`results-hsd-gab/`**  
+  Directory containing summary tables, plots, and additional analysis scripts for experimental results.
 
 ### Scripts
 - **`get-embeddings.py`**  
@@ -22,27 +38,6 @@ This repository contains code, data, and results for an NLP project investigatin
 - **`resampled_data`**  
   Directory containing resampled training datasets.
 
-### Results Files
-- **`resampled_data_binary.txt`**  
-  Results of the binary resampling.
-
-- **`resampled_data_multi.txt`**  
-  Results of the multi resampling. 
-
-- **`svm_binary.txt`**  
-  Results of the classification on binary labels. 
-  
-- **`svm_multi.txt`**  
-  Results of the classification on multi labels.
-
-- **`svm-binary-baseline.txt`**  and - **`svm-multi-baseline.txt`** 
-  Results of the classification on binary and multi labels without any resampling.
-
-- **`svm-multi-metrics-4lables.txt`**  and - **`svm-multi-metrics-8lables.txt`**
-  Results of the classification on binary and multi labels using confidence scores. 
-
-
-
 ### Usage
 
 ### Preprocessing
@@ -50,12 +45,17 @@ This repository contains code, data, and results for an NLP project investigatin
 2. Apply resampling techniques using `merged-resampler.py`.
 
 ### Training and Evaluation
-1. Use `svm-binary.py`, `svm-multi.py`, or `svm-postembedding.py` to train classifiers.
+1. Use `main.py` to train and test SVM classifier.
 2. Evaluate performance and analyze results in `results-hsd-gab`.
+
+### Thresholding label training.
+1. Use `sing_train.py` to train and test SVM classifier.
+2. Run using a variety of confidence thresholds using `run_all_evaluations.sh` 
+3. Alternatively, use the dev set to to set the threshold for the test set. 
 
 ---
 ### Appendix: Nested Directory of /resampled_data:
-
+```
 /resampled_data</br>
 ├── binary</br>
 │   ├── RandomUnderSampler</br>
@@ -82,3 +82,4 @@ This repository contains code, data, and results for an NLP project investigatin
     │   ├── embeddings.npy</br>
     │   └── labels.npy</br>
     └── ...</br>
+````

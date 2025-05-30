@@ -30,8 +30,3 @@ python3 sing_label_method.py \
   --train_labels resampled_data3_1/multiclass_SMOTEENN_labels.npy \
   --output sing_label_data3_1/multiclass_SMOTEENN_single_label.npy
 
-python3 sing_label_method.py \
-  --train_embeddings resampled_data3_1/multiclass_TomekLinks_embeddings.npy \
-  --train_labels resampled_data3_1/multiclass_TomekLinks_labels.npy \
-  --output sing_label_data3_1/multiclass_TomekLinks_single_label.npy
-

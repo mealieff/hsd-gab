@@ -30,13 +30,5 @@ cd ~/hsd-gab/
 #python3 svm-multi2.py
 #python3 merged-resampler21.py
 #python3 merged-resampler31.py
-#python3 main.py --data_dir all --setting binary --confidence --threshold 0.6 --labels 8
-#python3 main.py --data_dir all --setting binary --confidence --threshold 0.7 --labels 8
-#python3 main.py --data_dir all --setting binary --confidence --threshold 0.8 --labels 8
-#python3 main.py --data_dir all --setting binary --confidence --threshold 0.9 --labels 8
-#python3 main.py --data_dir all --setting binary --confidence --threshold 0.6 --labels 4
-#python3 main.py --data_dir all --setting binary --confidence --threshold 0.7 --labels 4
-#python3 main.py --data_dir all --setting binary --confidence --threshold 0.8 --labels 4
-#python3 main.py --data_dir all --setting binary --confidence --threshold 0.9 --labels 4
 bash run_all_evaluations.sh 
 

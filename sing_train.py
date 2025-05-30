@@ -1,8 +1,9 @@
 import numpy as np
-from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import LabelEncoder
 import argparse
 from collections import defaultdict
+from sklearn.svm import LinearSVC
+from sklearn.metrics import classification_report, jaccard_score
 
 label_list = ["HD", "CV", "VO", "NONE"]
 
@@ -26,7 +27,7 @@ def load_test_data(embedding_path, label_path):
 def train_model(X_train, y_train):
     le = LabelEncoder()
     y_encoded = le.fit_transform(y_train)
-    clf = LogisticRegression(max_iter=2000, solver='lbfgs')
+    model = LinearSVC(max_iter=5000).fit(train_embeddings, y_i)
     clf.fit(X_train, y_encoded)
     return clf, le
 
@@ -91,15 +92,6 @@ def evaluate_partial(clf, le, X_test, y_test, threshold=0.2, verbose=True):
             r = tp[label] / (tp[label] + fn[label]) if (tp[label] + fn[label]) > 0 else 0.0
             f1_l = (2 * p * r) / (p + r) if (p + r) > 0 else 0.0
             print(f"{label}: Precision={p:.3f} Recall={r:.3f} F1={f1_l:.3f}")
-
-       # print("\nExample Confidence Scores:")
-       # for i in range(min(14, len(confidences))):
-        #    print(f"Test sample {i}:")
-         #   for label in label_list:
-          #      print(f"  {label}: {confidences[i].get(label, 0):.3f}")
-           # print(f"  Ground truth: {y_test[i]}")
-           # print(f"  Predicted:    {predictions[i]}")
-           # print("")
 
     output_data = []
     for i in range(len(X_test)):
