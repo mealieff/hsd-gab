@@ -28,7 +28,7 @@ def load_test_data(embedding_path, label_path):
 def train_model(X_train, y_train):
     le = LabelEncoder()
     y_encoded = le.fit_transform(y_train)
-    model = LinearSVC(max_iter=5000).fit(train_embeddings, y_i)
+    clf = LinearSVC(max_iter=5000)
     clf.fit(X_train, y_encoded)
     return clf, le
 
