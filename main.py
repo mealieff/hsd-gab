@@ -274,6 +274,11 @@ def load_methods(setting):
             ("binary_SMOTEENN", "resampled_data/binary_SMOTEENN_embeddings.npy", "resampled_data/binary_SMOTEENN_labels.npy"),
             ("binary_TomekLinks", "resampled_data/binary_TomekLinks_embeddings.npy", "resampled_data/binary_TomekLinks_labels.npy")
         ]
+    elif setting == "baseline":
+    # Single entry for baseline since there's just one dataset
+        return [
+            ("baseline", "baseline_data/train_embeddings.npy", "baseline_data/train_labels.npy")
+        ]
     else:
         raise ValueError(f"Unknown setting: {setting}")
 
