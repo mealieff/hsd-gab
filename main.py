@@ -4,7 +4,7 @@ import numpy as np
 from sklearn.svm import LinearSVC
 from sklearn.metrics import classification_report, jaccard_score
 from sklearn.model_selection import train_test_split  # NEW
-
+from sklearn.metrics import f1_score
 
 
 def refine_labels(model, X_unlabeled, confidence_threshold):
@@ -24,15 +24,6 @@ def refine_labels(model, X_unlabeled, confidence_threshold):
     return predicted_labels[confident_indices], confident_indices
 
 def save_confidence_scores_to_files(models, test_embeddings, label_names=None, output_dir="confidence_scores"):
-    """
-    Save confidence scores (distance to decision boundary) to separate files for each label.
-
-    Args:
-        models (list): Trained LinearSVC models.
-        test_embeddings (np.ndarray): Test embeddings.
-        label_names (list): List of label names. Defaults to "Label 0", "Label 1", etc.
-        output_dir (str): Directory to save output files.
-    """
     if label_names is None:
         label_names = [f"Label_{i}" for i in range(len(models))]
 
@@ -48,13 +39,16 @@ def save_confidence_scores_to_files(models, test_embeddings, label_names=None, o
 
     print(f"Confidence scores saved in: {os.path.abspath(output_dir)}")
 
+
 def main(args):
     current_directory = os.getcwd()
     test_embeddings = np.load(os.path.join(current_directory, 'test_embeddings.npy'))
     test_labels = np.load(os.path.join(current_directory, 'test_labels.npy'))
 
     methods = load_methods(args.setting)
+
     for method_name, emb_file, label_file in methods:
+        print(f"\n=== Processing method: {method_name} ===")
         if method_name == "baseline":
             train_embeddings = np.load(os.path.join(args.baseline_data_dir, 'train_embeddings.npy'))
             train_labels = np.load(os.path.join(args.baseline_data_dir, 'train_labels.npy'))
@@ -63,6 +57,18 @@ def main(args):
             train_labels = np.load(label_file)
 
         y = np.array([[int(c) for c in label] for label in train_labels])
+
+        # Optional dev split
+        if args.split_dev:
+            train_embeddings, dev_embeddings, y, dev_labels = train_test_split(
+                train_embeddings, y, test_size=0.222, random_state=42, stratify=y
+            )
+            print(f"[INFO] Training set: {len(train_embeddings)} samples")
+            print(f"[INFO] Dev set:      {len(dev_embeddings)} samples")
+        else:
+            print(f"[INFO] Training set: {len(train_embeddings)} samples")
+
+        print(f"[INFO] Test set:     {len(test_embeddings)} samples")
 
         models = []
         for i in range(args.labels):
@@ -109,6 +115,11 @@ def main(args):
         print(f"Recall:    {recall:.4f}")
         print(f"F1-score:  {f1_score_val:.4f}")
 
+        # Save confidence scores
+        label_names = ["HD", "CV", "VO", "None"] if args.labels == 4 else None
+        save_confidence_scores_to_files(models, test_embeddings, label_names)
+
+
 def load_methods(setting):
     if setting == "multiclass":
         return [
@@ -134,6 +145,15 @@ def load_methods(setting):
         raise ValueError(f"Unknown setting: {setting}")
 
 
+def evaluate_on_threshold(models, embeddings, labels, threshold):
+    preds = []
+    for model in models:
+        scores = model.decision_function(embeddings)
+        pred = (scores >= threshold).astype(int)
+        preds.append(pred)
+    preds = np.stack(preds, axis=1)
+    return f1_score(labels[:, :len(models)], preds, average="macro")
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -144,33 +164,18 @@ if __name__ == "__main__":
     parser.add_argument("--threshold", type=float, default=0.7, help="Confidence threshold.")
     parser.add_argument("--labels", type=int, choices=[4, 8], default=4, help="Number of labels to classify (4 or 8).")
     parser.add_argument("--baseline_data_dir", type=str, help="Directory for baseline data.")
-    parser.add_argument("--split_dev", action="store_true", help="Optionally split training set into training and dev sets (7:2 ratio).")  # NEW
-
+    parser.add_argument("--split_dev", action="store_true", help="Optionally split training set into training and dev sets (7:2 ratio).")
 
     args = parser.parse_args()
-    label_names = ["HD", "CV", "VO", "None"] 
-    save_confidence_scores_to_files(models, test_embeddings, label_names)
 
-    # Handle 'all' directory option
     if args.data_dir == "all":
         dirs = ["baseline_data", "resampled_data", "resampled_data2_1", "resampled_data3_1"]
         for directory in dirs:
-            print(f"Processing directory: {directory}")
+            print(f"\n--- Processing directory: {directory} ---")
             args.data_dir = directory
             main(args)
     else:
         main(args)
-
-    # NEW: Optional dev split
-    if args.split_dev:
-        train_embeddings, dev_embeddings, train_labels, dev_labels = train_test_split(
-            train_embeddings, train_labels, test_size=0.222, random_state=42, stratify=train_labels
-        )
-        print(f"[INFO] Training set: {len(train_embeddings)} samples")
-        print(f"[INFO] Dev set:      {len(dev_embeddings)} samples")
-    else:
-        print(f"[INFO] Training set: {len(train_embeddings)} samples")
-    print(f"[INFO] Test set:     {len(test_embeddings)} samples")
 
 """
 sample usage for running a specific directory:
