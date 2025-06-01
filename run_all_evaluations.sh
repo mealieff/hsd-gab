@@ -16,14 +16,11 @@ for DIR in sing_label_data sing_label_data2_1 sing_label_data3_1; do
       echo "ERROR: Training file not found: $FILE"
       exit 1
     fi
-
-    for THRESHOLD in 0.8 0.85 0.9 0.95 1.0; do
-      echo -e "\n== Training with: $FILE | Threshold: $THRESHOLD =="
-      python3 sing_train.py \
-        --train "$FILE" \
-        --test_embeddings "$TEST_EMB" \
-        --test_labels "$TEST_LABELS" \
-        --threshold "$THRESHOLD"
+    python3 sing_train.py \
+      --train "$FILE" \
+      --test_embeddings "$TEST_EMB" \
+      --test_labels "$TEST_LABELS" \
+      --split_dev
     done
   done
 done
