@@ -3,6 +3,9 @@ import os
 import numpy as np
 from sklearn.svm import LinearSVC
 from sklearn.metrics import classification_report, jaccard_score
+from sklearn.model_selection import train_test_split  # NEW
+
+
 
 def refine_labels(model, X_unlabeled, confidence_threshold):
     decision_function = model.decision_function(X_unlabeled)  # shape: (n_samples, n_classes)
@@ -141,7 +144,9 @@ if __name__ == "__main__":
     parser.add_argument("--threshold", type=float, default=0.7, help="Confidence threshold.")
     parser.add_argument("--labels", type=int, choices=[4, 8], default=4, help="Number of labels to classify (4 or 8).")
     parser.add_argument("--baseline_data_dir", type=str, help="Directory for baseline data.")
-    
+    parser.add_argument("--split_dev", action="store_true", help="Optionally split training set into training and dev sets (7:2 ratio).")  # NEW
+
+
     args = parser.parse_args()
     label_names = ["HD", "CV", "VO", "None"] 
     save_confidence_scores_to_files(models, test_embeddings, label_names)
@@ -155,6 +160,17 @@ if __name__ == "__main__":
             main(args)
     else:
         main(args)
+
+    # NEW: Optional dev split
+    if args.split_dev:
+        train_embeddings, dev_embeddings, train_labels, dev_labels = train_test_split(
+            train_embeddings, train_labels, test_size=0.222, random_state=42, stratify=train_labels
+        )
+        print(f"[INFO] Training set: {len(train_embeddings)} samples")
+        print(f"[INFO] Dev set:      {len(dev_embeddings)} samples")
+    else:
+        print(f"[INFO] Training set: {len(train_embeddings)} samples")
+    print(f"[INFO] Test set:     {len(test_embeddings)} samples")
 
 """
 sample usage for running a specific directory:
