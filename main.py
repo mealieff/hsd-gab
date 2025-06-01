@@ -35,7 +35,7 @@ def save_confidence_scores_to_files(models, test_embeddings, label_names=None, o
         with open(filename, "w") as f:
             f.write(f"Confidence scores for label: {label_names[i]}\n")
             for j, score in enumerate(scores):
-                f.write(f"Sample {j}: {score:.4f}\n")
+                f.write(f"Sample {j}: {score:.4f}s\n")
 
     print(f"Confidence scores saved in: {os.path.abspath(output_dir)}")
 
@@ -141,6 +141,11 @@ def load_methods(setting):
             ("binary_SMOTEENN", "resampled_data/binary_SMOTEENN_embeddings.npy", "resampled_data/binary_SMOTEENN_labels.npy"),
             ("binary_TomekLinks", "resampled_data/binary_TomekLinks_embeddings.npy", "resampled_data/binary_TomekLinks_labels.npy")
         ]
+    elif setting == "baseline":
+        # Single entry for baseline since there's just one dataset
+        return [
+            ("baseline", "baseline_data/train_embeddings.npy", "baseline_data/train_labels.npy")
+        ]
     else:
         raise ValueError(f"Unknown setting: {setting}")
 
@@ -186,6 +191,9 @@ sample usage for running all directiories:
 
 sample usage for running with a baseline directory:
 !python3 main.py --data_dir resampled_data --setting multiclass --confidence --threshold 0.9 --labels 4 --baseline_data_dir /path/to/baseline_data
+
+python3 main.py --data_dir resampled_data2_1 --setting multiclass --confidence --labels 8 --split_dev
+
 """
 
 
