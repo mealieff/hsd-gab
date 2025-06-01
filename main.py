@@ -3,15 +3,14 @@ import os
 import numpy as np
 from sklearn.svm import LinearSVC
 from sklearn.metrics import classification_report, jaccard_score
-from sklearn.model_selection import train_test_split  # NEW
+from sklearn.model_selection import train_test_split
 from sklearn.metrics import f1_score
+from sklearn.model_selection import GridSearchCV
 
 
 def refine_labels(model, X_unlabeled, confidence_threshold):
     decision_function = model.decision_function(X_unlabeled)  # shape: (n_samples, n_classes)
-    # Get max confidence per sample
     if decision_function.ndim == 1:
-        # falls back on binary classification
         max_confidence = np.abs(decision_function)
         predicted_labels = (decision_function >= 0).astype(int)
     else:
@@ -36,7 +35,6 @@ def save_confidence_scores_to_files(models, test_embeddings, label_names=None, o
             f.write(f"Confidence scores for label: {label_names[i]}\n")
             for j, score in enumerate(scores):
                 f.write(f"Sample {j}: {score:.4f}s\n")
-
     print(f"Confidence scores saved in: {os.path.abspath(output_dir)}")
 
 
@@ -58,7 +56,6 @@ def main(args):
 
         y = np.array([[int(c) for c in label] for label in train_labels])
 
-        # Optional dev split
         if args.split_dev:
             train_embeddings, dev_embeddings, y, dev_labels = train_test_split(
                 train_embeddings, y, test_size=0.222, random_state=42, stratify=y
@@ -67,7 +64,6 @@ def main(args):
             print(f"[INFO] Dev set:      {len(dev_embeddings)} samples")
         else:
             print(f"[INFO] Training set: {len(train_embeddings)} samples")
-
         print(f"[INFO] Test set:     {len(test_embeddings)} samples")
 
         models = []
@@ -94,11 +90,21 @@ def main(args):
 
             train_embeddings = np.vstack([train_embeddings, test_embeddings[all_confident]])
             for i, new_labels, indices in new_labels_all:
-                y_new = np.zeros(len(all_confident))
-                y_new[np.isin(all_confident, indices)] = new_labels
+                y_new = np.zeros(len(all_confident), dtype=int)
+                # Get boolean mask for samples in all_confident that are in indices
+                mask = np.isin(all_confident, indices)
+                # Assign predicted labels for those samples
+                # But new_labels corresponds exactly to indices, so assign accordingly:
+                
+                # Find indices in all_confident where mask is True
+                positions = np.where(mask)[0]
+                # Assign new_labels to these positions
+                y_new[positions] = new_labels
+                
                 y_i = y[:, i] if i < y.shape[1] else (y.sum(axis=1) == 0).astype(int)
                 y_i = np.hstack([y_i, y_new])
                 models[i] = LinearSVC(max_iter=5000).fit(train_embeddings, y_i)
+
 
         preds = np.stack([model.predict(test_embeddings) for model in models], axis=1)
         gt = test_labels[:, :args.labels]
@@ -148,6 +154,19 @@ def load_methods(setting):
         ]
     else:
         raise ValueError(f"Unknown setting: {setting}")
+
+"""
+here begins all the parameter optimization functions
+"""
+param_grid = {
+    'C': [0.001, 0.01, 0.1, 1, 10, 100],
+    'max_iter': [1000, 5000, 10000],
+    'tol': [1e-4, 1e-3, 1e-2],
+    'loss': ['hinge', 'squared_hinge'],
+    'penalty': ['l2'],  # l1 only with dual=False, might want to test that separately
+    'dual': [True, False]
+}
+
 
 
 def evaluate_on_threshold(models, embeddings, labels, threshold):
