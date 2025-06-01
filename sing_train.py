@@ -2,9 +2,11 @@ import numpy as np
 from sklearn.preprocessing import LabelEncoder
 import argparse
 from collections import defaultdict
-from sklearn.svm import LinearSVC
+
 from sklearn.metrics import classification_report, jaccard_score
 from sklearn.model_selection import train_test_split
+from sklearn.svm import SVC
+#from sklearn.svm import LinearSVC
 
 label_list = ["HD", "CV", "VO", "NONE"]
 
@@ -28,7 +30,7 @@ def load_test_data(embedding_path, label_path):
 def train_model(X_train, y_train):
     le = LabelEncoder()
     y_encoded = le.fit_transform(y_train)
-    clf = LinearSVC(max_iter=5000)
+    clf = SVC(kernel='linear', probability=True)
     clf.fit(X_train, y_encoded)
     return clf, le
 
