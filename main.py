@@ -164,7 +164,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--data_dir", required=True, choices=["baseline_data", "resampled_data", "resampled_data2_1", "resampled_data3_1", "all"],
                         help="Directory containing data. Use 'all' to include all directories.")
-    parser.add_argument("--setting", choices=["binary", "multiclass"], required=True, help="Setting for binary or multiclass classification.")
+    parser.add_argument("--setting", choices=["binary", "multiclass", "baseline"], required=True, help="Setting for binary or multiclass classification.")
     parser.add_argument("--confidence", action="store_true", help="Enable confidence scoring.")
     parser.add_argument("--threshold", type=float, default=0.7, help="Confidence threshold.")
     parser.add_argument("--labels", type=int, choices=[4, 8], default=4, help="Number of labels to classify (4 or 8).")
