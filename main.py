@@ -1,16 +1,26 @@
-import argparse
 import os
 import numpy as np
+from itertools import product
 from sklearn.svm import LinearSVC
 from sklearn.metrics import classification_report, jaccard_score
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import f1_score
-from sklearn.model_selection import GridSearchCV
+import argparse
 
+
+param_grid = {
+    'C': [0.001, 0.01, 0.1, 1, 10, 100],
+    'max_iter': [1000, 5000, 10000],
+    'tol': [1e-4, 1e-3, 1e-2],
+    'loss': ['hinge', 'squared_hinge'],
+    'penalty': ['l2'],  # l1 only with dual=False, might want to test that separately
+    'dual': [True, False]
+}
 
 def refine_labels(model, X_unlabeled, confidence_threshold):
     decision_function = model.decision_function(X_unlabeled)  # shape: (n_samples, n_classes)
+    # Get max confidence per sample
     if decision_function.ndim == 1:
+        # falls back on binary classification
         max_confidence = np.abs(decision_function)
         predicted_labels = (decision_function >= 0).astype(int)
     else:
@@ -23,6 +33,15 @@ def refine_labels(model, X_unlabeled, confidence_threshold):
     return predicted_labels[confident_indices], confident_indices
 
 def save_confidence_scores_to_files(models, test_embeddings, label_names=None, output_dir="confidence_scores"):
+    """
+    Save confidence scores (distance to decision boundary) to separate files for each label.
+
+    Args:
+        models (list): Trained LinearSVC models.
+        test_embeddings (np.ndarray): Test embeddings.
+        label_names (list): List of label names. Defaults to "Label 0", "Label 1", etc.
+        output_dir (str): Directory to save output files.
+    """
     if label_names is None:
         label_names = [f"Label_{i}" for i in range(len(models))]
 
@@ -34,9 +53,9 @@ def save_confidence_scores_to_files(models, test_embeddings, label_names=None, o
         with open(filename, "w") as f:
             f.write(f"Confidence scores for label: {label_names[i]}\n")
             for j, score in enumerate(scores):
-                f.write(f"Sample {j}: {score:.4f}s\n")
-    print(f"Confidence scores saved in: {os.path.abspath(output_dir)}")
+                f.write(f"Sample {j}: {score:.4f}\n")
 
+    print(f"Confidence scores saved in: {os.path.abspath(output_dir)}")
 
 def main(args):
     current_directory = os.getcwd()
@@ -46,35 +65,51 @@ def main(args):
     methods = load_methods(args.setting)
 
     for method_name, emb_file, label_file in methods:
-        print(f"\n=== Processing method: {method_name} ===")
-        if method_name == "baseline":
+        print(f"[INFO] Processing method: {method_name}")
+
+        # Load training data based on method or baseline setting
+        if method_name == "baseline" or args.setting == "baseline":
+            if not args.baseline_data_dir:
+                raise ValueError("Baseline data directory must be specified for baseline setting.")
             train_embeddings = np.load(os.path.join(args.baseline_data_dir, 'train_embeddings.npy'))
             train_labels = np.load(os.path.join(args.baseline_data_dir, 'train_labels.npy'))
         else:
             train_embeddings = np.load(emb_file)
             train_labels = np.load(label_file)
 
+        # Convert labels to int arrays (support multi-label format)
         y = np.array([[int(c) for c in label] for label in train_labels])
 
+        # Optional dev split if requested
         if args.split_dev:
-            train_embeddings, dev_embeddings, y, dev_labels = train_test_split(
-                train_embeddings, y, test_size=0.222, random_state=42, stratify=y
+            train_emb, dev_emb, train_lbls, dev_lbls = train_test_split(
+                train_embeddings, y, test_size=0.222, random_state=42, stratify=y if y.ndim == 1 else None
             )
-            print(f"[INFO] Training set: {len(train_embeddings)} samples")
-            print(f"[INFO] Dev set:      {len(dev_embeddings)} samples")
+            print(f"[INFO] Training samples: {len(train_emb)}")
+            print(f"[INFO] Dev samples: {len(dev_emb)}")
         else:
-            print(f"[INFO] Training set: {len(train_embeddings)} samples")
-        print(f"[INFO] Test set:     {len(test_embeddings)} samples")
+            train_emb, train_lbls = train_embeddings, y
+            dev_emb, dev_lbls = None, None
+            print(f"[INFO] Training samples: {len(train_emb)}")
 
+        print(f"[INFO] Test samples: {len(test_embeddings)}")
+
+        # Train initial models for each label
         models = []
         for i in range(args.labels):
-            y_i = y[:, i] if i < y.shape[1] else (y.sum(axis=1) == 0).astype(int)
-            model = LinearSVC(max_iter=5000).fit(train_embeddings, y_i)
+            if i < train_lbls.shape[1]:
+                y_i = train_lbls[:, i]
+            else:
+                # fallback label for unused indices (all zeros)
+                y_i = (train_lbls.sum(axis=1) == 0).astype(int)
+            model = LinearSVC(max_iter=5000, random_state=42).fit(train_emb, y_i)
             models.append(model)
 
+        # Confidence-based refinement on test set (optional)
         for _ in range(3):
             confident_indices_all = []
             new_labels_all = []
+
             for i, model in enumerate(models):
                 if args.confidence:
                     new_labels, confident_indices = refine_labels(model, test_embeddings, args.threshold)
@@ -88,42 +123,134 @@ def main(args):
             if len(all_confident) == 0:
                 break
 
-            train_embeddings = np.vstack([train_embeddings, test_embeddings[all_confident]])
+            train_emb = np.vstack([train_emb, test_embeddings[all_confident]])
             for i, new_labels, indices in new_labels_all:
-                y_new = np.zeros(len(all_confident), dtype=int)
-                # Get boolean mask for samples in all_confident that are in indices
-                mask = np.isin(all_confident, indices)
-                # Assign predicted labels for those samples
-                # But new_labels corresponds exactly to indices, so assign accordingly:
-                
-                # Find indices in all_confident where mask is True
-                positions = np.where(mask)[0]
-                # Assign new_labels to these positions
-                y_new[positions] = new_labels
-                
-                y_i = y[:, i] if i < y.shape[1] else (y.sum(axis=1) == 0).astype(int)
+                y_new = np.zeros(len(all_confident))
+                y_new[np.isin(all_confident, indices)] = new_labels
+                if i < train_lbls.shape[1]:
+                    y_i = train_lbls[:, i]
+                else:
+                    y_i = (train_lbls.sum(axis=1) == 0).astype(int)
+                train_lbls = np.hstack([train_lbls, y_new]) if train_lbls.shape[0] == y_new.shape[0] else np.vstack([train_lbls, y_new])
                 y_i = np.hstack([y_i, y_new])
-                models[i] = LinearSVC(max_iter=5000).fit(train_embeddings, y_i)
+                models[i] = LinearSVC(max_iter=5000, random_state=42).fit(train_emb, y_i)
 
+        # If dev set exists, do hyperparameter tuning
+        if dev_emb is not None:
+            best_score = -1
+            best_params = None
+            best_models = None
+            print("[INFO] Starting hyperparameter grid search on dev set...")
 
-        preds = np.stack([model.predict(test_embeddings) for model in models], axis=1)
-        gt = test_labels[:, :args.labels]
-        report = classification_report(gt, preds, output_dict=True)
-        macro_avg = report.get('macro avg', {})
+            for combo in product(
+                param_grid['C'],
+                param_grid['max_iter'],
+                param_grid['tol'],
+                param_grid['loss'],
+                param_grid['penalty'],
+                param_grid['dual']
+            ):
+                params = {
+                    'C': combo[0],
+                    'max_iter': combo[1],
+                    'tol': combo[2],
+                    'loss': combo[3],
+                    'penalty': combo[4],
+                    'dual': combo[5]
+                }
+                try:
+                    models_tuned = []
+                    preds_dev = []
+                    for i in range(args.labels):
+                        if i < train_lbls.shape[1]:
+                            y_train = train_lbls[:, i]
+                            y_dev = dev_lbls[:, i]
+                        else:
+                            y_train = (train_lbls.sum(axis=1) == 0).astype(int)
+                            y_dev = (dev_lbls.sum(axis=1) == 0).astype(int)
 
-        print(classification_report(gt, preds))
-        print("Jaccard score:", jaccard_score(gt, preds, average='samples'))
+                        model = LinearSVC(**params, random_state=42).fit(train_emb, y_train)
+                        models_tuned.append(model)
+                        preds_dev.append(model.predict(dev_emb))
 
-        precision = macro_avg.get("precision", 0.0)
-        recall = macro_avg.get("recall", 0.0)
-        f1_score_val = macro_avg.get("f1-score", 0.0)
-        print(f"Precision: {precision:.4f}")
-        print(f"Recall:    {recall:.4f}")
-        print(f"F1-score:  {f1_score_val:.4f}")
+                    preds_dev = np.stack(preds_dev, axis=1)
+                    report = classification_report(dev_lbls[:, :args.labels], preds_dev, output_dict=True, zero_division=0)
+                    macro_f1 = report.get('macro avg', {}).get('f1-score', 0.0)
 
-        # Save confidence scores
-        label_names = ["HD", "CV", "VO", "None"] if args.labels == 4 else None
-        save_confidence_scores_to_files(models, test_embeddings, label_names)
+                    if macro_f1 > best_score:
+                        best_score = macro_f1
+                        best_params = params
+                        best_models = models_tuned
+                except Exception:
+                    continue
+
+            print(f"[INFO] Best params: {best_params}")
+            print(f"[INFO] Best dev macro F1: {best_score:.4f}")
+
+            # Retrain final models on combined train+dev with best params
+            combined_emb = np.vstack([train_emb, dev_emb])
+            combined_lbls = np.vstack([train_lbls, dev_lbls])
+            final_models = []
+            for i in range(args.labels):
+                if i < combined_lbls.shape[1]:
+                    y_i = combined_lbls[:, i]
+                else:
+                    y_i = (combined_lbls.sum(axis=1) == 0).astype(int)
+
+                model = LinearSVC(**best_params, random_state=42).fit(combined_emb, y_i)
+                final_models.append(model)
+
+        else:
+            # No dev set; retrain on train only with default params
+            print("[INFO] No dev set, training with default parameters")
+            final_models = []
+            for i in range(args.labels):
+                if i < train_lbls.shape[1]:
+                    y_i = train_lbls[:, i]
+                else:
+                    y_i = (train_lbls.sum(axis=1) == 0).astype(int)
+
+                model = LinearSVC(max_iter=5000, random_state=42).fit(train_emb, y_i)
+                final_models.append(model)
+
+        # Optional confidence-based refinement on test set with final models
+        for _ in range(3):
+            confident_indices_all = []
+            new_labels_all = []
+
+            for i, model in enumerate(final_models):
+                if args.confidence:
+                    new_labels, confident_indices = refine_labels(model, test_embeddings, args.threshold)
+                else:
+                    new_labels = model.predict(test_embeddings)
+                    confident_indices = np.arange(len(test_embeddings))
+
+                confident_indices_all.append(confident_indices)
+                new_labels_all.append((i, new_labels, confident_indices))
+
+            all_confident = np.unique(np.concatenate(confident_indices_all))
+            if len(all_confident) == 0:
+                break
+
+            train_emb = np.vstack([train_emb, test_embeddings[all_confident]])
+            for i, new_labels, indices in new_labels_all:
+                y_new = np.zeros(len(all_confident))
+                y_new[np.isin(all_confident, indices)] = new_labels
+                if i < train_lbls.shape[1]:
+                    y_i = train_lbls[:, i]
+                else:
+                    y_i = (train_lbls.sum(axis=1) == 0).astype(int)
+                y_i = np.hstack([y_i, y_new])
+                final_models[i] = LinearSVC(max_iter=5000, random_state=42).fit(train_emb, y_i)
+
+        # Final evaluation on test set
+        preds_test = np.stack([model.predict(test_embeddings) for model in final_models], axis=1)
+        print(classification_report(test_labels[:, :args.labels], preds_test, zero_division=0))
+        print("Jaccard score:", jaccard_score(test_labels[:, :args.labels], preds_test, average='samples'))
+        precision = report.get('macro avg', {}).get("precision", 0.0)
+        recall = report.get('macro avg', {}).get("recall", 0.0)
+        f1 = report.get('macro avg', {}).get("f1-score", 0.0)               
+        print(f"[INFO] Precision: {precision:.4f}, Recall: {recall:.4f}, F1: {f1:.4f}")
 
 
 def load_methods(setting):
@@ -147,36 +274,8 @@ def load_methods(setting):
             ("binary_SMOTEENN", "resampled_data/binary_SMOTEENN_embeddings.npy", "resampled_data/binary_SMOTEENN_labels.npy"),
             ("binary_TomekLinks", "resampled_data/binary_TomekLinks_embeddings.npy", "resampled_data/binary_TomekLinks_labels.npy")
         ]
-    elif setting == "baseline":
-        # Single entry for baseline since there's just one dataset
-        return [
-            ("baseline", "baseline_data/train_embeddings.npy", "baseline_data/train_labels.npy")
-        ]
     else:
         raise ValueError(f"Unknown setting: {setting}")
-
-"""
-here begins all the parameter optimization functions
-"""
-param_grid = {
-    'C': [0.001, 0.01, 0.1, 1, 10, 100],
-    'max_iter': [1000, 5000, 10000],
-    'tol': [1e-4, 1e-3, 1e-2],
-    'loss': ['hinge', 'squared_hinge'],
-    'penalty': ['l2'],  # l1 only with dual=False, might want to test that separately
-    'dual': [True, False]
-}
-
-
-
-def evaluate_on_threshold(models, embeddings, labels, threshold):
-    preds = []
-    for model in models:
-        scores = model.decision_function(embeddings)
-        pred = (scores >= threshold).astype(int)
-        preds.append(pred)
-    preds = np.stack(preds, axis=1)
-    return f1_score(labels[:, :len(models)], preds, average="macro")
 
 
 if __name__ == "__main__":
@@ -209,6 +308,17 @@ if __name__ == "__main__":
     else:
         main(args)
 
+    # NEW: Optional dev split
+    if args.split_dev:
+        train_embeddings, dev_embeddings, train_labels, dev_labels = train_test_split(
+            train_embeddings, train_labels, test_size=0.222, random_state=42, stratify=train_labels
+        )
+        print(f"[INFO] Training set: {len(train_embeddings)} samples")
+        print(f"[INFO] Dev set:      {len(dev_embeddings)} samples")
+    else:
+        print(f"[INFO] Training set: {len(train_embeddings)} samples")
+    print(f"[INFO] Test set:     {len(test_embeddings)} samples")
+
 """
 sample usage for running a specific directory:
 !python3 main.py --data_dir resampled_data2_1 --setting multiclass --confidence --threshold 0.8 --labels 4
@@ -218,9 +328,5 @@ sample usage for running all directiories:
 
 sample usage for running with a baseline directory:
 !python3 main.py --data_dir resampled_data --setting multiclass --confidence --threshold 0.9 --labels 4 --baseline_data_dir /path/to/baseline_data
-
-python3 main.py --data_dir resampled_data2_1 --setting multiclass --confidence --labels 8 --split_dev
-
 """
-
 
