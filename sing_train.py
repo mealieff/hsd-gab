@@ -4,6 +4,7 @@ import argparse
 from collections import defaultdict
 from sklearn.svm import LinearSVC
 from sklearn.metrics import classification_report, jaccard_score
+from sklearn.model_selection import train_test_split
 
 label_list = ["HD", "CV", "VO", "NONE"]
 
@@ -113,20 +114,82 @@ def main():
     parser.add_argument('--train', default="train_embeddings_single_label.npy")
     parser.add_argument('--test_embeddings', required=True)
     parser.add_argument('--test_labels', required=True)
-    parser.add_argument('--threshold', type=float, default=0.2, help="Confidence threshold for label inclusion")
+    parser.add_argument("--split_dev", action="store_true")
     args = parser.parse_args()
 
     print("Loading training data...")
-    X_train, y_train = load_training_data(args.train)
+    X_all, y_all = load_training_data(args.train)
 
     print("Loading test data...")
     X_test, y_test = load_test_data(args.test_embeddings, args.test_labels)
 
-    print("Training model...")
+    if args.split_dev:
+        X_train, X_dev, y_train, y_dev = train_test_split(
+            X_all, y_all, test_size=0.222, random_state=42, stratify=y_all
+        )
+        print(f"[INFO] Training samples: {len(X_train)}")
+        print(f"[INFO] Dev samples: {len(X_dev)}")
+    else:
+        X_train, y_train = X_all, y_all
+        X_dev, y_dev = None, None
+        print(f"[INFO] Training samples: {len(X_train)}")
+
+    print("[INFO] Training model on training split...")
     clf, le = train_model(X_train, y_train)
 
-    print("Evaluating with threshold:", args.threshold)
-    evaluate_partial(clf, le, X_test, y_test, threshold=args.threshold)
+    if args.split_dev:
+        print("[INFO] Starting threshold sweep on dev set...")
+        best_threshold = 0
+        best_f1 = -1
+
+        for threshold in np.arange(0.1, 1.01, 0.05):
+            _, preds = evaluate_partial(clf, le, X_dev, y_dev, threshold=threshold, verbose=False)
+
+            # Microaveraged F1 for HD, CV, VO
+            tp = defaultdict(int)
+            fp = defaultdict(int)
+            fn = defaultdict(int)
+
+            for pred_labels, true_labels in zip(preds, y_dev):
+                pred_set = set(pred_labels)
+                true_set = set(true_labels)
+
+                for label in label_list:
+                    if label in pred_set and label in true_set:
+                        tp[label] += 1
+                    elif label in pred_set and label not in true_set:
+                        fp[label] += 1
+                    elif label not in pred_set and label in true_set:
+                        fn[label] += 1
+
+            f1_scores = []
+            for label in ["HD", "CV", "VO"]:
+                p = tp[label] / (tp[label] + fp[label]) if (tp[label] + fp[label]) > 0 else 0.0
+                r = tp[label] / (tp[label] + fn[label]) if (tp[label] + fn[label]) > 0 else 0.0
+                f1 = (2 * p * r) / (p + r) if (p + r) > 0 else 0.0
+                f1_scores.append(f1)
+
+            avg_f1 = np.mean(f1_scores)
+            if avg_f1 > best_f1:
+                best_f1 = avg_f1
+                best_threshold = threshold
+
+        print("\n==============================")
+        print(f"Best threshold from dev set: {best_threshold:.2f}")
+        print(f"Best avg F1 (HD, CV, VO):    {best_f1:.3f}")
+        print("==============================")
+
+        # Retrain on full data (train + dev)
+        print("[INFO] Retraining model on full training data...")
+        clf, le = train_model(X_all, y_all)
+    else:
+        best_threshold = 0.2  # default
+        print("[INFO] No dev split; using default threshold 0.2")
+
+    print("\n[INFO] Evaluating on test set with threshold", best_threshold)
+    evaluate_partial(clf, le, X_test, y_test, threshold=best_threshold, verbose=True)
+
+
 
 if __name__ == "__main__":
     main()
