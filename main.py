@@ -105,36 +105,6 @@ def main(args):
             model = LinearSVC(max_iter=5000, random_state=42).fit(train_emb, y_i)
             models.append(model)
 
-        # Confidence-based refinement on test set (optional)
-        for _ in range(3):
-            confident_indices_all = []
-            new_labels_all = []
-
-            for i, model in enumerate(models):
-                if args.confidence:
-                    new_labels, confident_indices = refine_labels(model, test_embeddings, args.threshold)
-                else:
-                    new_labels = model.predict(test_embeddings)
-                    confident_indices = np.arange(len(test_embeddings))
-                confident_indices_all.append(confident_indices)
-                new_labels_all.append((i, new_labels, confident_indices))
-
-            all_confident = np.unique(np.concatenate(confident_indices_all))
-            if len(all_confident) == 0:
-                break
-
-            train_emb = np.vstack([train_emb, test_embeddings[all_confident]])
-            for i, new_labels, indices in new_labels_all:
-                y_new = np.zeros(len(all_confident))
-                y_new[np.isin(all_confident, indices)] = new_labels
-                if i < train_lbls.shape[1]:
-                    y_i = train_lbls[:, i]
-                else:
-                    y_i = (train_lbls.sum(axis=1) == 0).astype(int)
-                train_lbls = np.hstack([train_lbls, y_new]) if train_lbls.shape[0] == y_new.shape[0] else np.vstack([train_lbls, y_new])
-                y_i = np.hstack([y_i, y_new])
-                models[i] = LinearSVC(max_iter=5000, random_state=42).fit(train_emb, y_i)
-
         # If dev set exists, do hyperparameter tuning
         if dev_emb is not None:
             best_score = -1
