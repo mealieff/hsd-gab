@@ -178,6 +178,14 @@ if __name__ == "__main__":
         for directory in dirs:
             print(f"\n--- Processing directory: {directory} ---")
             args.data_dir = directory
+            
+            # If directory is baseline_data, and setting is baseline, set baseline_data_dir automatically
+            if directory == "baseline_data" and args.setting == "baseline":
+                args.baseline_data_dir = directory
+            else:
+                # Clear baseline_data_dir for other directories to avoid confusion
+                args.baseline_data_dir = None
+            
             main(args)
     else:
         main(args)
