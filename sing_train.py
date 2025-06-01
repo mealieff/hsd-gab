@@ -6,7 +6,7 @@ from collections import defaultdict
 from sklearn.metrics import classification_report, jaccard_score
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
-#from sklearn.svm import LinearSVC
+# from sklearn.svm import LinearSVC
 
 label_list = ["HD", "CV", "VO", "NONE"]
 
@@ -34,28 +34,59 @@ def train_model(X_train, y_train):
     clf.fit(X_train, y_encoded)
     return clf, le
 
-def evaluate_partial(clf, le, X_test, y_test, threshold=0.2, verbose=True):
-    probas = clf.predict_proba(X_test)
-    class_labels = le.inverse_transform(np.arange(len(le.classes_)))
+def evaluate_partial(clf, le, X_test, y_test, threshold=0.2, use_decision_function=False, verbose=True):
+    if use_decision_function:
+        # Use decision_function scores
+        decision_scores = clf.decision_function(X_test)
+        # decision_function returns shape (n_samples, n_classes)
+        # We convert scores to a pseudo-confidence by normalizing scores per sample
+        # so we can threshold them similarly.
+        # Alternatively, just threshold raw scores as is.
+        scores = decision_scores
+        # For binary/multiclass, decision_function shape can be (n_samples,) or (n_samples, n_classes)
+        if len(scores.shape) == 1:
+            # binary case, convert to shape (n_samples, 2)
+            scores = np.vstack([-scores, scores]).T
 
-    confidences = []
-    predictions = []
+        # We will threshold the scores directly
+        class_labels = le.inverse_transform(np.arange(len(le.classes_)))
 
-    for i, prob in enumerate(probas):
-        conf_dict = {label: prob[j] for j, label in enumerate(class_labels)}
-        confidences.append(conf_dict)
+        confidences = []
+        predictions = []
 
-        active_labels = [label for label in ["HD", "CV", "VO"] if conf_dict[label] >= threshold]
+        for i, score in enumerate(scores):
+            conf_dict = {label: score[j] for j, label in enumerate(class_labels)}
+            confidences.append(conf_dict)
 
-        if active_labels:
-            predictions.append(active_labels)
-        else:
-            predictions.append(["NONE"])
+            active_labels = [label for label in ["HD", "CV", "VO"] if conf_dict[label] >= threshold]
+
+            if active_labels:
+                predictions.append(active_labels)
+            else:
+                predictions.append(["NONE"])
+    else:
+        # Use predict_proba
+        probas = clf.predict_proba(X_test)
+        class_labels = le.inverse_transform(np.arange(len(le.classes_)))
+
+        confidences = []
+        predictions = []
+
+        for i, prob in enumerate(probas):
+            conf_dict = {label: prob[j] for j, label in enumerate(class_labels)}
+            confidences.append(conf_dict)
+
+            active_labels = [label for label in ["HD", "CV", "VO"] if conf_dict[label] >= threshold]
+
+            if active_labels:
+                predictions.append(active_labels)
+            else:
+                predictions.append(["NONE"])
 
     precision_sum = recall_sum = f1_sum = 0
     total = len(y_test)
 
-    # Added: Micro-average per label
+    # Micro-average per label
     tp = defaultdict(int)
     fp = defaultdict(int)
     fn = defaultdict(int)
@@ -117,6 +148,7 @@ def main():
     parser.add_argument('--test_embeddings', required=True)
     parser.add_argument('--test_labels', required=True)
     parser.add_argument("--split_dev", action="store_true")
+    parser.add_argument("--use_decision_function", action="store_true", help="Use SVM decision_function instead of predict_proba")
     args = parser.parse_args()
 
     print("Loading training data...")
@@ -145,7 +177,7 @@ def main():
         best_f1 = -1
 
         for threshold in np.arange(0.1, 1.01, 0.05):
-            _, preds = evaluate_partial(clf, le, X_dev, y_dev, threshold=threshold, verbose=False)
+            _, preds = evaluate_partial(clf, le, X_dev, y_dev, threshold=threshold, use_decision_function=args.use_decision_function, verbose=False)
 
             # Microaveraged F1 for HD, CV, VO
             tp = defaultdict(int)
@@ -189,13 +221,8 @@ def main():
         print("[INFO] No dev split; using default threshold 0.2")
 
     print("\n[INFO] Evaluating on test set with threshold", best_threshold)
-    evaluate_partial(clf, le, X_test, y_test, threshold=best_threshold, verbose=True)
-
+    evaluate_partial(clf, le, X_test, y_test, threshold=best_threshold, use_decision_function=args.use_decision_function, verbose=True)
 
 
 if __name__ == "__main__":
     main()
-
-# python3 sing_train.py --test_embeddings test_embeddings.npy --test_labels test_labels.npy --threshold 0.3
-# python3 sing_train.py --test_embeddings test_embeddings.npy --test_labels test_labels.npy
-
