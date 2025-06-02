@@ -137,8 +137,8 @@ def evaluate_partial(clf, le, X_test, y_test, threshold=0.2, use_decision_functi
         }
         output_data.append(row)
 
-    np.save("test_output_confidences.npy", output_data)
-    print("Saved full confidence outputs to 'test_output_confidences.npy'.")
+   # np.save("test_output_confidences.npy", output_data)
+   # print("Saved full confidence outputs to 'test_output_confidences.npy'.")
 
     return confidences, predictions
 
