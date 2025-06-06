@@ -80,7 +80,7 @@ def main(args):
         # Convert labels to int arrays (support multi-label format)
         y = np.array([[int(c) for c in label] for label in train_labels])
 
-        # Optional dev split if requested
+        # Optional dev split 
         if args.split_dev:
             train_emb, dev_emb, train_lbls, dev_lbls = train_test_split(
                 train_embeddings, y, test_size=0.222, random_state=42, stratify=y if y.ndim == 1 else None
@@ -114,7 +114,6 @@ def main(args):
 
             for combo in product(
                 param_grid['C'],
-                param_grid['max_iter'],
                 param_grid['tol'],
                 param_grid['loss'],
                 param_grid['penalty'],
@@ -122,11 +121,10 @@ def main(args):
             ):
                 params = {
                     'C': combo[0],
-                    'max_iter': combo[1],
-                    'tol': combo[2],
-                    'loss': combo[3],
-                    'penalty': combo[4],
-                    'dual': combo[5]
+                    'tol': combo[1],
+                    'loss': combo[2],
+                    'penalty': combo[3],
+                    'dual': combo[4]
                 }
                 try:
                     models_tuned = []
@@ -169,7 +167,7 @@ def main(args):
 
                 model = LinearSVC(**best_params, random_state=42).fit(combined_emb, y_i)
                 final_models.append(model)
-                
+
         else:
             # No dev set; retrain on train only with default params
             print("[INFO] No dev set, training with default parameters")
