@@ -9,7 +9,7 @@ import argparse
 
 param_grid = {
     'C': [0.001, 0.01, 0.1, 1, 10, 100],
-    'max_iter': [1000, 5000, 10000],
+    'max_iter': [1000, 5000, 10000],s
     'tol': [1e-4, 1e-3, 1e-2],
     'loss': ['hinge', 'squared_hinge'],
     'penalty': ['l2'],  # l1 only with dual=False, might want to test that separately
@@ -77,10 +77,8 @@ def main(args):
             train_embeddings = np.load(emb_file)
             train_labels = np.load(label_file)
 
-        # Convert labels to int arrays (support multi-label format)
         y = np.array([[int(c) for c in label] for label in train_labels])
 
-        # Optional dev split 
         if args.split_dev:
             train_emb, dev_emb, train_lbls, dev_lbls = train_test_split(
                 train_embeddings, y, test_size=0.222, random_state=42, stratify=y if y.ndim == 1 else None
@@ -94,22 +92,21 @@ def main(args):
 
         print(f"[INFO] Test samples: {len(test_embeddings)}")
 
-        # Train initial models for each label
+        # Train initial models
         models = []
         for i in range(args.labels):
             if i < train_lbls.shape[1]:
                 y_i = train_lbls[:, i]
             else:
-                # fallback label for unused indices (all zeros)
                 y_i = (train_lbls.sum(axis=1) == 0).astype(int)
-            model = LinearSVC(max_iter=5000, random_state=42).fit(train_emb, y_i)
+            model = LinearSVC(max_iter=10000, random_state=42).fit(train_emb, y_i)
             models.append(model)
 
-        # If dev set exists, do hyperparameter tuning
+        best_score = -1
+        best_params = None
+        best_models = None
+
         if dev_emb is not None:
-            best_score = -1
-            best_params = None
-            best_models = None
             print("[INFO] Starting hyperparameter grid search on dev set...")
 
             for combo in product(
@@ -126,9 +123,11 @@ def main(args):
                     'penalty': combo[3],
                     'dual': combo[4]
                 }
+
                 try:
                     models_tuned = []
                     preds_dev = []
+
                     for i in range(args.labels):
                         if i < train_lbls.shape[1]:
                             y_train = train_lbls[:, i]
@@ -137,7 +136,7 @@ def main(args):
                             y_train = (train_lbls.sum(axis=1) == 0).astype(int)
                             y_dev = (dev_lbls.sum(axis=1) == 0).astype(int)
 
-                        model = LinearSVC(**params, random_state=42).fit(train_emb, y_train)
+                        model = LinearSVC(**params, max_iter=10000, random_state=42).fit(train_emb, y_train)
                         models_tuned.append(model)
                         preds_dev.append(model.predict(dev_emb))
 
@@ -155,38 +154,43 @@ def main(args):
             print(f"[INFO] Best params: {best_params}")
             print(f"[INFO] Best dev macro F1: {best_score:.4f}")
 
-            # Retrain final models on combined train+dev with best params
+            # Retrain on combined set
             combined_emb = np.vstack([train_emb, dev_emb])
             combined_lbls = np.vstack([train_lbls, dev_lbls])
-            final_models = []
-            for i in range(args.labels):
-                if i < combined_lbls.shape[1]:
-                    y_i = combined_lbls[:, i]
-                else:
-                    y_i = (combined_lbls.sum(axis=1) == 0).astype(int)
-
-                model = LinearSVC(**best_params, random_state=42).fit(combined_emb, y_i)
-                final_models.append(model)
-
         else:
-            # No dev set; retrain on train only with default params
             print("[INFO] No dev set, training with default parameters")
-            final_models = []
-            for i in range(args.labels):
-                if i < train_lbls.shape[1]:
-                    y_i = train_lbls[:, i]
-                else:
-                    y_i = (train_lbls.sum(axis=1) == 0).astype(int)
+            combined_emb = train_emb
+            combined_lbls = train_lbls
 
-                model = LinearSVC(max_iter=5000, random_state=42).fit(train_emb, y_i)
-                final_models.append(model)
-    
+        # Use best or fallback params
+        params_to_use = best_params if best_params is not None else {
+            'C': 1.0,
+            'max_iter': 10000,
+            'tol': 1e-4,
+            'loss': 'squared_hinge',
+            'penalty': 'l2',
+            'dual': True
+        }
+
+        final_models = []
+        for i in range(args.labels):
+            if i < combined_lbls.shape[1]:
+                y_i = combined_lbls[:, i]
+            else:
+                y_i = (combined_lbls.sum(axis=1) == 0).astype(int)
+
+            model = LinearSVC(**params_to_use, random_state=42).fit(combined_emb, y_i)
+            final_models.append(model)
+
         preds_test = np.stack([model.predict(test_embeddings) for model in final_models], axis=1)
+
+        report = classification_report(test_labels[:, :args.labels], preds_test, output_dict=True, zero_division=0)
         print(classification_report(test_labels[:, :args.labels], preds_test, zero_division=0))
         print("Jaccard score:", jaccard_score(test_labels[:, :args.labels], preds_test, average='samples'))
+
         precision = report.get('macro avg', {}).get("precision", 0.0)
         recall = report.get('macro avg', {}).get("recall", 0.0)
-        f1 = report.get('macro avg', {}).get("f1-score", 0.0)               
+        f1 = report.get('macro avg', {}).get("f1-score", 0.0)
         print(f"[INFO] Precision: {precision:.4f}, Recall: {recall:.4f}, F1: {f1:.4f}")
 
 
