@@ -9,7 +9,7 @@ import argparse
 
 param_grid = {
     'C': [0.001, 0.01, 0.1, 1, 10, 100],
-    'max_iter': [1000, 5000, 10000],s
+    'max_iter': [1000, 5000, 10000],
     'tol': [1e-4, 1e-3, 1e-2],
     'loss': ['hinge', 'squared_hinge'],
     'penalty': ['l2'],  # l1 only with dual=False, might want to test that separately
