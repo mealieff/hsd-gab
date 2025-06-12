@@ -184,9 +184,14 @@ def main(args):
 
         preds_test = np.stack([model.predict(test_embeddings) for model in final_models], axis=1)
 
-        report = classification_report(test_labels[:, :args.labels], preds_test, output_dict=True, zero_division=0)
-        print(classification_report(test_labels[:, :args.labels], preds_test, zero_division=0))
-        print("Jaccard score:", jaccard_score(test_labels[:, :args.labels], preds_test, average='samples'))
+        if preds_test.shape[1] != test_labels.shape[1]:
+            min_labels = min(preds_test.shape[1], test_labels.shape[1])
+            preds_test = preds_test[:, :min_labels]
+            test_labels = test_labels[:, :min_labels]
+
+        report = classification_report(test_labels, preds_test, output_dict=True, zero_division=0)
+        print(classification_report(test_labels, preds_test, zero_division=0))
+        print("Jaccard score:", jaccard_score(test_labels, preds_test, average='samples'))
 
         precision = report.get('macro avg', {}).get("precision", 0.0)
         recall = report.get('macro avg', {}).get("recall", 0.0)
