@@ -259,16 +259,6 @@ if __name__ == "__main__":
     else:
         main(args)
 
-    # NEW: Optional dev split
-    if args.split_dev:
-        train_embeddings, dev_embeddings, train_labels, dev_labels = train_test_split(
-            train_embeddings, train_labels, test_size=0.222, random_state=42, stratify=train_labels
-        )
-        print(f"[INFO] Training set: {len(train_embeddings)} samples")
-        print(f"[INFO] Dev set:      {len(dev_embeddings)} samples")
-    else:
-        print(f"[INFO] Training set: {len(train_embeddings)} samples")
-    print(f"[INFO] Test set:     {len(test_embeddings)} samples")
 
 """
 sample usage for running a specific directory:
