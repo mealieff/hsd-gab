@@ -149,6 +149,7 @@ def main(args):
                         best_params = params
                         best_models = models_tuned
                 except Exception:
+                    print(f"[WARN] Skipping parameter set {params} due to error: {str(e)}")
                     continue
 
             print(f"[INFO] Best params: {best_params}")
@@ -189,14 +190,31 @@ def main(args):
             preds_test = preds_test[:, :min_labels]
             test_labels = test_labels[:, :min_labels]
 
-        report = classification_report(test_labels, preds_test, output_dict=True, zero_division=0)
-        print(classification_report(test_labels, preds_test, zero_division=0))
-        print("Jaccard score:", jaccard_score(test_labels, preds_test, average='samples', zero_division=0))
+        label_names = ["HD", "CV", "VO", "Other"] if args.labels == 4 else [f"Label_{i}" for i in range(args.labels)]
+        tp = {label: 0 for label in label_names}
+        fp = {label: 0 for label in label_names}
+        fn = {label: 0 for label in label_names}
 
-        precision = report.get('macro avg', {}).get("precision", 0.0)
-        recall = report.get('macro avg', {}).get("recall", 0.0)
-        f1 = report.get('macro avg', {}).get("f1-score", 0.0)
-        print(f"[INFO] Precision: {precision:.4f}, Recall: {recall:.4f}, F1: {f1:.4f}")
+        for i, label in enumerate(label_names):
+            for j in range(len(test_labels)):
+                if preds_test[j][i] == 1 and test_labels[j][i] == 1:
+                    tp[label] += 1
+                elif preds_test[j][i] == 1 and test_labels[j][i] == 0:
+                    fp[label] += 1
+                elif preds_test[j][i] == 0 and test_labels[j][i] == 1:
+                    fn[label] += 1
+
+        f1_scores = []
+        for label in label_names:
+            p = tp[label] / (tp[label] + fp[label]) if (tp[label] + fp[label]) > 0 else 0.0
+            r = tp[label] / (tp[label] + fn[label]) if (tp[label] + fn[label]) > 0 else 0.0
+            f1 = (2 * p * r) / (p + r) if (p + r) > 0 else 0.0
+            f1_scores.append(f1)
+            print(f"[EVAL] Label: {label}, Precision: {p:.4f}, Recall: {r:.4f}, F1: {f1:.4f}")
+
+        macro_f1 = np.mean(f1_scores)
+        print(f"[EVAL] Macro F1 (manual): {macro_f1:.4f}")
+        print("Jaccard score:", jaccard_score(test_labels, preds_test, average='samples', zero_division=0))
 
 
 def load_methods(setting):

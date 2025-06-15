@@ -174,51 +174,52 @@ def main():
     if args.split_dev:
         print("[INFO] Starting threshold sweep on dev set...")
         best_threshold = 0
-        best_f1 = -1
+        best_macro_f1 = -1
 
         for threshold in np.arange(0.1, 1.01, 0.05):
-            _, preds = evaluate_partial(clf, le, X_dev, y_dev, threshold=threshold, use_decision_function=args.use_decision_function, verbose=False)
-
-            # Microaveraged F1 for HD, CV, VO
-            tp = defaultdict(int)
-            fp = defaultdict(int)
-            fn = defaultdict(int)
-
-            for pred_labels, true_labels in zip(preds, y_dev):
-                pred_set = set(pred_labels)
-                true_set = set(true_labels)
-
-                for label in label_list:
-                    if label in pred_set and label in true_set:
-                        tp[label] += 1
-                    elif label in pred_set and label not in true_set:
-                        fp[label] += 1
-                    elif label not in pred_set and label in true_set:
-                        fn[label] += 1
+            _, preds = evaluate_partial(
+                clf, le, X_dev, y_dev,
+                threshold=threshold,
+                use_decision_function=args.use_decision_function,
+                verbose=False
+            )
 
             f1_scores = []
+
             for label in ["HD", "CV", "VO"]:
-                p = tp[label] / (tp[label] + fp[label]) if (tp[label] + fp[label]) > 0 else 0.0
-                r = tp[label] / (tp[label] + fn[label]) if (tp[label] + fn[label]) > 0 else 0.0
+                tp_l = fp_l = fn_l = 0
+
+                for pred_labels, true_labels in zip(preds, y_dev):
+                    pred_set = set(pred_labels)
+                    true_set = set(true_labels)
+
+                    if label in pred_set and label in true_set:
+                        tp_l += 1
+                    elif label in pred_set and label not in true_set:
+                        fp_l += 1
+                    elif label not in pred_set and label in true_set:
+                        fn_l += 1
+
+                p = tp_l / (tp_l + fp_l) if (tp_l + fp_l) > 0 else 0.0
+                r = tp_l / (tp_l + fn_l) if (tp_l + fn_l) > 0 else 0.0
                 f1 = (2 * p * r) / (p + r) if (p + r) > 0 else 0.0
                 f1_scores.append(f1)
 
-            avg_f1 = np.mean(f1_scores)
-            if avg_f1 > best_f1:
-                best_f1 = avg_f1
+            macro_f1 = np.mean(f1_scores)
+
+            if macro_f1 > best_macro_f1:
+                best_macro_f1 = macro_f1
                 best_threshold = threshold
 
         print("\n==============================")
         print(f"Best threshold from dev set: {best_threshold:.2f}")
-        print(f"Best avg F1 (HD, CV, VO):    {best_f1:.3f}")
+        print(f"Best *macro* F1 (HD, CV, VO): {best_macro_f1:.3f}")
         print("==============================")
 
         # Retrain on full data (train + dev)
         print("[INFO] Retraining model on full training data...")
         clf, le = train_model(X_all, y_all)
-    else:
-        best_threshold = 0.2  # default
-        print("[INFO] No dev split; using default threshold 0.2")
+
 
     print("\n[INFO] Evaluating on test set with threshold", best_threshold)
     evaluate_partial(clf, le, X_test, y_test, threshold=best_threshold, use_decision_function=args.use_decision_function, verbose=True)
