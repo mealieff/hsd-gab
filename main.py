@@ -191,7 +191,7 @@ def main(args):
 
         report = classification_report(test_labels, preds_test, output_dict=True, zero_division=0)
         print(classification_report(test_labels, preds_test, zero_division=0))
-        print("Jaccard score:", jaccard_score(test_labels, preds_test, average='samples'))
+        print("Jaccard score:", jaccard_score(test_labels, preds_test, average='samples', zero_division=0))
 
         precision = report.get('macro avg', {}).get("precision", 0.0)
         recall = report.get('macro avg', {}).get("recall", 0.0)
