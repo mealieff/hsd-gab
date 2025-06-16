@@ -2,10 +2,10 @@ import os
 import numpy as np
 from itertools import product
 from sklearn.svm import LinearSVC
-from sklearn.metrics import classification_report, jaccard_score
+from sklearn.metrics import classification_report, f1_score, jaccard_score
 from sklearn.model_selection import train_test_split
 import argparse
-
+from sklearn.preprocessing import MultiLabelBinarizer
 
 param_grid = {
     'C': [0.001, 0.01, 0.1, 1, 10, 100],
@@ -57,6 +57,7 @@ def save_confidence_scores_to_files(models, test_embeddings, label_names=None, o
 
     print(f"Confidence scores saved in: {os.path.abspath(output_dir)}")
 
+
 def main(args):
     current_directory = os.getcwd()
     test_embeddings = np.load(os.path.join(current_directory, 'test_embeddings.npy'))
@@ -67,7 +68,7 @@ def main(args):
     for method_name, emb_file, label_file in methods:
         print(f"[INFO] Processing method: {method_name}")
 
-        # Load training data based on method or baseline setting
+        # Load training data
         if method_name == "baseline" or args.setting == "baseline":
             if not args.baseline_data_dir:
                 raise ValueError("Baseline data directory must be specified for baseline setting.")
@@ -148,14 +149,14 @@ def main(args):
                         best_score = macro_f1
                         best_params = params
                         best_models = models_tuned
-                except Exception:
+                except Exception as e:
                     print(f"[WARN] Skipping parameter set {params} due to error: {str(e)}")
                     continue
 
             print(f"[INFO] Best params: {best_params}")
             print(f"[INFO] Best dev macro F1: {best_score:.4f}")
 
-            # Retrain on combined set
+            # Retrain on full training + dev set
             combined_emb = np.vstack([train_emb, dev_emb])
             combined_lbls = np.vstack([train_lbls, dev_lbls])
         else:
@@ -163,7 +164,7 @@ def main(args):
             combined_emb = train_emb
             combined_lbls = train_lbls
 
-        # Use best or fallback params
+        # Final training with selected or default params
         params_to_use = best_params if best_params is not None else {
             'C': 1.0,
             'max_iter': 10000,
@@ -185,12 +186,15 @@ def main(args):
 
         preds_test = np.stack([model.predict(test_embeddings) for model in final_models], axis=1)
 
+        # Truncate if label dimension mismatch
         if preds_test.shape[1] != test_labels.shape[1]:
             min_labels = min(preds_test.shape[1], test_labels.shape[1])
             preds_test = preds_test[:, :min_labels]
             test_labels = test_labels[:, :min_labels]
 
         label_names = ["HD", "CV", "VO", "Other"] if args.labels == 4 else [f"Label_{i}" for i in range(args.labels)]
+
+        # Manual F1 computation
         tp = {label: 0 for label in label_names}
         fp = {label: 0 for label in label_names}
         fn = {label: 0 for label in label_names}
@@ -214,7 +218,23 @@ def main(args):
 
         macro_f1 = np.mean(f1_scores)
         print(f"[EVAL] Macro F1 (manual): {macro_f1:.4f}")
-        print("Jaccard score:", jaccard_score(test_labels, preds_test, average='samples', zero_division=0))
+
+        # Micro/Macro F1 using sklearn
+        print("\n[SKLEARN] Micro/Macro Classification Report:")
+
+        mlb = MultiLabelBinarizer(classes=label_names)
+        y_true_bin = mlb.fit_transform([
+            [label_names[i] for i in range(len(label_names)) if row[i] == 1]
+            for row in test_labels
+        ])
+        y_pred_bin = mlb.transform([
+            [label_names[i] for i in range(len(label_names)) if row[i] == 1]
+            for row in preds_test
+        ])
+
+        report = classification_report(y_true_bin, y_pred_bin, target_names=label_names, zero_division=0, output_dict=True)
+        print(f"Micro avg F1: {report['micro avg']['f1-score']:.4f}")
+        print(f"Macro avg F1: {report['macro avg']['f1-score']:.4f}")
 
 
 def load_methods(setting):
