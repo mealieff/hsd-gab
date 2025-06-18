@@ -1,0 +1,87 @@
+[INFO] Processing method: baseline
+[INFO] Training samples: 17144
+[INFO] Dev samples: 4892
+[INFO] Test samples: 5510
+[INFO] Starting hyperparameter grid search on dev set...
+[WARN] Skipping parameter set {'C': 0.001, 'tol': 0.0001, 'loss': 'hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 0.001, 'tol': 0.0001, 'loss': 'hinge', 'penalty': 'l2', 'dual': False} due to error: Unsupported set of arguments: The combination of penalty='l2' and loss='hinge' are not supported when dual=False, Parameters: penalty='l2', loss='hinge', dual=False
+[WARN] Skipping parameter set {'C': 0.001, 'tol': 0.0001, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 0.001, 'tol': 0.0001, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': False} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 0.001, 'tol': 0.001, 'loss': 'hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 0.001, 'tol': 0.001, 'loss': 'hinge', 'penalty': 'l2', 'dual': False} due to error: Unsupported set of arguments: The combination of penalty='l2' and loss='hinge' are not supported when dual=False, Parameters: penalty='l2', loss='hinge', dual=False
+[WARN] Skipping parameter set {'C': 0.001, 'tol': 0.001, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 0.001, 'tol': 0.001, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': False} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 0.001, 'tol': 0.01, 'loss': 'hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 0.001, 'tol': 0.01, 'loss': 'hinge', 'penalty': 'l2', 'dual': False} due to error: Unsupported set of arguments: The combination of penalty='l2' and loss='hinge' are not supported when dual=False, Parameters: penalty='l2', loss='hinge', dual=False
+[WARN] Skipping parameter set {'C': 0.001, 'tol': 0.01, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 0.001, 'tol': 0.01, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': False} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 0.01, 'tol': 0.0001, 'loss': 'hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 0.01, 'tol': 0.0001, 'loss': 'hinge', 'penalty': 'l2', 'dual': False} due to error: Unsupported set of arguments: The combination of penalty='l2' and loss='hinge' are not supported when dual=False, Parameters: penalty='l2', loss='hinge', dual=False
+[WARN] Skipping parameter set {'C': 0.01, 'tol': 0.0001, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 0.01, 'tol': 0.0001, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': False} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 0.01, 'tol': 0.001, 'loss': 'hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 0.01, 'tol': 0.001, 'loss': 'hinge', 'penalty': 'l2', 'dual': False} due to error: Unsupported set of arguments: The combination of penalty='l2' and loss='hinge' are not supported when dual=False, Parameters: penalty='l2', loss='hinge', dual=False
+[WARN] Skipping parameter set {'C': 0.01, 'tol': 0.001, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 0.01, 'tol': 0.001, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': False} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 0.01, 'tol': 0.01, 'loss': 'hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 0.01, 'tol': 0.01, 'loss': 'hinge', 'penalty': 'l2', 'dual': False} due to error: Unsupported set of arguments: The combination of penalty='l2' and loss='hinge' are not supported when dual=False, Parameters: penalty='l2', loss='hinge', dual=False
+[WARN] Skipping parameter set {'C': 0.01, 'tol': 0.01, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 0.01, 'tol': 0.01, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': False} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 0.1, 'tol': 0.0001, 'loss': 'hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 0.1, 'tol': 0.0001, 'loss': 'hinge', 'penalty': 'l2', 'dual': False} due to error: Unsupported set of arguments: The combination of penalty='l2' and loss='hinge' are not supported when dual=False, Parameters: penalty='l2', loss='hinge', dual=False
+[WARN] Skipping parameter set {'C': 0.1, 'tol': 0.0001, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 0.1, 'tol': 0.0001, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': False} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 0.1, 'tol': 0.001, 'loss': 'hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 0.1, 'tol': 0.001, 'loss': 'hinge', 'penalty': 'l2', 'dual': False} due to error: Unsupported set of arguments: The combination of penalty='l2' and loss='hinge' are not supported when dual=False, Parameters: penalty='l2', loss='hinge', dual=False
+[WARN] Skipping parameter set {'C': 0.1, 'tol': 0.001, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 0.1, 'tol': 0.001, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': False} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 0.1, 'tol': 0.01, 'loss': 'hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 0.1, 'tol': 0.01, 'loss': 'hinge', 'penalty': 'l2', 'dual': False} due to error: Unsupported set of arguments: The combination of penalty='l2' and loss='hinge' are not supported when dual=False, Parameters: penalty='l2', loss='hinge', dual=False
+[WARN] Skipping parameter set {'C': 0.1, 'tol': 0.01, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 0.1, 'tol': 0.01, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': False} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 1, 'tol': 0.0001, 'loss': 'hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 1, 'tol': 0.0001, 'loss': 'hinge', 'penalty': 'l2', 'dual': False} due to error: Unsupported set of arguments: The combination of penalty='l2' and loss='hinge' are not supported when dual=False, Parameters: penalty='l2', loss='hinge', dual=False
+[WARN] Skipping parameter set {'C': 1, 'tol': 0.0001, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 1, 'tol': 0.0001, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': False} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 1, 'tol': 0.001, 'loss': 'hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 1, 'tol': 0.001, 'loss': 'hinge', 'penalty': 'l2', 'dual': False} due to error: Unsupported set of arguments: The combination of penalty='l2' and loss='hinge' are not supported when dual=False, Parameters: penalty='l2', loss='hinge', dual=False
+[WARN] Skipping parameter set {'C': 1, 'tol': 0.001, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 1, 'tol': 0.001, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': False} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 1, 'tol': 0.01, 'loss': 'hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 1, 'tol': 0.01, 'loss': 'hinge', 'penalty': 'l2', 'dual': False} due to error: Unsupported set of arguments: The combination of penalty='l2' and loss='hinge' are not supported when dual=False, Parameters: penalty='l2', loss='hinge', dual=False
+[WARN] Skipping parameter set {'C': 1, 'tol': 0.01, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 1, 'tol': 0.01, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': False} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 10, 'tol': 0.0001, 'loss': 'hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 10, 'tol': 0.0001, 'loss': 'hinge', 'penalty': 'l2', 'dual': False} due to error: Unsupported set of arguments: The combination of penalty='l2' and loss='hinge' are not supported when dual=False, Parameters: penalty='l2', loss='hinge', dual=False
+[WARN] Skipping parameter set {'C': 10, 'tol': 0.0001, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 10, 'tol': 0.0001, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': False} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 10, 'tol': 0.001, 'loss': 'hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 10, 'tol': 0.001, 'loss': 'hinge', 'penalty': 'l2', 'dual': False} due to error: Unsupported set of arguments: The combination of penalty='l2' and loss='hinge' are not supported when dual=False, Parameters: penalty='l2', loss='hinge', dual=False
+[WARN] Skipping parameter set {'C': 10, 'tol': 0.001, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 10, 'tol': 0.001, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': False} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 10, 'tol': 0.01, 'loss': 'hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 10, 'tol': 0.01, 'loss': 'hinge', 'penalty': 'l2', 'dual': False} due to error: Unsupported set of arguments: The combination of penalty='l2' and loss='hinge' are not supported when dual=False, Parameters: penalty='l2', loss='hinge', dual=False
+[WARN] Skipping parameter set {'C': 10, 'tol': 0.01, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 10, 'tol': 0.01, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': False} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 100, 'tol': 0.0001, 'loss': 'hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 100, 'tol': 0.0001, 'loss': 'hinge', 'penalty': 'l2', 'dual': False} due to error: Unsupported set of arguments: The combination of penalty='l2' and loss='hinge' are not supported when dual=False, Parameters: penalty='l2', loss='hinge', dual=False
+[WARN] Skipping parameter set {'C': 100, 'tol': 0.0001, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 100, 'tol': 0.0001, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': False} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 100, 'tol': 0.001, 'loss': 'hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 100, 'tol': 0.001, 'loss': 'hinge', 'penalty': 'l2', 'dual': False} due to error: Unsupported set of arguments: The combination of penalty='l2' and loss='hinge' are not supported when dual=False, Parameters: penalty='l2', loss='hinge', dual=False
+[WARN] Skipping parameter set {'C': 100, 'tol': 0.001, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 100, 'tol': 0.001, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': False} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 100, 'tol': 0.01, 'loss': 'hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 100, 'tol': 0.01, 'loss': 'hinge', 'penalty': 'l2', 'dual': False} due to error: Unsupported set of arguments: The combination of penalty='l2' and loss='hinge' are not supported when dual=False, Parameters: penalty='l2', loss='hinge', dual=False
+[WARN] Skipping parameter set {'C': 100, 'tol': 0.01, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': True} due to error: Multi-label binary indicator input with different numbers of labels
+[WARN] Skipping parameter set {'C': 100, 'tol': 0.01, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': False} due to error: Multi-label binary indicator input with different numbers of labels
+[INFO] Best params: None
+[INFO] Best dev macro F1: -1.0000
+[EVAL] Label 0: Precision=0.6424, Recall=0.2159, F1=0.3232
+[EVAL] Label 1: Precision=0.1250, Recall=0.1250, F1=0.1250
+[EVAL] Label 2: Precision=0.6378, Recall=0.2195, F1=0.3266
+[EVAL] Macro F1 (manual): 0.2583
+
+[SKLEARN] Micro/Macro F1 scores:
+Micro F1: 0.31666666666666665
+Macro F1: 0.2582612116443745

@@ -1,0 +1,204 @@
+conda version 24.1.2 python 3.11.7 loaded.
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/svm/_base.py:1243: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Jaccard is ill-defined and being set to 0.0 in samples with no true or predicted labels. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+Traceback (most recent call last):
+  File "/geode2/home/u060/mealieff/BigRed200/hsd-gab/main.py", line 265, in <module>
+    train_embeddings, train_labels, test_size=0.222, random_state=42, stratify=train_labels
+    ^^^^^^^^^^^^^^^^
+NameError: name 'train_embeddings' is not defined

@@ -1,0 +1,2 @@
+conda version 24.1.2 python 3.11.7 loaded.
+slurmstepd: error: *** JOB 4758907 ON nid0350 CANCELLED AT 2025-06-10T21:00:53 DUE TO TIME LIMIT ***

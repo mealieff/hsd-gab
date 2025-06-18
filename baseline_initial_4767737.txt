@@ -1,0 +1,7 @@
+[INFO] Processing method: baseline
+[INFO] Training samples: 17144
+[INFO] Dev samples: 4892
+[INFO] Test samples: 5510
+[INFO] Starting hyperparameter grid search on dev set...
+[INFO] Best params: None
+[INFO] Best dev macro F1: -1.0000

@@ -1,0 +1,25 @@
+conda version 24.1.2 python 3.11.7 loaded.
+Traceback (most recent call last):
+  File "/geode2/home/u060/mealieff/BigRed200/hsd-gab/main.py", line 144, in main
+    report = classification_report(dev_lbls[:, :args.labels], preds_dev, output_dict=True, zero_division=0)
+  File "/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/utils/_param_validation.py", line 216, in wrapper
+    return func(*args, **kwargs)
+  File "/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/metrics/_classification.py", line 2674, in classification_report
+    labels = unique_labels(y_true, y_pred)
+  File "/N/u/mealieff/BigRed200/.conda/envs/HSD/lib/python3.13/site-packages/sklearn/utils/multiclass.py", line 98, in unique_labels
+    raise ValueError(
+        "Multi-label binary indicator input with different numbers of labels"
+    )
+ValueError: Multi-label binary indicator input with different numbers of labels
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/geode2/home/u060/mealieff/BigRed200/hsd-gab/main.py", line 278, in <module>
+    main(args)
+    ~~~~^^^^^^
+  File "/geode2/home/u060/mealieff/BigRed200/hsd-gab/main.py", line 152, in main
+    print(f"[WARN] Skipping parameter set {params} due to error: {str(e)}")
+                                                                      ^
+NameError: name 'e' is not defined
+slurmstepd: error: *** JOB 4790271 ON nid0238 CANCELLED AT 2025-06-17T19:52:34 DUE TO TIME LIMIT ***
