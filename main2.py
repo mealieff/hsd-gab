@@ -60,7 +60,8 @@ def main(args):
             train_embeddings = np.load(emb_file)
             train_labels = np.load(label_file)
 
-        y = np.array([[int(c) for c in label] for label in train_labels])
+        y = np.array([ [int(c) for c in label] if isinstance(label, (list, np.ndarray)) else [int(label)] for label in train_labels])
+
 
         if args.split_dev:
             train_emb, dev_emb, train_lbls, dev_lbls = train_test_split(
