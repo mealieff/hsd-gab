@@ -120,6 +120,9 @@ def main(args):
         final_model.fit(combined_emb, combined_lbls)
         preds_test = final_model.predict(test_embeddings)
 
+        preds_test = np.atleast_2d(preds_test)
+        test_labels = np.atleast_2d(test_labels)
+
         if preds_test.shape[1] != test_labels.shape[1]:
             min_labels = min(preds_test.shape[1], test_labels.shape[1])
             preds_test = preds_test[:, :min_labels]
@@ -188,6 +191,10 @@ if __name__ == "__main__":
                 args.baseline_data_dir = directory
             else:
                 args.baseline_data_dir = None
-            main(args)
+            try:
+                main(args)
+            except Exception as e:
+                print(f"[ERROR] Failed to process {directory}: {str(e)}")
+
     else:
         main(args)
