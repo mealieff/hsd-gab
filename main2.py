@@ -120,10 +120,16 @@ def main(args):
         final_model.fit(combined_emb, combined_lbls)
         preds_test = final_model.predict(test_embeddings)
 
+        if preds_test.ndim == 1:
+            preds_test = preds_test.reshape(-1, 1)
+        if test_labels.ndim == 1:
+            test_labels = test_labels.reshape(-1, 1)
+
         if preds_test.shape[1] != test_labels.shape[1]:
             min_labels = min(preds_test.shape[1], test_labels.shape[1])
             preds_test = preds_test[:, :min_labels]
             test_labels = test_labels[:, :min_labels]
+
 
         label_names = ["HD", "CV", "VO", "None"]
         label_metrics = []
@@ -188,6 +194,10 @@ if __name__ == "__main__":
                 args.baseline_data_dir = directory
             else:
                 args.baseline_data_dir = None
-            main(args)
+            try:
+                main(args)
+            except Exception as e:
+                print(f"[ERROR] Failed to process {directory}: {str(e)}")
+
     else:
         main(args)
