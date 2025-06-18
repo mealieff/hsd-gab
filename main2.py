@@ -39,7 +39,7 @@ def main(args):
     current_directory = os.getcwd()
     test_embeddings = np.load(os.path.join(current_directory, 'test_embeddings.npy'))
     test_labels = np.load(os.path.join(current_directory, 'test_labels.npy'))
-    methods = load_methods(args.setting)
+    methods = load_methods(args.setting, args.data_dir)
 
     label_scheme = {
         "HD": [1, 0, 0],
@@ -60,8 +60,11 @@ def main(args):
             train_embeddings = np.load(emb_file)
             train_labels = np.load(label_file)
 
-        y = np.array([ [int(c) for c in label] if isinstance(label, (list, np.ndarray)) else [int(label)] for label in train_labels])
-
+        if np.issubdtype(train_labels.dtype, np.integer):
+            n_classes = int(np.max(train_labels)) + 1
+            y = np.eye(n_classes)[train_labels]
+        else:
+            y = np.array([ [int(c) for c in label] if isinstance(label, (list, np.ndarray)) else [int(label)] for label in train_labels ])
 
         if args.split_dev:
             train_emb, dev_emb, train_lbls, dev_lbls = train_test_split(
@@ -160,19 +163,16 @@ def main(args):
             label_names_all = [f"Label_{i}" for i in range(test_labels.shape[1])]
             save_confidence_scores_to_files(final_model, test_embeddings, label_names_all)
 
-def load_methods(setting):
-    if setting == "multiclass":
-        return [
-            ("ADASYN", "resampled_data/multiclass_ADASYN_embeddings.npy", "resampled_data/multiclass_ADASYN_labels.npy"),
-        ]
-    elif setting == "binary":
-        return [
-            ("binary_ADASYN", "resampled_data/binary_ADASYN_embeddings.npy", "resampled_data/binary_ADASYN_labels.npy"),
-        ]
-    elif setting == "baseline":
-        return [("baseline", "baseline_data/train_embeddings.npy", "baseline_data/train_labels.npy")]
-    else:
-        raise ValueError(f"Unknown setting: {setting}")
+def load_methods(setting, data_dir):
+    methods = []
+    for file in os.listdir(data_dir):
+        if file.endswith("_embeddings.npy"):
+            prefix = file.replace("_embeddings.npy", "")
+            emb_file = os.path.join(data_dir, f"{prefix}_embeddings.npy")
+            label_file = os.path.join(data_dir, f"{prefix}_labels.npy")
+            if os.path.exists(label_file):
+                methods.append((prefix, emb_file, label_file))
+    return methods
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
