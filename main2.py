@@ -2,11 +2,12 @@ import os
 import numpy as np
 from itertools import product
 from sklearn.svm import LinearSVC
-from sklearn.metrics import classification_report, f1_score, jaccard_score, hamming_loss
+from sklearn.metrics import classification_report, f1_score
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MultiLabelBinarizer
 from sklearn.multiclass import OneVsRestClassifier
 import argparse
+import ast
 
 def refine_labels(model, X_unlabeled, confidence_threshold):
     decision_function = model.decision_function(X_unlabeled)
@@ -39,6 +40,13 @@ def main(args):
     test_embeddings = np.load(os.path.join(current_directory, 'test_embeddings.npy'))
     test_labels = np.load(os.path.join(current_directory, 'test_labels.npy'))
     methods = load_methods(args.setting)
+
+    label_scheme = {
+        "HD": [1, 0, 0],
+        "CV": [0, 1, 0],
+        "VO": [0, 0, 1],
+        "None": [0, 0, 0]
+    }
 
     for method_name, emb_file, label_file in methods:
         print(f"[INFO] Processing method: {method_name}")
@@ -98,10 +106,13 @@ def main(args):
             combined_emb = np.vstack([train_emb, dev_emb])
             combined_lbls = np.vstack([train_lbls, dev_lbls])
         else:
-            print("[INFO] No dev set, training with default parameters")
+            print("[INFO] No dev set, training with specified or default parameters")
             combined_emb = train_emb
             combined_lbls = train_lbls
-            best_params = {'C': 1.0, 'tol': 1e-4, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': True}
+            if args.model_params:
+                best_params = ast.literal_eval(args.model_params)
+            else:
+                best_params = {'C': 10, 'tol': 0.001, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': False}
 
         base_model = LinearSVC(**best_params, max_iter=10000, random_state=42)
         final_model = OneVsRestClassifier(base_model)
@@ -113,6 +124,9 @@ def main(args):
             preds_test = preds_test[:, :min_labels]
             test_labels = test_labels[:, :min_labels]
 
+        label_names = ["HD", "CV", "VO", "None"]
+        label_metrics = []
+
         print("\n[EVAL] Manual label-wise F1 scores:")
         for i in range(test_labels.shape[1]):
             tp = np.sum((preds_test[:, i] == 1) & (test_labels[:, i] == 1))
@@ -121,28 +135,32 @@ def main(args):
             precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0
             recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0
             f1 = (2 * precision * recall) / (precision + recall) if (precision + recall) > 0 else 0.0
-            print(f"Label {i}: Precision={precision:.4f}, Recall={recall:.4f}, F1={f1:.4f}")
+            label = label_names[i] if i < len(label_names) else f"Label_{i}"
+            label_metrics.append((precision, recall, f1))
+            scheme = label_scheme.get(label, [0, 0, 0])
+            print(f"{label}: Precision={precision:.4f}, Recall={recall:.4f}, F1={f1:.4f}, Scheme={scheme}")
+
+        avg_prec = np.mean([x[0] for x in label_metrics])
+        avg_recall = np.mean([x[1] for x in label_metrics])
+        avg_f1 = np.mean([x[2] for x in label_metrics])
+        print(f"\n[AVG] Precision={avg_prec:.4f}, Recall={avg_recall:.4f}, F1={avg_f1:.4f}")
 
         print("\n[SKLEARN] Evaluation:")
         print("Micro F1:", f1_score(test_labels, preds_test, average='micro'))
         print("Macro F1:", f1_score(test_labels, preds_test, average='macro'))
-        print("Jaccard Score (macro):", jaccard_score(test_labels, preds_test, average='macro'))
-        print("Hamming Loss:", hamming_loss(test_labels, preds_test))
 
         if args.confidence:
-            label_names = [f"Label_{i}" for i in range(test_labels.shape[1])]
-            save_confidence_scores_to_files(final_model, test_embeddings, label_names)
+            label_names_all = [f"Label_{i}" for i in range(test_labels.shape[1])]
+            save_confidence_scores_to_files(final_model, test_embeddings, label_names_all)
 
 def load_methods(setting):
     if setting == "multiclass":
         return [
             ("ADASYN", "resampled_data/multiclass_ADASYN_embeddings.npy", "resampled_data/multiclass_ADASYN_labels.npy"),
-            # ... add others if needed
         ]
     elif setting == "binary":
         return [
             ("binary_ADASYN", "resampled_data/binary_ADASYN_embeddings.npy", "resampled_data/binary_ADASYN_labels.npy"),
-            # ... add others if needed
         ]
     elif setting == "baseline":
         return [("baseline", "baseline_data/train_embeddings.npy", "baseline_data/train_labels.npy")]
@@ -158,6 +176,7 @@ if __name__ == "__main__":
     parser.add_argument("--labels", type=int, default=4, help="Number of labels to classify.")
     parser.add_argument("--baseline_data_dir", type=str, help="Directory for baseline data.")
     parser.add_argument("--split_dev", action="store_true", help="Split training set into training and dev sets.")
+    parser.add_argument("--model_params", type=str, help="Custom model parameters as dictionary string.")
     args = parser.parse_args()
 
     if args.data_dir == "all":
