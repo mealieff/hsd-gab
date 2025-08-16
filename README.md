@@ -11,12 +11,6 @@ This repository contains code, data, and results for an NLP project investigatin
 - **`merged-resampler.py`**  
   Applies various resampling techniques (e.g., RandomUnderSampler, SMOTE, TomekLinks, CondensedNearestNeighbour) to address class imbalance in both binary and multiclass settings. Outputs resampled datasets as NPY files.
 
-- **`svm-binary.py`**  
-  Trains and evaluates an SVM classifier on binary-labeled data, supporting results analysis for resampled and baseline datasets.
-
-- **`svm-multi.py`**  
-  Trains and evaluates an SVM classifier on multiclass/multilabel data, with support for multiple resampling strategies.
-
 - **`svm-postembedding.py`**  
   Performs SVM classification using post-embedding features, allowing for additional evaluation scenarios.
 
@@ -29,7 +23,10 @@ This repository contains code, data, and results for an NLP project investigatin
   Reads in TSV file and extracts BERT-based-uncased embeddings for the dataset in data-preprocessing.
 
 - **`main.py`**
-  Reads in NPY arrays and trains/outputs svm classification results. 
+  Reads in NPY arrays and trains/outputs svm classification results. See argument parser details for adjusting parameters for multilabel classification. Usually run in batches using ```run_all_evaluations.sh```
+
+- **`sing_label_method.py`**
+  This script is used for single label methods. Can use argument parsing to set parameters and utilize dev set to adjust parameters. Needs debugging.  
   
 ### Data Files
 - **`ghc_train.tsv`** and **`ghc_test.tsv`**  
