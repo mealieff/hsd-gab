@@ -1,4 +1,0 @@
-Running on resampled_data
-Running on resampled_data2_1
-Running on resampled_data3_1
-== Directory: sing_label_data ==

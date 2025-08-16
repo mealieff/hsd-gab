@@ -1,7 +1,0 @@
-Running on resampled_data
-[INFO] Processing method: binary_ADASYN
-Running on resampled_data2_1
-[INFO] Processing method: binary_ADASYN
-Running on resampled_data3_1
-[INFO] Processing method: binary_ADASYN
-== Directory: sing_label_data ==
