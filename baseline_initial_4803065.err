@@ -23,3 +23,4 @@ Traceback (most recent call last):
     y = np.array([[int(c) for c in label] for label in train_labels])
                                    ^^^^^
 TypeError: 'numpy.int64' object is not iterable
+slurmstepd: error: *** JOB 4803065 ON nid0238 CANCELLED AT 2025-06-18T14:15:11 ***

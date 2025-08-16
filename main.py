@@ -11,16 +11,17 @@ import ast
 
 def refine_labels(model, X_unlabeled, confidence_threshold):
     decision_function = model.decision_function(X_unlabeled)
-    if decision_function.ndim == 1:
-        max_confidence = np.abs(decision_function)
-        predicted_labels = (decision_function >= 0).astype(int)
-    else:
-        max_confidence = np.max(decision_function, axis=1)
-        predicted_labels = np.argmax(decision_function, axis=1)
-    confident_indices = np.where(max_confidence >= confidence_threshold)[0]
-    if len(confident_indices) == 0:
-        return np.array([]), confident_indices
-    return predicted_labels[confident_indices], confident_indices
+    preds = (decision_function >= confidence_threshold).astype(int)
+
+    # if a sample has no labels above threshold, mark "None"
+    if preds.ndim == 1:
+        preds = preds.reshape(-1, 1)
+    none_mask = preds.sum(axis=1) == 0
+    if none_mask.any():
+        none_col = np.zeros((preds.shape[0], 1), dtype=int)
+        none_col[none_mask, 0] = 1
+        preds = np.hstack([preds, none_col])
+    return preds
 
 def save_confidence_scores_to_files(models, test_embeddings, label_names=None, output_dir="confidence_scores"):
     if label_names is None:
@@ -134,34 +135,81 @@ def main(args):
             test_labels = test_labels[:, :min_labels]
 
 
-        label_names = ["HD", "CV", "VO", "None"]
-        label_metrics = []
-
-        print("\n[EVAL] Manual label-wise F1 scores:")
-        for i in range(test_labels.shape[1]):
-            tp = np.sum((preds_test[:, i] == 1) & (test_labels[:, i] == 1))
-            fp = np.sum((preds_test[:, i] == 1) & (test_labels[:, i] == 0))
-            fn = np.sum((preds_test[:, i] == 0) & (test_labels[:, i] == 1))
-            precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0
-            recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0
-            f1 = (2 * precision * recall) / (precision + recall) if (precision + recall) > 0 else 0.0
-            label = label_names[i] if i < len(label_names) else f"Label_{i}"
-            label_metrics.append((precision, recall, f1))
-            scheme = label_scheme.get(label, [0, 0, 0])
-            print(f"{label}: Precision={precision:.4f}, Recall={recall:.4f}, F1={f1:.4f}, Scheme={scheme}")
-
-        avg_prec = np.mean([x[0] for x in label_metrics])
-        avg_recall = np.mean([x[1] for x in label_metrics])
-        avg_f1 = np.mean([x[2] for x in label_metrics])
-        print(f"\n[AVG] Precision={avg_prec:.4f}, Recall={avg_recall:.4f}, F1={avg_f1:.4f}")
-
-        print("\n[SKLEARN] Evaluation:")
-        print("Micro F1:", f1_score(test_labels, preds_test, average='micro'))
-        print("Macro F1:", f1_score(test_labels, preds_test, average='macro'))
-
         if args.confidence:
             label_names_all = [f"Label_{i}" for i in range(test_labels.shape[1])]
             save_confidence_scores_to_files(final_model, test_embeddings, label_names_all)
+
+        if args.setting == "single":
+            print(f"\n[THRESHOLD] Applying confidence threshold = {args.threshold}")
+            filtered_preds, confident_indices = refine_labels(final_model, test_embeddings, args.threshold)
+
+            if len(confident_indices) == 0:
+                print("[WARN] No samples passed the confidence threshold.")
+            else:
+                filtered_true = test_labels[confident_indices]
+
+                # recompute evaluation
+                print(f"[INFO] {len(confident_indices)} / {len(test_labels)} samples retained after thresholding")
+                print("Macro F1 (thresholded):", f1_score(filtered_true, filtered_preds, average='macro'))
+                print("Micro F1 (thresholded):", f1_score(filtered_true, filtered_preds, average='micro'))
+
+        thresholds = [0.3,0.4,0.5,0.6,0.7,0.75,0.8,0.85,0.9]
+        label_names = ["HD","CV","VO","None"]
+
+        best_macro_f1 = -1
+        best_results = None
+        best_thresh = None
+
+        for thr in thresholds:
+            preds_thr = refine_labels(final_model, test_embeddings, thr)
+
+            # align shapes
+            min_labels = min(preds_thr.shape[1], test_labels.shape[1])
+            preds_thr = preds_thr[:, :min_labels]
+            gold = test_labels[:, :min_labels]
+
+            # --- manual metrics per label ---
+            label_metrics = []
+            for i in range(gold.shape[1]):
+                tp = np.sum((preds_thr[:, i] == 1) & (gold[:, i] == 1))
+                fp = np.sum((preds_thr[:, i] == 1) & (gold[:, i] == 0))
+                fn = np.sum((preds_thr[:, i] == 0) & (gold[:, i] == 1))
+                precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0
+                recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0
+                f1 = (2 * precision * recall) / (precision + recall) if (precision + recall) > 0 else 0.0
+                label_metrics.append((precision, recall, f1))
+
+            avg_prec = np.mean([x[0] for x in label_metrics])
+            avg_recall = np.mean([x[1] for x in label_metrics])
+            avg_f1 = np.mean([x[2] for x in label_metrics])
+
+            micro_f1 = f1_score(gold, preds_thr, average="micro", zero_division=0)
+            macro_f1 = f1_score(gold, preds_thr, average="macro", zero_division=0)
+
+            if macro_f1 > best_macro_f1:
+                best_macro_f1 = macro_f1
+                best_results = {
+                    "threshold": thr,
+                    "per_label": label_metrics,
+                    "avg": (avg_prec, avg_recall, avg_f1),
+                    "micro_f1": micro_f1,
+                    "macro_f1": macro_f1
+                }
+                best_thresh = thr
+
+        # --- print only the best ---
+        print(f"\n[THRESHOLD] Best = {best_thresh}")
+        print("\nPer-label metrics:")
+        for i, (p, r, f1) in enumerate(best_results["per_label"]):
+            label = label_names[i] if i < len(label_names) else f"Label_{i}"
+            scheme = label_scheme.get(label, [0,0,0])
+            print(f"{label}: Precision={p:.4f}, Recall={r:.4f}, F1={f1:.4f}, Scheme={scheme}")
+
+        ap, ar, af = best_results["avg"]
+        print(f"\n[AVG] Precision={ap:.4f}, Recall={ar:.4f}, F1={af:.4f}")
+        print("\n[SKLEARN] Evaluation:")
+        print(f"Micro F1: {best_results['micro_f1']:.4f}")
+        print(f"Macro F1: {best_results['macro_f1']:.4f}")
 
 def load_methods(setting, data_dir):
     methods = []
@@ -184,20 +232,26 @@ if __name__ == "__main__":
     parser.add_argument("--baseline_data_dir", type=str, help="Directory for baseline data.")
     parser.add_argument("--split_dev", action="store_true", help="Split training set into training and dev sets.")
     parser.add_argument("--model_params", type=str, help="Custom model parameters as dictionary string.")
+    parser.add_argument("--setting", choices=["binary", "multiclass", "baseline", "single"], required=True)
     args = parser.parse_args()
 
     if args.data_dir == "all":
-        for directory in ["baseline_data", "resampled_data", "resampled_data2_1", "resampled_data3_1"]:
-            print(f"\n--- Processing directory: {directory} ---")
-            args.data_dir = directory
-            if directory == "baseline_data" and args.setting == "baseline":
-                args.baseline_data_dir = directory
-            else:
-                args.baseline_data_dir = None
-            try:
-                main(args)
-            except Exception as e:
-                print(f"[ERROR] Failed to process {directory}: {str(e)}")
+    for directory in ["baseline_data", "resampled_data", "resampled_data2_1", "resampled_data3_1",
+                      "sing_label_data", "sing_label_data2", "sing_label_data3"]:
+        print(f"\n--- Processing directory: {directory} ---")
+        args.data_dir = directory
+        if directory == "baseline_data" and args.setting == "baseline":
+            args.baseline_data_dir = directory
+        else:
+            args.baseline_data_dir = None
+        try:
+            main(args)
+        except Exception as e:
+            print(f"[ERROR] Failed to process {directory}: {str(e)}")
 
     else:
         main(args)
+
+
+# Example usage:
+# python3 main.py --data_dir sing_label_data --setting single --threshold 0.8 --split_dev

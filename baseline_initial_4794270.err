@@ -203,3 +203,4 @@ Traceback (most recent call last):
     if preds_test[j][i] == 1 and test_labels[j][i] == 1:
        ~~~~~~~~~~~~~^^^
 IndexError: index 3 is out of bounds for axis 0 with size 3
+slurmstepd: error: *** JOB 4794270 ON nid0238 CANCELLED AT 2025-06-18T13:52:45 DUE TO TIME LIMIT ***
