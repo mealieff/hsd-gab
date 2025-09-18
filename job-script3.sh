@@ -32,5 +32,6 @@ cd ~/hsd-gab/
 #python3 merged-resampler31.py
 #bash run_all_evaluations.sh 
 #python3 main2.py --data_dir baseline_data --setting baseline --confidence --labels 8 --split_dev --baseline_data_dir baseline_data
-bash multi_label_eval.sh 
-bash run_all_evaluations.sh
+#bash multi_label_eval.sh 
+#bash run_all_evaluations.sh
+bash run_all_single_label.sh

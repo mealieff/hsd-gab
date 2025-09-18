@@ -36,6 +36,16 @@ def save_confidence_scores_to_files(models, test_embeddings, label_names=None, o
                 f.write(f"Sample {j}: {score:.4f}\n")
     print(f"Confidence scores saved in: {os.path.abspath(output_dir)}")
 
+def load_methods(setting, data_dir):
+    methods = []
+    for file in os.listdir(data_dir):
+        if file.endswith("_single_label.npy"):
+            file_path = os.path.join(data_dir, file)
+            prefix = file.replace("_single_label.npy", "")
+            methods.append((prefix, file_path, None))  # labels are inside or not needed
+    return methods
+
+
 def main(args):
     current_directory = os.getcwd()
     test_embeddings = np.load(os.path.join(current_directory, 'test_embeddings.npy'))
@@ -210,17 +220,6 @@ def main(args):
         print("\n[SKLEARN] Evaluation:")
         print(f"Micro F1: {best_results['micro_f1']:.4f}")
         print(f"Macro F1: {best_results['macro_f1']:.4f}")
-
-def load_methods(setting, data_dir):
-    methods = []
-    for file in os.listdir(data_dir):
-        if file.endswith("_embeddings.npy"):
-            prefix = file.replace("_embeddings.npy", "")
-            emb_file = os.path.join(data_dir, f"{prefix}_embeddings.npy")
-            label_file = os.path.join(data_dir, f"{prefix}_labels.npy")
-            if os.path.exists(label_file):
-                methods.append((prefix, emb_file, label_file))
-    return methods
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
