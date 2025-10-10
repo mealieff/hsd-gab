@@ -40,9 +40,9 @@ def load_methods(setting, data_dir):
     methods = []
     for file in os.listdir(data_dir):
         if file.endswith("_single_label.npy"):
-            file_path = os.path.join(data_dir, file)
             prefix = file.replace("_single_label.npy", "")
-            methods.append((prefix, file_path, None))  # labels are inside or not needed
+            filepath = os.path.join(data_dir, file)
+            methods.append((prefix, filepath, None))  # no separate label file
     return methods
 
 
@@ -235,18 +235,18 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.data_dir == "all":
-    for directory in ["baseline_data", "resampled_data", "resampled_data2_1", "resampled_data3_1",
+        for directory in ["baseline_data", "resampled_data", "resampled_data2_1", "resampled_data3_1",
                       "sing_label_data", "sing_label_data2", "sing_label_data3"]:
-        print(f"\n--- Processing directory: {directory} ---")
-        args.data_dir = directory
-        if directory == "baseline_data" and args.setting == "baseline":
-            args.baseline_data_dir = directory
-        else:
-            args.baseline_data_dir = None
-        try:
-            main(args)
-        except Exception as e:
-            print(f"[ERROR] Failed to process {directory}: {str(e)}")
+            print(f"\n--- Processing directory: {directory} ---")
+            args.data_dir = directory
+            if directory == "baseline_data" and args.setting == "baseline":
+                args.baseline_data_dir = directory
+            else:
+                args.baseline_data_dir = None
+            try:
+                main(args)
+            except Exception as e:
+                print(f"[ERROR] Failed to process {directory}: {str(e)}")
 
     else:
         main(args)
