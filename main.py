@@ -62,20 +62,32 @@ def main(args):
     for method_name, emb_file, label_file in methods:
         print(f"[INFO] Processing method: {method_name}")
 
+         # --- Load embeddings and labels ---
         if method_name == "baseline" or args.setting == "baseline":
             if not args.baseline_data_dir:
                 raise ValueError("Baseline data directory must be specified for baseline setting.")
-            train_embeddings = np.load(os.path.join(args.baseline_data_dir, 'train_embeddings.npy', allow_pickle=True))
-            train_labels = np.load(os.path.join(args.baseline_data_dir, 'train_labels.npy',allow_pickle=True))
-        else:
-            train_embeddings = np.load(emb_file, allow_pickle=True)
-            train_labels = np.load(label_file,  allow_pickle=True)
+            train_embeddings = np.load(os.path.join(args.baseline_data_dir, 'train_embeddings.npy'), allow_pickle=True)
+            train_labels = np.load(os.path.join(args.baseline_data_dir, 'train_labels.npy'), allow_pickle=True)
 
-        if np.issubdtype(train_labels.dtype, np.integer):
-            n_classes = int(np.max(train_labels)) + 1
-            y = np.eye(n_classes)[train_labels]
         else:
-            y = np.array([ [int(c) for c in label] if isinstance(label, (list, np.ndarray)) else [int(label)] for label in train_labels ])
+            data = np.load(emb_file, allow_pickle=True)
+
+            # --- Handle multiple possible formats ---
+            if isinstance(data, tuple) and len(data) == 2:
+                # Case 1: saved as (embeddings, labels)
+                train_embeddings, train_labels = data
+            elif isinstance(data, (list, np.ndarray)) and len(data) > 0 and isinstance(data[0], (tuple, list)) and len(data[0]) == 2:
+                # Case 2: saved as list of (embedding, label) pairs
+                train_embeddings = np.array([x[0] for x in data])
+                train_labels = np.array([x[1] for x in data])
+
+            else:
+                # Case 3: fallback to separate label file
+                train_embeddings = data
+                if label_file is not None:
+                    train_labels = np.load(label_file, allow_pickle=True)
+                else:
+                    raise ValueError(f"Unrecognized structure in {emb_file}, and no separate label file provided.")
 
         if args.split_dev:
             train_emb, dev_emb, train_lbls, dev_lbls = train_test_split(
