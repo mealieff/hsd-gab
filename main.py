@@ -65,11 +65,11 @@ def main(args):
         if method_name == "baseline" or args.setting == "baseline":
             if not args.baseline_data_dir:
                 raise ValueError("Baseline data directory must be specified for baseline setting.")
-            train_embeddings = np.load(os.path.join(args.baseline_data_dir, 'train_embeddings.npy'))
-            train_labels = np.load(os.path.join(args.baseline_data_dir, 'train_labels.npy'))
+            train_embeddings = np.load(os.path.join(args.baseline_data_dir, 'train_embeddings.npy', allow_pickle=True))
+            train_labels = np.load(os.path.join(args.baseline_data_dir, 'train_labels.npy',allow_pickle=True))
         else:
-            train_embeddings = np.load(emb_file)
-            train_labels = np.load(label_file)
+            train_embeddings = np.load(emb_file, allow_pickle=True)
+            train_labels = np.load(label_file,  allow_pickle=True)
 
         if np.issubdtype(train_labels.dtype, np.integer):
             n_classes = int(np.max(train_labels)) + 1
@@ -224,7 +224,6 @@ def main(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--data_dir", required=True, help="Directory containing data.")
-    parser.add_argument("--setting", choices=["binary", "multiclass", "baseline"], required=True)
     parser.add_argument("--confidence", action="store_true", help="Enable confidence scoring.")
     parser.add_argument("--threshold", type=float, default=0.7, help="Confidence threshold.")
     parser.add_argument("--labels", type=int, default=4, help="Number of labels to classify.")
