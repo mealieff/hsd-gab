@@ -68,26 +68,59 @@ def main(args):
                 raise ValueError("Baseline data directory must be specified for baseline setting.")
             train_embeddings = np.load(os.path.join(args.baseline_data_dir, 'train_embeddings.npy'), allow_pickle=True)
             train_labels = np.load(os.path.join(args.baseline_data_dir, 'train_labels.npy'), allow_pickle=True)
-
         else:
+            # --- Load embeddings and labels robustly ---
             data = np.load(emb_file, allow_pickle=True)
 
-            # --- Handle multiple possible formats ---
-            if isinstance(data, tuple) and len(data) == 2:
-                # Case 1: saved as (embeddings, labels)
-                train_embeddings, train_labels = data
-            elif isinstance(data, (list, np.ndarray)) and len(data) > 0 and isinstance(data[0], (tuple, list)) and len(data[0]) == 2:
-                # Case 2: saved as list of (embedding, label) pairs
-                train_embeddings = np.array([x[0] for x in data])
-                train_labels = np.array([x[1] for x in data])
+            # --- Map string labels to integers if needed ---
+            label_map = {"HD": 0, "CV": 1, "VO": 2, "NONE": 3, "None": 3}
 
-            else:
-                # Case 3: fallback to separate label file
-                train_embeddings = data
-                if label_file is not None:
-                    train_labels = np.load(label_file, allow_pickle=True)
+            if isinstance(data, np.ndarray) and data.dtype == object:
+                # Case: each element is a (embedding, label) tuple
+                if all(isinstance(x, (tuple, list, np.ndarray)) and len(x) == 2 for x in data):
+                    train_embeddings = np.array([np.array(x[0], dtype=float) for x in data])
+                    train_labels = np.array([
+                        label_map[x[1]] if isinstance(x[1], str) else int(x[1])
+                        for x in data
+                    ])
                 else:
-                    raise ValueError(f"Unrecognized structure in {emb_file}, and no separate label file provided.")
+                    # Fallback: maybe a tuple (embeddings, labels)
+                    try:
+                        train_embeddings, train_labels = data
+                        train_embeddings = np.array(train_embeddings, dtype=float)
+                        train_labels = np.array([
+                            label_map[x] if isinstance(x, str) else int(x)
+                            for x in train_labels
+                        ])
+                    except Exception:
+                        raise ValueError(f"Could not parse object array in {emb_file}")
+
+            elif isinstance(data, tuple) and len(data) == 2:
+                # Case: saved as (embeddings, labels) tuple
+                train_embeddings = np.array(data[0], dtype=float)
+                train_labels = np.array([
+                    label_map[x] if isinstance(x, str) else int(x)
+                    for x in data[1]
+                ])
+
+            elif isinstance(data, (list, np.ndarray)) and len(data) > 0 and \
+                 isinstance(data[0], (tuple, list)) and len(data[0]) == 2:
+                # Case: list of (embedding, label) pairs
+                train_embeddings = np.array([np.array(x[0], dtype=float) for x in data])
+                train_labels = np.array([
+                    label_map[x[1]] if isinstance(x[1], str) else int(x[1])
+                    for x in data
+                ])
+            else:
+                raise ValueError(f"Unrecognized structure in {emb_file}, and no separate label file provided.")
+          
+
+
+
+        # --- Ensure labels are shaped correctly ---
+        y = np.array(train_labels)
+        if y.ndim == 1:
+            y = y.reshape(-1, 1)  # make 2D for consistency
 
         if args.split_dev:
             train_emb, dev_emb, train_lbls, dev_lbls = train_test_split(
@@ -102,6 +135,7 @@ def main(args):
 
         print(f"[INFO] Test samples: {len(test_embeddings)}")
 
+
         best_score = -1
         best_params = None
 
@@ -110,9 +144,9 @@ def main(args):
             param_grid = {
                 'C': [0.001, 0.01, 0.1, 1, 10, 100],
                 'tol': [1e-4, 1e-3, 1e-2],
-                'loss': ['hinge', 'squared_hinge'],
+                'loss': [ 'squared_hinge'],
                 'penalty': ['l2'],
-                'dual': [True, False]
+                'dual': [False]
             }
             for combo in product(*param_grid.values()):
                 params = dict(zip(param_grid.keys(), combo))
