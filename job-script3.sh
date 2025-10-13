@@ -5,6 +5,7 @@
 #SBATCH -e baseline_initial_%j.err    # Standard error file with job ID
 #SBATCH --mail-type=ALL               # Email notifications for all job events
 #SBATCH --mail-user=mealieff@iu.edu   # Email address for notifications
+#SBATCH --nodelist=nid0212,nid0213,nid0215,nid0217,nid0218
 #SBATCH --nodes=1                     # Number of nodes
 #SBATCH --ntasks-per-node=1           # Number of tasks per node
 #SBATCH --time=2-02:00:00             # Maximum run time (2 days, 2 hours)

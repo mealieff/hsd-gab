@@ -135,45 +135,76 @@ def main(args):
 
         print(f"[INFO] Test samples: {len(test_embeddings)}")
 
+        fixed_params = {'C': 10, 'tol': 0.001, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': False}
 
-        best_score = -1
-        best_params = None
+        if dev_emb is not None and args.use_confidence_dev:
+                # --- Third mode: use dev set to pick best confidence threshold only ---
+                print("[INFO] Using dev set to select best confidence threshold (fixed hyperparameters)")
+                best_score = -1
+                best_threshold = 0.7  # initial default
 
-        if dev_emb is not None:
-            print("[INFO] Starting hyperparameter grid search on dev set...")
-            param_grid = {
-                'C': [0.001, 0.01, 0.1, 1, 10, 100],
-                'tol': [1e-4, 1e-3, 1e-2],
-                'loss': [ 'squared_hinge'],
-                'penalty': ['l2'],
-                'dual': [False]
-            }
-            for combo in product(*param_grid.values()):
-                params = dict(zip(param_grid.keys(), combo))
-                try:
-                    base_model = LinearSVC(**params, max_iter=10000, random_state=42)
-                    ovr_model = OneVsRestClassifier(base_model)
-                    ovr_model.fit(train_emb, train_lbls)
-                    preds_dev = ovr_model.predict(dev_emb)
-                    macro_f1 = f1_score(dev_lbls, preds_dev, average='macro')
-                    if macro_f1 > best_score:
-                        best_score = macro_f1
-                        best_params = params
-                except Exception as e:
-                    print(f"[WARN] Skipping parameter set {params} due to error: {str(e)}")
-                    continue
-            print(f"[INFO] Best params: {best_params}")
-            print(f"[INFO] Best dev macro F1: {best_score:.4f}")
-            combined_emb = np.vstack([train_emb, dev_emb])
-            combined_lbls = np.vstack([train_lbls, dev_lbls])
+                # Train model with fixed parameters
+                base_model = LinearSVC(**fixed_params, max_iter=10000, random_state=42)
+                ovr_model = OneVsRestClassifier(base_model)
+                ovr_model.fit(train_emb, train_lbls)
+
+                # Iterate through confidence thresholds
+                for threshold in np.arange(0.3, 0.91, 0.05):
+                        preds_dev = (ovr_model.decision_function(dev_emb) >= threshold).astype(int)
+                        macro_f1 = f1_score(dev_lbls, preds_dev, average='macro', zero_division=0)
+                        if macro_f1 > best_score:
+                                best_score = macro_f1
+                                best_threshold = threshold
+
+                print(f"[INFO] Best confidence threshold on dev set: {best_threshold:.2f}")
+                print(f"[INFO] Using fixed hyperparameters: {fixed_params}")
+
+                # Combine train + dev for final training
+                combined_emb = np.vstack([train_emb, dev_emb])
+                combined_lbls = np.vstack([train_lbls, dev_lbls])
+                best_params = fixed_params
+
+        elif dev_emb is not None and args.hyperparam_search:
+                # --- First mode: standard hyperparameter grid search ---
+                print("[INFO] Performing hyperparameter grid search on dev set")
+                best_score = -1
+                best_params = fixed_params
+                param_grid = {
+                        'C': [0.001, 0.01, 0.1, 1, 10, 100],
+                        'tol': [1e-4, 1e-3, 1e-2],
+                        'loss': ['hinge', 'squared_hinge'],
+                        'penalty': ['l2'],
+                        'dual': [True, False]
+                }
+                for combo in product(*param_grid.values()):
+                        params = dict(zip(param_grid.keys(), combo))
+                        try:
+                                base_model = LinearSVC(**params, max_iter=10000, random_state=42)
+                                ovr_model = OneVsRestClassifier(base_model)
+                                ovr_model.fit(train_emb, train_lbls)
+                                preds_dev = ovr_model.predict(dev_emb)
+                                macro_f1 = f1_score(dev_lbls, preds_dev, average='macro')
+                                if macro_f1 > best_score:
+                                        best_score = macro_f1
+                                        best_params = params
+                        except Exception as e:
+                                print(f"[WARN] Skipping parameter set {params} due to error: {str(e)}")
+                                continue
+                print(f"[INFO] Best params from grid search: {best_params}")
+                combined_emb = np.vstack([train_emb, dev_emb])
+                combined_lbls = np.vstack([train_lbls, dev_lbls])
+
         else:
-            print("[INFO] No dev set, training with specified or default parameters")
-            combined_emb = train_emb
-            combined_lbls = train_lbls
-            if args.model_params:
-                best_params = ast.literal_eval(args.model_params)
-            else:
-                best_params = {'C': 10, 'tol': 0.001, 'loss': 'squared_hinge', 'penalty': 'l2', 'dual': False}
+                # --- Second mode: no dev set, just train with given or fixed parameters ---
+                print("[INFO] No dev set, training with specified or default parameters")
+                combined_emb = train_emb
+                combined_lbls = train_lbls
+                if args.model_params:
+                        best_params = ast.literal_eval(args.model_params)
+                else:
+                        best_params = fixed_params
+                best_threshold = 0.7
+
 
         base_model = LinearSVC(**best_params, max_iter=10000, random_state=42)
         final_model = OneVsRestClassifier(base_model)
@@ -275,8 +306,10 @@ if __name__ == "__main__":
     parser.add_argument("--labels", type=int, default=4, help="Number of labels to classify.")
     parser.add_argument("--baseline_data_dir", type=str, help="Directory for baseline data.")
     parser.add_argument("--split_dev", action="store_true", help="Split training set into training and dev sets.")
-    parser.add_argument("--model_params", type=str, help="Custom model parameters as dictionary string.")
     parser.add_argument("--setting", choices=["binary", "multiclass", "baseline", "single"], required=True)
+    parser.add_argument('--hyperparam_search',action='store_true', help="Perform hyperparameter grid search on dev set")
+    parser.add_argument( '--use_confidence_dev', action='store_true', help="Use dev set only to select best confidence threshold (fixed hyperparameters)")
+    parser.add_argument('--model_params',   type=str, default=None, help="Literal dict of LinearSVC params, e.g., '{\"C\":10,\"tol\":0.001,...}'")
     args = parser.parse_args()
 
     if args.data_dir == "all":

@@ -12,6 +12,10 @@ fi
 # Directories to process
 DIRS=("sing_label_data" "sing_label_data2_1" "sing_label_data3_1")
 
+# Mode flags (set exactly one to true)
+HYPERPARAM_SEARCH=false
+CONF_DEV=true
+
 for DIR in "${DIRS[@]}"; do
   echo "== Processing directory: $DIR =="
 
@@ -30,31 +34,34 @@ for DIR in "${DIRS[@]}"; do
     continue
   fi
 
-  # --- Step 1: Run with split_dev to select threshold ---
-  echo "Running main.py (dev search) on $DIR"
-  DEV_LOG=$(mktemp)
-  python3 main.py \
-    --data_dir "$DIR" \
-    --setting single \
-    --split_dev \
-    --confidence > "$DEV_LOG" 2>&1
+  # --- Step 1: Dev set / confidence mode ---
+  if [[ "$CONF_DEV" = true ]]; then
+    echo "Running main.py (confidence dev set) on $DIR"
+    DEV_LOG=$(mktemp)
+    python3 main.py \
+      --data_dir "$DIR" \
+      --setting single \
+      --use_confidence_dev \
+      --confidence > "$DEV_LOG" 2>&1
 
-  # Extract best threshold
-  BEST_THRESH=$(grep "\[THRESHOLD\] Best" "$DEV_LOG" | awk '{print $3}')
-  if [[ -z "$BEST_THRESH" ]]; then
-    echo "ERROR: Could not extract best threshold for $DIR"
-    cat "$DEV_LOG"
+    BEST_THRESH=$(grep "\[INFO\] Best confidence threshold on dev set:" "$DEV_LOG" | awk '{print $7}')
+    if [[ -z "$BEST_THRESH" ]]; then
+      echo "ERROR: Could not extract best confidence threshold for $DIR"
+      cat "$DEV_LOG"
+      rm "$DEV_LOG"
+      continue
+    fi
+    echo "[INFO] Best confidence threshold for $DIR = $BEST_THRESH"
     rm "$DEV_LOG"
-    continue
   fi
-  echo "[INFO] Best threshold for $DIR = $BEST_THRESH"
-  rm "$DEV_LOG"
 
-  # --- Step 2: Retrain on full train set (no split_dev) with best threshold ---
+  # --- Step 2: Retrain on full train set with selected threshold ---
   echo "Running main.py (final single-label) on $DIR with threshold=$BEST_THRESH"
   python3 main.py \
     --data_dir "$DIR" \
     --setting single \
     --confidence \
-    --threshold "$BEST_THRESH"
+    --threshold "$BEST_THRESH" \
+    $( [[ "$HYPERPARAM_SEARCH" = true ]] && echo "--hyperparam_search" )
 done
+
