@@ -1,0 +1,17 @@
+== Processing directory: sing_label_data ==
+Running main.py (confidence dev set) on sing_label_data
+ERROR: Could not extract best confidence threshold for sing_label_data
+[INFO] Processing method: multiclass_ADASYN
+[INFO] Training samples: 251803
+[INFO] Test samples: 5510
+[INFO] No dev set, training with specified or default parameters
+Traceback (most recent call last):
+  File "main.py", line 330, in <module>
+    main(args)
+  File "main.py", line 227, in main
+    save_confidence_scores_to_files(final_model, test_embeddings, label_names_all)
+  File "main.py", line 32, in save_confidence_scores_to_files
+    filename = os.path.join(output_dir, f"confidence_{label_names[i]}.txt")
+IndexError: list index out of range
+== Processing directory: sing_label_data2_1 ==
+Running main.py (confidence dev set) on sing_label_data2_1

@@ -24,7 +24,7 @@ for DIR in "${DIRS[@]}"; do
     continue
   fi
 
-  # Check for *_single_label.npy files
+  # Find all *_single_label.npy files
   shopt -s nullglob
   FILES=("$DIR"/*_single_label.npy)
   shopt -u nullglob
@@ -34,34 +34,43 @@ for DIR in "${DIRS[@]}"; do
     continue
   fi
 
-  # --- Step 1: Dev set / confidence mode ---
-  if [[ "$CONF_DEV" = true ]]; then
-    echo "Running main.py (confidence dev set) on $DIR"
-    DEV_LOG=$(mktemp)
+  # Process each file individually
+  for FILE in "${FILES[@]}"; do
+    FILE_NAME=$(basename "$FILE")
+    PREFIX="${FILE_NAME%_single_label.npy}"
+    echo "== Processing file: $FILE_NAME =="
+
+    # --- Step 1: Dev set / confidence mode ---
+    if [[ "$CONF_DEV" = true ]]; then
+      echo "Running main.py (confidence dev set) on $FILE_NAME"
+      DEV_LOG=$(mktemp)
+      python3 main.py \
+        --data_dir "$DIR" \
+        --setting single \
+        --use_confidence_dev \
+        --confidence \
+        --file "$FILE" > "$DEV_LOG" 2>&1
+
+      BEST_THRESH=$(grep "\[INFO\] Best confidence threshold on dev set:" "$DEV_LOG" | awk '{print $7}')
+      if [[ -z "$BEST_THRESH" ]]; then
+        echo "ERROR: Could not extract best confidence threshold for $FILE_NAME"
+        cat "$DEV_LOG"
+        rm "$DEV_LOG"
+        continue
+      fi
+      echo "[INFO] Best confidence threshold for $FILE_NAME = $BEST_THRESH"
+      rm "$DEV_LOG"
+    fi
+
+    # --- Step 2: Retrain / final evaluation ---
+    echo "Running main.py (final single-label) on $FILE_NAME with threshold=$BEST_THRESH"
     python3 main.py \
       --data_dir "$DIR" \
       --setting single \
-      --use_confidence_dev \
-      --confidence > "$DEV_LOG" 2>&1
-
-    BEST_THRESH=$(grep "\[INFO\] Best confidence threshold on dev set:" "$DEV_LOG" | awk '{print $7}')
-    if [[ -z "$BEST_THRESH" ]]; then
-      echo "ERROR: Could not extract best confidence threshold for $DIR"
-      cat "$DEV_LOG"
-      rm "$DEV_LOG"
-      continue
-    fi
-    echo "[INFO] Best confidence threshold for $DIR = $BEST_THRESH"
-    rm "$DEV_LOG"
-  fi
-
-  # --- Step 2: Retrain on full train set with selected threshold ---
-  echo "Running main.py (final single-label) on $DIR with threshold=$BEST_THRESH"
-  python3 main.py \
-    --data_dir "$DIR" \
-    --setting single \
-    --confidence \
-    --threshold "$BEST_THRESH" \
-    $( [[ "$HYPERPARAM_SEARCH" = true ]] && echo "--hyperparam_search" )
+      --confidence \
+      --threshold "$BEST_THRESH" \
+      --file "$FILE" \
+      $( [[ "$HYPERPARAM_SEARCH" = true ]] && echo "--hyperparam_search" )
+  done
 done
 
