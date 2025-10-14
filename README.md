@@ -21,8 +21,6 @@ This repository contains code, data, and results for an NLP project investigatin
 - **`main.py`**
   Reads in NPY arrays and trains/outputs svm classification results. See argument parser details for adjusting parameters for multilabel classification. Usually run in batches using ```run_all_evaluations.sh```
 
-  This script is used for single label methods. Can use argument parsing to set parameters and utilize dev set to adjust parameters. Needs debugging.  
-  
 ### Data Files
 - **`ghc_train.tsv`** and **`ghc_test.tsv`**  
   Training and testing datasets from the Gab Hate Speech Corpus: https://osf.io/edua3/. 
