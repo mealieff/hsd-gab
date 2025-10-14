@@ -14,10 +14,6 @@ This repository contains code, data, and results for an NLP project investigatin
 - **`svm-postembedding.py`**  
   Performs SVM classification using post-embedding features, allowing for additional evaluation scenarios.
 
-### Results and Analysis
-- **`results-hsd-gab/`**  
-  Directory containing summary tables, plots, and additional analysis scripts for experimental results.
-
 ### Scripts
 - **`get-embeddings.py`**  
   Reads in TSV file and extracts BERT-based-uncased embeddings for the dataset in data-preprocessing.
@@ -25,7 +21,6 @@ This repository contains code, data, and results for an NLP project investigatin
 - **`main.py`**
   Reads in NPY arrays and trains/outputs svm classification results. See argument parser details for adjusting parameters for multilabel classification. Usually run in batches using ```run_all_evaluations.sh```
 
-- **`sing_label_method.py`**
   This script is used for single label methods. Can use argument parsing to set parameters and utilize dev set to adjust parameters. Needs debugging.  
   
 ### Data Files
@@ -46,37 +41,7 @@ This repository contains code, data, and results for an NLP project investigatin
 2. Evaluate performance and analyze results in `results-hsd-gab`.
 
 ### Thresholding label training.
-1. Use `sing_train.py` to train and test SVM classifier.
-2. Run using a variety of confidence thresholds using `run_all_evaluations.sh` 
+1. Use `main.py` to train and test SVM classifier. See argument parsing logic to adjust the settings.
+2. Run using a variety of confidence thresholds using `run_all_evaluations.sh` or `run_all_single_label.sh` adjusting the logic for your directory setup as necessary. 
 3. Alternatively, use the dev set to to set the threshold for the test set. 
 
----
-### Appendix: Nested Directory of /resampled_data:
-```
-/resampled_data</br>
-├── binary</br>
-│   ├── RandomUnderSampler</br>
-│   │   ├── embeddings.npy</br>
-│   │   └── labels.npy</br>
-│   ├── CondensedNearestNeighbour</br>
-│   │   ├── embeddings.npy</br>
-│   │   └── labels.npy</br>
-│   ├── TomekLinks</br>
-│   │   ├── embeddings.npy</br>
-│   │   └── labels.npy</br>
-│   ├── SMOTE</br>
-│   │   ├── embeddings.npy</br>
-│   │   └── labels.npy</br>
-│   └── ...</br>
-└── multiclass</br>
-    ├── RandomUnderSampler</br>
-    │   ├── embeddings.npy</br>
-    │   └── labels.npy</br>
-    ├── CondensedNearestNeighbour</br>
-    │   ├── embeddings.npy</br>
-    │   └── labels.npy</br>
-    ├── TomekLinks</br>
-    │   ├── embeddings.npy</br>
-    │   └── labels.npy</br>
-    └── ...</br>
-````

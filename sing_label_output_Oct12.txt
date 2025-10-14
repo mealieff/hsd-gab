@@ -1,0 +1,2028 @@
+== Processing directory: sing_label_data ==
+== Processing file: multiclass_ADASYN_single_label.npy ==
+Running main.py (confidence dev set) on multiclass_ADASYN_single_label.npy
+ERROR: Could not extract best confidence threshold for multiclass_ADASYN_single_label.npy
+[INFO] Processing method: multiclass_ADASYN
+[INFO] Training samples: 251803
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.2675, Recall=0.2566, F1=0.2620, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.2675, Recall=0.2566, F1=0.2620
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8711
+Macro F1: 0.5957
+[INFO] Processing method: multiclass_TomekLinks
+[INFO] Training samples: 21717
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9091, Recall=0.0204, F1=0.0398, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9091, Recall=0.0204, F1=0.0398
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9125
+Macro F1: 0.4970
+[INFO] Processing method: multiclass_RandomUnderSampler
+[INFO] Training samples: 299
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.1654, Recall=0.2688, F1=0.2048, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1654, Recall=0.2688, F1=0.2048
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8140
+Macro F1: 0.5497
+[INFO] Processing method: multiclass_CondensedNearestNeighbour
+[INFO] Training samples: 1103
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.5
+
+Per-label metrics:
+HD: Precision=0.1655, Recall=0.2464, F1=0.1980, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1655, Recall=0.2464, F1=0.1980
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8221
+Macro F1: 0.5490
+[INFO] Processing method: multiclass_SMOTEENN
+[INFO] Training samples: 235464
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.6
+
+Per-label metrics:
+HD: Precision=0.1732, Recall=0.2709, F1=0.2113, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1732, Recall=0.2709, F1=0.2113
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8198
+Macro F1: 0.5548
+[INFO] Processing method: multiclass_RandomOverSampler
+[INFO] Training samples: 251758
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.3079, Recall=0.2220, F1=0.2580, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.3079, Recall=0.2220, F1=0.2580
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8862
+Macro F1: 0.5982
+[INFO] Processing method: multiclass_SMOTE
+[INFO] Training samples: 251758
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.4
+
+Per-label metrics:
+HD: Precision=0.3152, Recall=0.2363, F1=0.2701, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.3152, Recall=0.2363, F1=0.2701
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8862
+Macro F1: 0.6042
+== Processing file: multiclass_CondensedNearestNeighbour_single_label.npy ==
+Running main.py (confidence dev set) on multiclass_CondensedNearestNeighbour_single_label.npy
+ERROR: Could not extract best confidence threshold for multiclass_CondensedNearestNeighbour_single_label.npy
+[INFO] Processing method: multiclass_ADASYN
+[INFO] Training samples: 251803
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.2675, Recall=0.2566, F1=0.2620, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.2675, Recall=0.2566, F1=0.2620
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8711
+Macro F1: 0.5957
+[INFO] Processing method: multiclass_TomekLinks
+[INFO] Training samples: 21717
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9091, Recall=0.0204, F1=0.0398, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9091, Recall=0.0204, F1=0.0398
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9125
+Macro F1: 0.4970
+[INFO] Processing method: multiclass_RandomUnderSampler
+[INFO] Training samples: 299
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.1654, Recall=0.2688, F1=0.2048, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1654, Recall=0.2688, F1=0.2048
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8140
+Macro F1: 0.5497
+[INFO] Processing method: multiclass_CondensedNearestNeighbour
+[INFO] Training samples: 1103
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.5
+
+Per-label metrics:
+HD: Precision=0.1655, Recall=0.2464, F1=0.1980, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1655, Recall=0.2464, F1=0.1980
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8221
+Macro F1: 0.5490
+[INFO] Processing method: multiclass_SMOTEENN
+[INFO] Training samples: 235464
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.6
+
+Per-label metrics:
+HD: Precision=0.1732, Recall=0.2709, F1=0.2113, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1732, Recall=0.2709, F1=0.2113
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8198
+Macro F1: 0.5548
+[INFO] Processing method: multiclass_RandomOverSampler
+[INFO] Training samples: 251758
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.3079, Recall=0.2220, F1=0.2580, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.3079, Recall=0.2220, F1=0.2580
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8862
+Macro F1: 0.5982
+[INFO] Processing method: multiclass_SMOTE
+[INFO] Training samples: 251758
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.4
+
+Per-label metrics:
+HD: Precision=0.3152, Recall=0.2363, F1=0.2701, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.3152, Recall=0.2363, F1=0.2701
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8862
+Macro F1: 0.6042
+== Processing file: multiclass_RandomOverSampler_single_label.npy ==
+Running main.py (confidence dev set) on multiclass_RandomOverSampler_single_label.npy
+ERROR: Could not extract best confidence threshold for multiclass_RandomOverSampler_single_label.npy
+[INFO] Processing method: multiclass_ADASYN
+[INFO] Training samples: 251803
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.2675, Recall=0.2566, F1=0.2620, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.2675, Recall=0.2566, F1=0.2620
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8711
+Macro F1: 0.5957
+[INFO] Processing method: multiclass_TomekLinks
+[INFO] Training samples: 21717
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9091, Recall=0.0204, F1=0.0398, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9091, Recall=0.0204, F1=0.0398
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9125
+Macro F1: 0.4970
+[INFO] Processing method: multiclass_RandomUnderSampler
+[INFO] Training samples: 299
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.1654, Recall=0.2688, F1=0.2048, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1654, Recall=0.2688, F1=0.2048
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8140
+Macro F1: 0.5497
+[INFO] Processing method: multiclass_CondensedNearestNeighbour
+[INFO] Training samples: 1103
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.5
+
+Per-label metrics:
+HD: Precision=0.1655, Recall=0.2464, F1=0.1980, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1655, Recall=0.2464, F1=0.1980
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8221
+Macro F1: 0.5490
+[INFO] Processing method: multiclass_SMOTEENN
+[INFO] Training samples: 235464
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.6
+
+Per-label metrics:
+HD: Precision=0.1732, Recall=0.2709, F1=0.2113, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1732, Recall=0.2709, F1=0.2113
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8198
+Macro F1: 0.5548
+[INFO] Processing method: multiclass_RandomOverSampler
+[INFO] Training samples: 251758
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.3079, Recall=0.2220, F1=0.2580, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.3079, Recall=0.2220, F1=0.2580
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8862
+Macro F1: 0.5982
+[INFO] Processing method: multiclass_SMOTE
+[INFO] Training samples: 251758
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.4
+
+Per-label metrics:
+HD: Precision=0.3152, Recall=0.2363, F1=0.2701, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.3152, Recall=0.2363, F1=0.2701
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8862
+Macro F1: 0.6042
+== Processing file: multiclass_RandomUnderSampler_single_label.npy ==
+Running main.py (confidence dev set) on multiclass_RandomUnderSampler_single_label.npy
+ERROR: Could not extract best confidence threshold for multiclass_RandomUnderSampler_single_label.npy
+[INFO] Processing method: multiclass_ADASYN
+[INFO] Training samples: 251803
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.2675, Recall=0.2566, F1=0.2620, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.2675, Recall=0.2566, F1=0.2620
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8711
+Macro F1: 0.5957
+[INFO] Processing method: multiclass_TomekLinks
+[INFO] Training samples: 21717
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9091, Recall=0.0204, F1=0.0398, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9091, Recall=0.0204, F1=0.0398
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9125
+Macro F1: 0.4970
+[INFO] Processing method: multiclass_RandomUnderSampler
+[INFO] Training samples: 299
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.1654, Recall=0.2688, F1=0.2048, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1654, Recall=0.2688, F1=0.2048
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8140
+Macro F1: 0.5497
+[INFO] Processing method: multiclass_CondensedNearestNeighbour
+[INFO] Training samples: 1103
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.5
+
+Per-label metrics:
+HD: Precision=0.1655, Recall=0.2464, F1=0.1980, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1655, Recall=0.2464, F1=0.1980
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8221
+Macro F1: 0.5490
+[INFO] Processing method: multiclass_SMOTEENN
+[INFO] Training samples: 235464
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.6
+
+Per-label metrics:
+HD: Precision=0.1732, Recall=0.2709, F1=0.2113, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1732, Recall=0.2709, F1=0.2113
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8198
+Macro F1: 0.5548
+[INFO] Processing method: multiclass_RandomOverSampler
+[INFO] Training samples: 251758
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.3079, Recall=0.2220, F1=0.2580, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.3079, Recall=0.2220, F1=0.2580
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8862
+Macro F1: 0.5982
+[INFO] Processing method: multiclass_SMOTE
+[INFO] Training samples: 251758
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.4
+
+Per-label metrics:
+HD: Precision=0.3152, Recall=0.2363, F1=0.2701, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.3152, Recall=0.2363, F1=0.2701
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8862
+Macro F1: 0.6042
+== Processing file: multiclass_SMOTEENN_single_label.npy ==
+Running main.py (confidence dev set) on multiclass_SMOTEENN_single_label.npy
+ERROR: Could not extract best confidence threshold for multiclass_SMOTEENN_single_label.npy
+[INFO] Processing method: multiclass_ADASYN
+[INFO] Training samples: 251803
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.2675, Recall=0.2566, F1=0.2620, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.2675, Recall=0.2566, F1=0.2620
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8711
+Macro F1: 0.5957
+[INFO] Processing method: multiclass_TomekLinks
+[INFO] Training samples: 21717
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9091, Recall=0.0204, F1=0.0398, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9091, Recall=0.0204, F1=0.0398
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9125
+Macro F1: 0.4970
+[INFO] Processing method: multiclass_RandomUnderSampler
+[INFO] Training samples: 299
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.1654, Recall=0.2688, F1=0.2048, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1654, Recall=0.2688, F1=0.2048
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8140
+Macro F1: 0.5497
+[INFO] Processing method: multiclass_CondensedNearestNeighbour
+[INFO] Training samples: 1103
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.5
+
+Per-label metrics:
+HD: Precision=0.1655, Recall=0.2464, F1=0.1980, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1655, Recall=0.2464, F1=0.1980
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8221
+Macro F1: 0.5490
+[INFO] Processing method: multiclass_SMOTEENN
+[INFO] Training samples: 235464
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.6
+
+Per-label metrics:
+HD: Precision=0.1732, Recall=0.2709, F1=0.2113, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1732, Recall=0.2709, F1=0.2113
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8198
+Macro F1: 0.5548
+[INFO] Processing method: multiclass_RandomOverSampler
+[INFO] Training samples: 251758
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.3079, Recall=0.2220, F1=0.2580, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.3079, Recall=0.2220, F1=0.2580
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8862
+Macro F1: 0.5982
+[INFO] Processing method: multiclass_SMOTE
+[INFO] Training samples: 251758
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.4
+
+Per-label metrics:
+HD: Precision=0.3152, Recall=0.2363, F1=0.2701, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.3152, Recall=0.2363, F1=0.2701
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8862
+Macro F1: 0.6042
+== Processing file: multiclass_SMOTE_single_label.npy ==
+Running main.py (confidence dev set) on multiclass_SMOTE_single_label.npy
+ERROR: Could not extract best confidence threshold for multiclass_SMOTE_single_label.npy
+[INFO] Processing method: multiclass_ADASYN
+[INFO] Training samples: 251803
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.2675, Recall=0.2566, F1=0.2620, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.2675, Recall=0.2566, F1=0.2620
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8711
+Macro F1: 0.5957
+[INFO] Processing method: multiclass_TomekLinks
+[INFO] Training samples: 21717
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9091, Recall=0.0204, F1=0.0398, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9091, Recall=0.0204, F1=0.0398
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9125
+Macro F1: 0.4970
+[INFO] Processing method: multiclass_RandomUnderSampler
+[INFO] Training samples: 299
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.1654, Recall=0.2688, F1=0.2048, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1654, Recall=0.2688, F1=0.2048
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8140
+Macro F1: 0.5497
+[INFO] Processing method: multiclass_CondensedNearestNeighbour
+[INFO] Training samples: 1103
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.5
+
+Per-label metrics:
+HD: Precision=0.1655, Recall=0.2464, F1=0.1980, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1655, Recall=0.2464, F1=0.1980
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8221
+Macro F1: 0.5490
+[INFO] Processing method: multiclass_SMOTEENN
+[INFO] Training samples: 235464
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.6
+
+Per-label metrics:
+HD: Precision=0.1732, Recall=0.2709, F1=0.2113, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1732, Recall=0.2709, F1=0.2113
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8198
+Macro F1: 0.5548
+[INFO] Processing method: multiclass_RandomOverSampler
+[INFO] Training samples: 251758
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.3079, Recall=0.2220, F1=0.2580, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.3079, Recall=0.2220, F1=0.2580
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8862
+Macro F1: 0.5982
+[INFO] Processing method: multiclass_SMOTE
+[INFO] Training samples: 251758
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.4
+
+Per-label metrics:
+HD: Precision=0.3152, Recall=0.2363, F1=0.2701, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.3152, Recall=0.2363, F1=0.2701
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8862
+Macro F1: 0.6042
+== Processing file: multiclass_TomekLinks_single_label.npy ==
+Running main.py (confidence dev set) on multiclass_TomekLinks_single_label.npy
+ERROR: Could not extract best confidence threshold for multiclass_TomekLinks_single_label.npy
+[INFO] Processing method: multiclass_ADASYN
+[INFO] Training samples: 251803
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.2675, Recall=0.2566, F1=0.2620, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.2675, Recall=0.2566, F1=0.2620
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8711
+Macro F1: 0.5957
+[INFO] Processing method: multiclass_TomekLinks
+[INFO] Training samples: 21717
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9091, Recall=0.0204, F1=0.0398, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9091, Recall=0.0204, F1=0.0398
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9125
+Macro F1: 0.4970
+[INFO] Processing method: multiclass_RandomUnderSampler
+[INFO] Training samples: 299
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.1654, Recall=0.2688, F1=0.2048, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1654, Recall=0.2688, F1=0.2048
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8140
+Macro F1: 0.5497
+[INFO] Processing method: multiclass_CondensedNearestNeighbour
+[INFO] Training samples: 1103
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.5
+
+Per-label metrics:
+HD: Precision=0.1655, Recall=0.2464, F1=0.1980, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1655, Recall=0.2464, F1=0.1980
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8221
+Macro F1: 0.5490
+[INFO] Processing method: multiclass_SMOTEENN
+[INFO] Training samples: 235464
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.6
+
+Per-label metrics:
+HD: Precision=0.1732, Recall=0.2709, F1=0.2113, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1732, Recall=0.2709, F1=0.2113
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8198
+Macro F1: 0.5548
+[INFO] Processing method: multiclass_RandomOverSampler
+[INFO] Training samples: 251758
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.3079, Recall=0.2220, F1=0.2580, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.3079, Recall=0.2220, F1=0.2580
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8862
+Macro F1: 0.5982
+[INFO] Processing method: multiclass_SMOTE
+[INFO] Training samples: 251758
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.4
+
+Per-label metrics:
+HD: Precision=0.3152, Recall=0.2363, F1=0.2701, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.3152, Recall=0.2363, F1=0.2701
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8862
+Macro F1: 0.6042
+== Processing directory: sing_label_data2_1 ==
+== Processing file: multiclass_ADASYN_single_label.npy ==
+Running main.py (confidence dev set) on multiclass_ADASYN_single_label.npy
+ERROR: Could not extract best confidence threshold for multiclass_ADASYN_single_label.npy
+[INFO] Processing method: multiclass_ADASYN
+[INFO] Training samples: 251803
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.2675, Recall=0.2566, F1=0.2620, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.2675, Recall=0.2566, F1=0.2620
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8711
+Macro F1: 0.5957
+[INFO] Processing method: multiclass_TomekLinks
+[INFO] Training samples: 21717
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9091, Recall=0.0204, F1=0.0398, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9091, Recall=0.0204, F1=0.0398
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9125
+Macro F1: 0.4970
+[INFO] Processing method: multiclass_RandomUnderSampler
+[INFO] Training samples: 299
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.1654, Recall=0.2688, F1=0.2048, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1654, Recall=0.2688, F1=0.2048
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8140
+Macro F1: 0.5497
+[INFO] Processing method: multiclass_CondensedNearestNeighbour
+[INFO] Training samples: 1103
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.5
+
+Per-label metrics:
+HD: Precision=0.1655, Recall=0.2464, F1=0.1980, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1655, Recall=0.2464, F1=0.1980
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8221
+Macro F1: 0.5490
+[INFO] Processing method: multiclass_SMOTEENN
+[INFO] Training samples: 235464
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.6
+
+Per-label metrics:
+HD: Precision=0.1732, Recall=0.2709, F1=0.2113, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1732, Recall=0.2709, F1=0.2113
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8198
+Macro F1: 0.5548
+[INFO] Processing method: multiclass_RandomOverSampler
+[INFO] Training samples: 251758
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.3079, Recall=0.2220, F1=0.2580, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.3079, Recall=0.2220, F1=0.2580
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8862
+Macro F1: 0.5982
+[INFO] Processing method: multiclass_SMOTE
+[INFO] Training samples: 251758
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.4
+
+Per-label metrics:
+HD: Precision=0.3152, Recall=0.2363, F1=0.2701, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.3152, Recall=0.2363, F1=0.2701
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8862
+Macro F1: 0.6042
+== Processing file: multiclass_CondensedNearestNeighbour_single_label.npy ==
+Running main.py (confidence dev set) on multiclass_CondensedNearestNeighbour_single_label.npy
+ERROR: Could not extract best confidence threshold for multiclass_CondensedNearestNeighbour_single_label.npy
+[INFO] Processing method: multiclass_ADASYN
+[INFO] Training samples: 251803
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.2675, Recall=0.2566, F1=0.2620, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.2675, Recall=0.2566, F1=0.2620
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8711
+Macro F1: 0.5957
+[INFO] Processing method: multiclass_TomekLinks
+[INFO] Training samples: 21717
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9091, Recall=0.0204, F1=0.0398, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9091, Recall=0.0204, F1=0.0398
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9125
+Macro F1: 0.4970
+[INFO] Processing method: multiclass_RandomUnderSampler
+[INFO] Training samples: 299
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.1654, Recall=0.2688, F1=0.2048, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1654, Recall=0.2688, F1=0.2048
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8140
+Macro F1: 0.5497
+[INFO] Processing method: multiclass_CondensedNearestNeighbour
+[INFO] Training samples: 1103
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.5
+
+Per-label metrics:
+HD: Precision=0.1655, Recall=0.2464, F1=0.1980, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1655, Recall=0.2464, F1=0.1980
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8221
+Macro F1: 0.5490
+[INFO] Processing method: multiclass_SMOTEENN
+[INFO] Training samples: 235464
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.6
+
+Per-label metrics:
+HD: Precision=0.1732, Recall=0.2709, F1=0.2113, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1732, Recall=0.2709, F1=0.2113
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8198
+Macro F1: 0.5548
+[INFO] Processing method: multiclass_RandomOverSampler
+[INFO] Training samples: 251758
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.3079, Recall=0.2220, F1=0.2580, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.3079, Recall=0.2220, F1=0.2580
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8862
+Macro F1: 0.5982
+[INFO] Processing method: multiclass_SMOTE
+[INFO] Training samples: 251758
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.4
+
+Per-label metrics:
+HD: Precision=0.3152, Recall=0.2363, F1=0.2701, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.3152, Recall=0.2363, F1=0.2701
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8862
+Macro F1: 0.6042
+== Processing file: multiclass_RandomOverSampler_single_label.npy ==
+Running main.py (confidence dev set) on multiclass_RandomOverSampler_single_label.npy
+ERROR: Could not extract best confidence threshold for multiclass_RandomOverSampler_single_label.npy
+[INFO] Processing method: multiclass_ADASYN
+[INFO] Training samples: 251803
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.2675, Recall=0.2566, F1=0.2620, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.2675, Recall=0.2566, F1=0.2620
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8711
+Macro F1: 0.5957
+[INFO] Processing method: multiclass_TomekLinks
+[INFO] Training samples: 21717
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9091, Recall=0.0204, F1=0.0398, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9091, Recall=0.0204, F1=0.0398
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9125
+Macro F1: 0.4970
+[INFO] Processing method: multiclass_RandomUnderSampler
+[INFO] Training samples: 299
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.1654, Recall=0.2688, F1=0.2048, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1654, Recall=0.2688, F1=0.2048
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8140
+Macro F1: 0.5497
+[INFO] Processing method: multiclass_CondensedNearestNeighbour
+[INFO] Training samples: 1103
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.5
+
+Per-label metrics:
+HD: Precision=0.1655, Recall=0.2464, F1=0.1980, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1655, Recall=0.2464, F1=0.1980
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8221
+Macro F1: 0.5490
+[INFO] Processing method: multiclass_SMOTEENN
+[INFO] Training samples: 235464
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.6
+
+Per-label metrics:
+HD: Precision=0.1732, Recall=0.2709, F1=0.2113, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1732, Recall=0.2709, F1=0.2113
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8198
+Macro F1: 0.5548
+[INFO] Processing method: multiclass_RandomOverSampler
+[INFO] Training samples: 251758
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.3079, Recall=0.2220, F1=0.2580, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.3079, Recall=0.2220, F1=0.2580
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8862
+Macro F1: 0.5982
+[INFO] Processing method: multiclass_SMOTE
+[INFO] Training samples: 251758
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.4
+
+Per-label metrics:
+HD: Precision=0.3152, Recall=0.2363, F1=0.2701, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.3152, Recall=0.2363, F1=0.2701
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8862
+Macro F1: 0.6042
+== Processing file: multiclass_RandomUnderSampler_single_label.npy ==
+Running main.py (confidence dev set) on multiclass_RandomUnderSampler_single_label.npy
+ERROR: Could not extract best confidence threshold for multiclass_RandomUnderSampler_single_label.npy
+[INFO] Processing method: multiclass_ADASYN
+[INFO] Training samples: 251803
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.2675, Recall=0.2566, F1=0.2620, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.2675, Recall=0.2566, F1=0.2620
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8711
+Macro F1: 0.5957
+[INFO] Processing method: multiclass_TomekLinks
+[INFO] Training samples: 21717
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9091, Recall=0.0204, F1=0.0398, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9091, Recall=0.0204, F1=0.0398
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9125
+Macro F1: 0.4970
+[INFO] Processing method: multiclass_RandomUnderSampler
+[INFO] Training samples: 299
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.1654, Recall=0.2688, F1=0.2048, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1654, Recall=0.2688, F1=0.2048
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8140
+Macro F1: 0.5497
+[INFO] Processing method: multiclass_CondensedNearestNeighbour
+[INFO] Training samples: 1103
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.5
+
+Per-label metrics:
+HD: Precision=0.1655, Recall=0.2464, F1=0.1980, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1655, Recall=0.2464, F1=0.1980
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8221
+Macro F1: 0.5490
+[INFO] Processing method: multiclass_SMOTEENN
+[INFO] Training samples: 235464
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.6
+
+Per-label metrics:
+HD: Precision=0.1732, Recall=0.2709, F1=0.2113, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1732, Recall=0.2709, F1=0.2113
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8198
+Macro F1: 0.5548
+[INFO] Processing method: multiclass_RandomOverSampler
+[INFO] Training samples: 251758
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.3079, Recall=0.2220, F1=0.2580, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.3079, Recall=0.2220, F1=0.2580
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8862
+Macro F1: 0.5982
+[INFO] Processing method: multiclass_SMOTE
+[INFO] Training samples: 251758
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.4
+
+Per-label metrics:
+HD: Precision=0.3152, Recall=0.2363, F1=0.2701, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.3152, Recall=0.2363, F1=0.2701
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8862
+Macro F1: 0.6042
+== Processing file: multiclass_SMOTEENN_single_label.npy ==
+Running main.py (confidence dev set) on multiclass_SMOTEENN_single_label.npy
+ERROR: Could not extract best confidence threshold for multiclass_SMOTEENN_single_label.npy
+[INFO] Processing method: multiclass_ADASYN
+[INFO] Training samples: 251803
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.2675, Recall=0.2566, F1=0.2620, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.2675, Recall=0.2566, F1=0.2620
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8711
+Macro F1: 0.5957
+[INFO] Processing method: multiclass_TomekLinks
+[INFO] Training samples: 21717
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9091, Recall=0.0204, F1=0.0398, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9091, Recall=0.0204, F1=0.0398
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9125
+Macro F1: 0.4970
+[INFO] Processing method: multiclass_RandomUnderSampler
+[INFO] Training samples: 299
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.1654, Recall=0.2688, F1=0.2048, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1654, Recall=0.2688, F1=0.2048
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8140
+Macro F1: 0.5497
+[INFO] Processing method: multiclass_CondensedNearestNeighbour
+[INFO] Training samples: 1103
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.5
+
+Per-label metrics:
+HD: Precision=0.1655, Recall=0.2464, F1=0.1980, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1655, Recall=0.2464, F1=0.1980
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8221
+Macro F1: 0.5490
+[INFO] Processing method: multiclass_SMOTEENN
+[INFO] Training samples: 235464
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.6
+
+Per-label metrics:
+HD: Precision=0.1732, Recall=0.2709, F1=0.2113, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1732, Recall=0.2709, F1=0.2113
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8198
+Macro F1: 0.5548
+[INFO] Processing method: multiclass_RandomOverSampler
+[INFO] Training samples: 251758
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.3079, Recall=0.2220, F1=0.2580, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.3079, Recall=0.2220, F1=0.2580
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8862
+Macro F1: 0.5982
+[INFO] Processing method: multiclass_SMOTE
+[INFO] Training samples: 251758
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.4
+
+Per-label metrics:
+HD: Precision=0.3152, Recall=0.2363, F1=0.2701, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.3152, Recall=0.2363, F1=0.2701
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8862
+Macro F1: 0.6042
+== Processing file: multiclass_SMOTE_single_label.npy ==
+Running main.py (confidence dev set) on multiclass_SMOTE_single_label.npy
+ERROR: Could not extract best confidence threshold for multiclass_SMOTE_single_label.npy
+[INFO] Processing method: multiclass_ADASYN
+[INFO] Training samples: 251803
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.2675, Recall=0.2566, F1=0.2620, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.2675, Recall=0.2566, F1=0.2620
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8711
+Macro F1: 0.5957
+[INFO] Processing method: multiclass_TomekLinks
+[INFO] Training samples: 21717
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9091, Recall=0.0204, F1=0.0398, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9091, Recall=0.0204, F1=0.0398
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9125
+Macro F1: 0.4970
+[INFO] Processing method: multiclass_RandomUnderSampler
+[INFO] Training samples: 299
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.1654, Recall=0.2688, F1=0.2048, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1654, Recall=0.2688, F1=0.2048
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8140
+Macro F1: 0.5497
+[INFO] Processing method: multiclass_CondensedNearestNeighbour
+[INFO] Training samples: 1103
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.5
+
+Per-label metrics:
+HD: Precision=0.1655, Recall=0.2464, F1=0.1980, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1655, Recall=0.2464, F1=0.1980
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8221
+Macro F1: 0.5490
+[INFO] Processing method: multiclass_SMOTEENN
+[INFO] Training samples: 235464
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.6
+
+Per-label metrics:
+HD: Precision=0.1732, Recall=0.2709, F1=0.2113, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1732, Recall=0.2709, F1=0.2113
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8198
+Macro F1: 0.5548
+[INFO] Processing method: multiclass_RandomOverSampler
+[INFO] Training samples: 251758
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.3079, Recall=0.2220, F1=0.2580, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.3079, Recall=0.2220, F1=0.2580
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8862
+Macro F1: 0.5982
+[INFO] Processing method: multiclass_SMOTE
+[INFO] Training samples: 251758
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.4
+
+Per-label metrics:
+HD: Precision=0.3152, Recall=0.2363, F1=0.2701, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.3152, Recall=0.2363, F1=0.2701
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8862
+Macro F1: 0.6042
+== Processing file: multiclass_TomekLinks_single_label.npy ==
+Running main.py (confidence dev set) on multiclass_TomekLinks_single_label.npy
+ERROR: Could not extract best confidence threshold for multiclass_TomekLinks_single_label.npy
+[INFO] Processing method: multiclass_ADASYN
+[INFO] Training samples: 251803
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.2675, Recall=0.2566, F1=0.2620, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.2675, Recall=0.2566, F1=0.2620
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8711
+Macro F1: 0.5957
+[INFO] Processing method: multiclass_TomekLinks
+[INFO] Training samples: 21717
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9091, Recall=0.0204, F1=0.0398, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9091, Recall=0.0204, F1=0.0398
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9125
+Macro F1: 0.4970
+[INFO] Processing method: multiclass_RandomUnderSampler
+[INFO] Training samples: 299
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.1654, Recall=0.2688, F1=0.2048, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1654, Recall=0.2688, F1=0.2048
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8140
+Macro F1: 0.5497
+[INFO] Processing method: multiclass_CondensedNearestNeighbour
+[INFO] Training samples: 1103
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.5
+
+Per-label metrics:
+HD: Precision=0.1655, Recall=0.2464, F1=0.1980, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1655, Recall=0.2464, F1=0.1980
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8221
+Macro F1: 0.5490
+[INFO] Processing method: multiclass_SMOTEENN
+[INFO] Training samples: 235464
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.6
+
+Per-label metrics:
+HD: Precision=0.1732, Recall=0.2709, F1=0.2113, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1732, Recall=0.2709, F1=0.2113
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8198
+Macro F1: 0.5548
+[INFO] Processing method: multiclass_RandomOverSampler
+[INFO] Training samples: 251758
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.3079, Recall=0.2220, F1=0.2580, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.3079, Recall=0.2220, F1=0.2580
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8862
+Macro F1: 0.5982
+[INFO] Processing method: multiclass_SMOTE
+[INFO] Training samples: 251758
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.4
+
+Per-label metrics:
+HD: Precision=0.3152, Recall=0.2363, F1=0.2701, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.3152, Recall=0.2363, F1=0.2701
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8862
+Macro F1: 0.6042
+== Processing directory: sing_label_data3_1 ==
+== Processing file: multiclass_ADASYN_single_label.npy ==
+Running main.py (confidence dev set) on multiclass_ADASYN_single_label.npy
+ERROR: Could not extract best confidence threshold for multiclass_ADASYN_single_label.npy
+[INFO] Processing method: multiclass_ADASYN
+[INFO] Training samples: 22733
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9286, Recall=0.0265, F1=0.0515, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9286, Recall=0.0265, F1=0.0515
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9131
+Macro F1: 0.5030
+[INFO] Processing method: multiclass_RandomUnderSampler
+[INFO] Training samples: 22733
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9286, Recall=0.0265, F1=0.0515, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9286, Recall=0.0265, F1=0.0515
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9131
+Macro F1: 0.5030
+[INFO] Processing method: multiclass_SMOTEENN
+[INFO] Training samples: 235464
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.6
+
+Per-label metrics:
+HD: Precision=0.1732, Recall=0.2709, F1=0.2113, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1732, Recall=0.2709, F1=0.2113
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8198
+Macro F1: 0.5548
+[INFO] Processing method: multiclass_RandomOverSampler
+[INFO] Training samples: 22733
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9286, Recall=0.0265, F1=0.0515, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9286, Recall=0.0265, F1=0.0515
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9131
+Macro F1: 0.5030
+[INFO] Processing method: multiclass_SMOTE
+[INFO] Training samples: 22733
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9286, Recall=0.0265, F1=0.0515, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9286, Recall=0.0265, F1=0.0515
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9131
+Macro F1: 0.5030
+== Processing file: multiclass_RandomOverSampler_single_label.npy ==
+Running main.py (confidence dev set) on multiclass_RandomOverSampler_single_label.npy
+ERROR: Could not extract best confidence threshold for multiclass_RandomOverSampler_single_label.npy
+[INFO] Processing method: multiclass_ADASYN
+[INFO] Training samples: 22733
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9286, Recall=0.0265, F1=0.0515, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9286, Recall=0.0265, F1=0.0515
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9131
+Macro F1: 0.5030
+[INFO] Processing method: multiclass_RandomUnderSampler
+[INFO] Training samples: 22733
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9286, Recall=0.0265, F1=0.0515, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9286, Recall=0.0265, F1=0.0515
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9131
+Macro F1: 0.5030
+[INFO] Processing method: multiclass_SMOTEENN
+[INFO] Training samples: 235464
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.6
+
+Per-label metrics:
+HD: Precision=0.1732, Recall=0.2709, F1=0.2113, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1732, Recall=0.2709, F1=0.2113
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8198
+Macro F1: 0.5548
+[INFO] Processing method: multiclass_RandomOverSampler
+[INFO] Training samples: 22733
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9286, Recall=0.0265, F1=0.0515, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9286, Recall=0.0265, F1=0.0515
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9131
+Macro F1: 0.5030
+[INFO] Processing method: multiclass_SMOTE
+[INFO] Training samples: 22733
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9286, Recall=0.0265, F1=0.0515, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9286, Recall=0.0265, F1=0.0515
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9131
+Macro F1: 0.5030
+== Processing file: multiclass_RandomUnderSampler_single_label.npy ==
+Running main.py (confidence dev set) on multiclass_RandomUnderSampler_single_label.npy
+ERROR: Could not extract best confidence threshold for multiclass_RandomUnderSampler_single_label.npy
+[INFO] Processing method: multiclass_ADASYN
+[INFO] Training samples: 22733
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9286, Recall=0.0265, F1=0.0515, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9286, Recall=0.0265, F1=0.0515
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9131
+Macro F1: 0.5030
+[INFO] Processing method: multiclass_RandomUnderSampler
+[INFO] Training samples: 22733
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9286, Recall=0.0265, F1=0.0515, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9286, Recall=0.0265, F1=0.0515
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9131
+Macro F1: 0.5030
+[INFO] Processing method: multiclass_SMOTEENN
+[INFO] Training samples: 235464
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.6
+
+Per-label metrics:
+HD: Precision=0.1732, Recall=0.2709, F1=0.2113, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1732, Recall=0.2709, F1=0.2113
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8198
+Macro F1: 0.5548
+[INFO] Processing method: multiclass_RandomOverSampler
+[INFO] Training samples: 22733
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9286, Recall=0.0265, F1=0.0515, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9286, Recall=0.0265, F1=0.0515
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9131
+Macro F1: 0.5030
+[INFO] Processing method: multiclass_SMOTE
+[INFO] Training samples: 22733
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9286, Recall=0.0265, F1=0.0515, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9286, Recall=0.0265, F1=0.0515
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9131
+Macro F1: 0.5030
+== Processing file: multiclass_SMOTEENN_single_label.npy ==
+Running main.py (confidence dev set) on multiclass_SMOTEENN_single_label.npy
+ERROR: Could not extract best confidence threshold for multiclass_SMOTEENN_single_label.npy
+[INFO] Processing method: multiclass_ADASYN
+[INFO] Training samples: 22733
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9286, Recall=0.0265, F1=0.0515, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9286, Recall=0.0265, F1=0.0515
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9131
+Macro F1: 0.5030
+[INFO] Processing method: multiclass_RandomUnderSampler
+[INFO] Training samples: 22733
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9286, Recall=0.0265, F1=0.0515, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9286, Recall=0.0265, F1=0.0515
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9131
+Macro F1: 0.5030
+[INFO] Processing method: multiclass_SMOTEENN
+[INFO] Training samples: 235464
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.6
+
+Per-label metrics:
+HD: Precision=0.1732, Recall=0.2709, F1=0.2113, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1732, Recall=0.2709, F1=0.2113
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8198
+Macro F1: 0.5548
+[INFO] Processing method: multiclass_RandomOverSampler
+[INFO] Training samples: 22733
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9286, Recall=0.0265, F1=0.0515, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9286, Recall=0.0265, F1=0.0515
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9131
+Macro F1: 0.5030
+[INFO] Processing method: multiclass_SMOTE
+[INFO] Training samples: 22733
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9286, Recall=0.0265, F1=0.0515, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9286, Recall=0.0265, F1=0.0515
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9131
+Macro F1: 0.5030
+== Processing file: multiclass_SMOTE_single_label.npy ==
+Running main.py (confidence dev set) on multiclass_SMOTE_single_label.npy
+ERROR: Could not extract best confidence threshold for multiclass_SMOTE_single_label.npy
+[INFO] Processing method: multiclass_ADASYN
+[INFO] Training samples: 22733
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9286, Recall=0.0265, F1=0.0515, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9286, Recall=0.0265, F1=0.0515
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9131
+Macro F1: 0.5030
+[INFO] Processing method: multiclass_RandomUnderSampler
+[INFO] Training samples: 22733
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9286, Recall=0.0265, F1=0.0515, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9286, Recall=0.0265, F1=0.0515
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9131
+Macro F1: 0.5030
+[INFO] Processing method: multiclass_SMOTEENN
+[INFO] Training samples: 235464
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.6
+
+Per-label metrics:
+HD: Precision=0.1732, Recall=0.2709, F1=0.2113, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.1732, Recall=0.2709, F1=0.2113
+
+[SKLEARN] Evaluation:
+Micro F1: 0.8198
+Macro F1: 0.5548
+[INFO] Processing method: multiclass_RandomOverSampler
+[INFO] Training samples: 22733
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9286, Recall=0.0265, F1=0.0515, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9286, Recall=0.0265, F1=0.0515
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9131
+Macro F1: 0.5030
+[INFO] Processing method: multiclass_SMOTE
+[INFO] Training samples: 22733
+[INFO] Test samples: 5510
+[INFO] No dev set, training with default or specified params
+[INFO] Confidence scores saved in: /geode2/home/u060/mealieff/BigRed200/hsd-gab/confidence_scores
+
+[THRESHOLD] Best = 0.3
+
+Per-label metrics:
+HD: Precision=0.9286, Recall=0.0265, F1=0.0515, Scheme=[1, 0, 0]
+
+[AVG] Precision=0.9286, Recall=0.0265, F1=0.0515
+
+[SKLEARN] Evaluation:
+Micro F1: 0.9131
+Macro F1: 0.5030
